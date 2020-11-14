@@ -21,7 +21,7 @@ public class DBConnection extends AppCompatActivity {
 
         System.out.println("In DBConnection.java class ");
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection(url,username,password);
             System.out.println("Printing connection object "+ con);
 

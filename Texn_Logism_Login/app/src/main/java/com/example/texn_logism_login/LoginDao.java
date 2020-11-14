@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import com.example.texn_logism_login.LoginBean;
+
 
 public class LoginDao extends AppCompatActivity {
     public String authEmployer(LoginBean loginBean) {
@@ -17,8 +17,8 @@ public class LoginDao extends AppCompatActivity {
 
 
         try {
-            String username = LoginBean.getUsername();
-            String password = LoginBean.getPassword();
+            String username = loginBean.getUsername();
+            String password = loginBean.getPassword();
 
             String usernameDB = "";
             String passwordDB = "";

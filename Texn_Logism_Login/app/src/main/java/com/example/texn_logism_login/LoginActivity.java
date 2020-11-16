@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -81,8 +82,14 @@ public class LoginActivity extends AppCompatActivity {
                 if(httpResponseMsg.equalsIgnoreCase("Data Matched")) {
                     Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
                     status.setText("Login Successfully.");
-
                     finish();
+
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+
+                    intent.putExtra(username,password);
+
+                    startActivity(intent);
+
                 }
                 else{
                     status.setText("Login Failed.");

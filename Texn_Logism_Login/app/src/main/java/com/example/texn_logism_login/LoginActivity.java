@@ -80,15 +80,15 @@ public class LoginActivity extends AppCompatActivity {
                 super.onPostExecute(httpResponseMsg);
                 progressDialog.dismiss();
                 if(httpResponseMsg.equalsIgnoreCase("Data Matched")) {
-                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
-                    status.setText("Login Successfully.");
                     finish();
+                    System.out.println("mphka sto onPostExecute IF");
+                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                    status.setText("Success.");
 
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-
-                    intent.putExtra(username,password);
-
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    //intent.putExtra(username,password);
                     startActivity(intent);
+
 
                 }
                 else{

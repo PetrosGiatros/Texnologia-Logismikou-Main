@@ -79,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 progressDialog.dismiss();
-                if(httpResponseMsg.equalsIgnoreCase("Data Matched")) {
+                if(httpResponseMsg.equalsIgnoreCase("Welcome Admin"))
+                {
                     finish();
                     System.out.println("mphka sto onPostExecute IF");
                     Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
@@ -88,8 +89,14 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     //intent.putExtra(username,password);
                     startActivity(intent);
-
-
+                }
+                else if (httpResponseMsg.equalsIgnoreCase("Welcome User"))
+                {
+                    finish();
+                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                    status.setText("Success.");
+                    Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     status.setText("Login Failed.");

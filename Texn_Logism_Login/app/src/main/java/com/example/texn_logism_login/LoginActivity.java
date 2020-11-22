@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.HashMap;
+import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView usernameTextView, passwordTextView, status;
+    private static TextView usernameTextView;
+    private TextView passwordTextView;
+    private TextView status;
     private Button loginButton;
 
     String finalResult ;
@@ -57,15 +60,20 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-        public void CheckEditTextIsEmptyOrNot(){
-                 usernameHolder = usernameTextView.getText().toString();
-                 passwordHolder = passwordTextView.getText().toString();
-                if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
-                    CheckEditText = false;
-                } else {
-                    CheckEditText = true;
-                }
-            }
+
+    public static TextView getUsernameTextView() {
+        return usernameTextView;
+    }
+
+    public void CheckEditTextIsEmptyOrNot(){
+        usernameHolder = usernameTextView.getText().toString();
+        passwordHolder = passwordTextView.getText().toString();
+        if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
+            CheckEditText = false;
+        } else {
+            CheckEditText = true;
+        }
+    }
 
     public void UserLoginFunction(String username,String password){
         class UserLoginClass extends AsyncTask<String,Void,String> {
@@ -79,7 +87,8 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 progressDialog.dismiss();
-                if(httpResponseMsg.equalsIgnoreCase("Data Matched")) {
+                if(httpResponseMsg.equalsIgnoreCase("Welcome Admin"))
+                {
                     finish();
                     System.out.println("mphka sto onPostExecute IF");
                     Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
@@ -88,8 +97,14 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     //intent.putExtra(username,password);
                     startActivity(intent);
-
-
+                }
+                else if (httpResponseMsg.equalsIgnoreCase("Welcome User"))
+                {
+                    finish();
+                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                    status.setText("Success.");
+                    Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     status.setText("Login Failed.");
@@ -108,9 +123,11 @@ public class LoginActivity extends AppCompatActivity {
         }
         UserLoginClass userLoginClass = new UserLoginClass();
         userLoginClass.execute(username,password);
-        }
-
     }
+
+
+
+}
 
 
 

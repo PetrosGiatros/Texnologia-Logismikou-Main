@@ -7,24 +7,23 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CalendarActivity extends AppCompatActivity {
-    private Button button_Show;
+public class ScheduleActivity extends AppCompatActivity {
+    private Button button_back;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calendar_form);
-        button_Show = (Button) findViewById(R.id.button_Show);
-        button_Show.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.schedule_form);
+        button_back = (Button) findViewById(R.id.button_back);
+        button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSchedule_form();
+                openCalendar_form();
             }
         });
 
     }
-    public  void openSchedule_form() {
+    public  void openCalendar_form() {
 
-        Intent intent =new Intent(this, ScheduleActivity.class);
+        Intent intent =new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
 }
-

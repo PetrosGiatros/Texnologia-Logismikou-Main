@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.HashMap;
+import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView usernameTextView, passwordTextView, status;
+    private static TextView usernameTextView;
+    private TextView passwordTextView;
+    private TextView status;
     private Button loginButton;
 
     String finalResult ;
@@ -57,7 +60,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-        public void CheckEditTextIsEmptyOrNot(){
+
+    public static TextView getUsernameTextView() {
+        return usernameTextView;
+    }
+
+    public void CheckEditTextIsEmptyOrNot(){
                  usernameHolder = usernameTextView.getText().toString();
                  passwordHolder = passwordTextView.getText().toString();
                 if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
@@ -109,6 +117,8 @@ public class LoginActivity extends AppCompatActivity {
         UserLoginClass userLoginClass = new UserLoginClass();
         userLoginClass.execute(username,password);
         }
+
+
 
     }
 

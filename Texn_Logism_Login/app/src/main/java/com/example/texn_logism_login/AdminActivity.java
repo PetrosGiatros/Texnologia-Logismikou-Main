@@ -1,5 +1,6 @@
 package com.example.texn_logism_login;
 
+import android.app.ApplicationExitInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminActivity extends AppCompatActivity {
 
     private Button hireFireButton;
+    private Button exitButton;
 
 
 
@@ -20,7 +22,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.admin_form);
 
         hireFireButton = (Button)findViewById(R.id.buttonHireFire);
-
+        exitButton= (Button)findViewById(R.id.buttonExit);
         hireFireButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,10 +32,11 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
-
-
-    }
-}
+                finish();
+            }
+    });
+}}

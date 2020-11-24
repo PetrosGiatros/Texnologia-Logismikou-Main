@@ -1,11 +1,14 @@
 package com.example.texn_logism_login;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,11 +23,13 @@ import java.util.HashMap;
 
 
 public class HireFireActivity extends AppCompatActivity {
-    private Button hireButton,backHireButton;
+    private Button hireButton,backHireButton,deleteButton;
     HashMap<String,String> hireMap = new HashMap<>();
+    HashMap<String,String> delMap = new HashMap<>();
     String finalResult ;
     HttpParse httpParse = new HttpParse();
     String HttpURL = "http://priapic-blower.000webhostapp.com/getEmployees.php";
+    String HttpURL2 = "http://priapic-blower.000webhostapp.com/deleteEmployees.php";
 
      static String[] employeeArray={};
 
@@ -37,14 +42,60 @@ public class HireFireActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hirefire_form);
-
+        deleteButton=(Button)findViewById(R.id.buttonDelete);
         backHireButton= (Button)findViewById(R.id.buttonBackHireFire);
         hireButton= (Button)findViewById(R.id.buttonHire);
 
 
-        System.out.println(loggedInUsername);
+        ListView listView = (ListView) findViewById(R.id.employeeList);
 
-        getEmployeesInfo(loggedInUsername);
+        getEmployeesInfo(loggedInUsername,listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                final String[] selectedUsername = selectedItem.split(" ");
+
+                System.out.println("selected username:" + selectedUsername[0]);
+                deleteButton.setVisibility(view.VISIBLE);
+                Toast.makeText(HireFireActivity.this, "Selected User: " + selectedUsername[0], Toast.LENGTH_SHORT).show();
+
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        //Do your Yes progress
+                                        deleteEmployees(selectedUsername[0]);
+                                        getEmployeesInfo(loggedInUsername,listView);
+                                        deleteButton.setVisibility(view.GONE);
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        //Do your No progress
+                                        break;
+                                }
+                            }
+                        };
+                        AlertDialog.Builder ab = new AlertDialog.Builder(HireFireActivity.this);
+                        ab.setMessage("Are you sure to delete: "+selectedUsername[0]+"?").setPositiveButton("Yes", dialogClickListener)
+                                .setNegativeButton("No", dialogClickListener).show();
+
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
 
 
 
@@ -72,7 +123,8 @@ public class HireFireActivity extends AppCompatActivity {
 
     }
 
-     public String[] getEmployeesInfo(String loggedInUsername){
+
+     public String[] getEmployeesInfo(String loggedInUsername, ListView listView){
 
         class GetEmployeesInfoClass extends AsyncTask<String,Void,String> {
             @Override
@@ -106,9 +158,10 @@ public class HireFireActivity extends AppCompatActivity {
                     employeeArrayNew[i]=employeeArray[i];
                 }
 
-                ListView listView = (ListView) findViewById(R.id.employeeList);
                 adapter=new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayNew);
                 listView.setAdapter(adapter);
+
+
             }
 
             @Override
@@ -116,7 +169,7 @@ public class HireFireActivity extends AppCompatActivity {
                 hireMap.put("loggedinUsername",params[0]);
 
                 finalResult = httpParse.postRequest(hireMap, HttpURL);
-                System.out.println("result = "+ finalResult);
+                //System.out.println("result = "+ finalResult);
 
                 employeeArray = finalResult.split(" ");
 
@@ -129,7 +182,30 @@ public class HireFireActivity extends AppCompatActivity {
         return employeeArray;
     }
 
+    public void deleteEmployees(String selectedUsername){
 
+        class DeleteEmployees extends AsyncTask<String,Void,String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //progressDialog = ProgressDialog.show(HireActivity.this,"Loading Data",null,true,true);
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+
+            }
+            @Override
+            protected String doInBackground(String... params) {
+                delMap.put("selectedUsername",params[0]);
+                finalResult = httpParse.postRequest(delMap, HttpURL2);
+               // System.out.println("result= "+ finalResult);
+                return finalResult;
+            }
+        }
+        DeleteEmployees deleteEmployees = new DeleteEmployees();
+        deleteEmployees.execute(selectedUsername);
+    }
 
 
 

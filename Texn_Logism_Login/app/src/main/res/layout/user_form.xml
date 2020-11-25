@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/button_view2"
         android:layout_width="212dp"
         android:layout_height="76dp"
         android:layout_marginTop="116dp"
@@ -29,6 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/buttonExit"
         android:layout_width="169.88dp"
         android:layout_height="38.88dp"
         android:layout_marginTop="572dp"

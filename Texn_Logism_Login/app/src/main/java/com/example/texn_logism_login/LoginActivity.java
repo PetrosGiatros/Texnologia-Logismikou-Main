@@ -66,15 +66,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void CheckEditTextIsEmptyOrNot(){
-                 usernameHolder = usernameTextView.getText().toString();
-                 passwordHolder = passwordTextView.getText().toString();
-                if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
-                    CheckEditText = false;
-                } else {
-                    CheckEditText = true;
-                }
-            }
-
+        usernameHolder = usernameTextView.getText().toString();
+        passwordHolder = passwordTextView.getText().toString();
+        if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
+            CheckEditText = false;
+        } else {
+            CheckEditText = true;
+        }
+    }
     public void UserLoginFunction(String username,String password){
         class UserLoginClass extends AsyncTask<String,Void,String> {
             @Override
@@ -124,10 +123,11 @@ public class LoginActivity extends AppCompatActivity {
         UserLoginClass userLoginClass = new UserLoginClass();
         userLoginClass.execute(username,password);
         }
-
-
-
     }
+
+
+
+}
 
 
 

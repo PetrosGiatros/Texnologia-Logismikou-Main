@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class AdminActivity extends AppCompatActivity {
+     private Button button_view;
+
 
     private Button hireFireButton;
 
@@ -19,6 +22,19 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_form);
 
+        button_view = (Button) findViewById(R.id.button_view);
+        button_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCalendar_form();
+            }
+        });
+
+    }
+    public  void openCalendar_form() {
+
+        Intent intent =new Intent(this, CalendarActivity.class);
+        startActivity(intent);
         hireFireButton = (Button)findViewById(R.id.buttonHireFire);
 
         hireFireButton.setOnClickListener(new View.OnClickListener() {
@@ -30,10 +46,5 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 }

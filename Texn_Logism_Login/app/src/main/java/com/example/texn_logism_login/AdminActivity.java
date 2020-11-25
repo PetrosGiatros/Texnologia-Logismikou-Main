@@ -26,15 +26,12 @@ public class AdminActivity extends AppCompatActivity {
         button_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCalendar_form();
+                Intent intent =new Intent(AdminActivity.this, CalendarActivity.class);
+                startActivity(intent);
+
             }
         });
 
-    }
-    public  void openCalendar_form() {
-
-        Intent intent =new Intent(this, CalendarActivity.class);
-        startActivity(intent);
         hireFireButton = (Button)findViewById(R.id.buttonHireFire);
         exitButton= (Button)findViewById(R.id.buttonExit);
         hireFireButton.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +49,14 @@ public class AdminActivity extends AppCompatActivity {
 
                 finish();
             }
-    });
-}}
+        });
+
+
 
     }
+
 }
+
+
+
 

@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
             CheckEditText = true;
         }
     }
-
     public void UserLoginFunction(String username,String password){
         class UserLoginClass extends AsyncTask<String,Void,String> {
             @Override
@@ -123,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         UserLoginClass userLoginClass = new UserLoginClass();
         userLoginClass.execute(username,password);
+        }
     }
 
 

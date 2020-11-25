@@ -30,6 +30,7 @@
         android:id="@+id/button_view"/>
 
     <Button
+        android:id="@+id/buttonHireFire"
         android:layout_width="212dp"
         android:layout_height="76dp"
         android:layout_marginTop="340dp"

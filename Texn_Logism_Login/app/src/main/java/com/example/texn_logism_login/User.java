@@ -12,28 +12,29 @@ public class User extends AppCompatActivity {
         boolean hasShift=true;
 
 
-        public User(String firstName, String lastName, int shiftHours, int id, String shiftType, String profession)
+        public User(String firstName, String lastName, int shiftHours, int id, String profession)
         {
             FirstName = firstName;
             LastName = lastName;
             this.shiftHours = shiftHours;
             this.id = id;
             this.profession = profession;
-            if(shiftType=="weekly"){
-                totalHours=5*(Integer.valueOf(shiftType));
-            }else if( shiftType=="Monthly"){
-                totalHours=20*(Integer.valueOf(shiftType));
-            }else if(shiftType=="Trimester"){
-                totalHours=60*(Integer.valueOf(shiftType));
-            }else{
-                totalHours=120*(Integer.valueOf(shiftType));
-            }
 
         }
 
+    public void setTotalHours(String scheduleType,String shiftType)
+    {
+        if (scheduleType == "Weekly") {
+            totalHours = 5 * (Integer.valueOf(shiftType));
+        } else if (shiftType == "Monthly") {
+            totalHours = 20 * (Integer.valueOf(shiftType));
+        } else if (shiftType == "Trimester") {
+            totalHours = 60 * (Integer.valueOf(shiftType));
+        } else {
+            totalHours = 120 * (Integer.valueOf(shiftType));
+        }
 
-
-
+    }
 
 
 }

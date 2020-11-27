@@ -69,9 +69,15 @@ public class CreateActivity  extends AppCompatActivity {
         User petran=new User("pe","tran",8,7,"Manager");
 
         System.out.println(kitsos.totalHours);
+        kitsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        panagiwtis.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        konstantinos.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        kwstas.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        kotsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        giannhs.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        petran.setTotalHours(SelectedScheduleType,SelectedShiftType);
 
-
-
+        System.out.println(kitsos.totalHours);
 
     }
 

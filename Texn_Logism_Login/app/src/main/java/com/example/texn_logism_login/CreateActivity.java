@@ -68,18 +68,7 @@ public class CreateActivity  extends AppCompatActivity {
         User giannhs=new User("gian","nhs",8,6,"Programmer");
         User petran=new User("pe","tran",8,7,"Manager");
 
-        int totalHoursSchedule;
-        if(SelectedScheduleType=="Weekly"){
-            totalHoursSchedule=5*(Integer.valueOf(SelectedShiftType));
-        }else if( SelectedScheduleType=="Monthly"){
-            totalHoursSchedule=20*(Integer.valueOf(SelectedShiftType));
-        }else if(SelectedScheduleType=="Trimester"){
-            totalHoursSchedule=60*(Integer.valueOf(SelectedShiftType));
-        }else{
-            totalHoursSchedule=120*(Integer.valueOf(SelectedShiftType));
-        }
-
-
+        System.out.println(kitsos.totalHours);
 
 
 

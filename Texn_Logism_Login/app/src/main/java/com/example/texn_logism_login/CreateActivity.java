@@ -61,12 +61,24 @@ public class CreateActivity  extends AppCompatActivity {
 
 
         User kitsos=new User("ki","tsos",8,1,"Programmer");
-        User panagiwtis = new User("pana","giwtis",4,2,"Analyst");
+        User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
         User konstantinos = new User("konsta","ntinos",8,3,"Manager");
-        User kwstas=new User("kw","stas",4,4,"Programmer");
+        User kwstas=new User("kw","stas",8,4,"Programmer");
         User kotsos=new User("ko","tsos",8,5,"Analyst");
-        User giannhs=new User("gian","nhs",4,6,"Programmer");
+        User giannhs=new User("gian","nhs",8,6,"Programmer");
         User petran=new User("pe","tran",8,7,"Manager");
+
+        int totalHoursSchedule;
+        if(SelectedScheduleType=="Weekly"){
+            totalHoursSchedule=5*(Integer.valueOf(SelectedShiftType));
+        }else if( SelectedScheduleType=="Monthly"){
+            totalHoursSchedule=20*(Integer.valueOf(SelectedShiftType));
+        }else if(SelectedScheduleType=="Trimester"){
+            totalHoursSchedule=60*(Integer.valueOf(SelectedShiftType));
+        }else{
+            totalHoursSchedule=120*(Integer.valueOf(SelectedShiftType));
+        }
+
 
 
 

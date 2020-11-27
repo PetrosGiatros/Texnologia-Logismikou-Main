@@ -7,15 +7,18 @@ public class User extends AppCompatActivity {
 
         public String FirstName;
         public String LastName;
-        public int hourWorking,id;
+        public int shiftHours,id,totalHours,hourWorked=0;
         public String profession;
+        boolean hasShift=true;
 
-        public User(String firstName, String lastName, int hourWorking, int id, String profession) {
+
+        public User(String firstName, String lastName, int shiftHours, int id, String profession) {
             FirstName = firstName;
             LastName = lastName;
-            this.hourWorking = hourWorking;
+            this.shiftHours = shiftHours;
             this.id = id;
             this.profession = profession;
+
         }
 
 

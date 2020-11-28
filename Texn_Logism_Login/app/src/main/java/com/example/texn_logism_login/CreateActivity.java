@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Struct;
+import java.util.Random;
 
 
 public class CreateActivity  extends AppCompatActivity {
@@ -68,14 +69,7 @@ public class CreateActivity  extends AppCompatActivity {
         User giannhs=new User("gian","nhs",8,6,"Programmer");
         User petran=new User("pe","tran",8,7,"Manager");
 
-        int type;
-        /*kitsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        panagiwtis.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        konstantinos.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        kwstas.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        kotsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        giannhs.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        petran.setTotalHours(SelectedScheduleType,SelectedShiftType);*/
+
         User users[] = new User[7];
         users[0] = kitsos;
         users[1] = panagiwtis;
@@ -89,28 +83,60 @@ public class CreateActivity  extends AppCompatActivity {
         {
             users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
         }
+
+        int type;
         if (SelectedScheduleType == "Weekly") {
-           final int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*5*numOfShifts][7];
+            type=5;
+        } else if (SelectedScheduleType == "Monthly") {
+            type=20;
+        } else if (SelectedScheduleType == "Trimester") {
+            type=60;
+        } else {
+            type=120;
+        }
+
+
+
+        if (SelectedScheduleType == "Weekly") {
+            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         else if(SelectedScheduleType == "Monthly") {
-            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*20*numOfShifts][7];
+            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         else if(SelectedScheduleType == "Trimester") {
-            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*60*numOfShifts][7];
+            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
 
         }
         else if(SelectedScheduleType == "Semester") {
-            int[][] schedule = new  int[Integer.valueOf(SelectedShiftType) * 120 * numOfShifts][7];
+            int[][] schedule = new  int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
-        System.out.println();
-       /*for (int i = 0; i < 20; i++ )
-       {
-           for (int j = 0; j < 7; j++)
-           {
+        Random ran= new Random();
+        int randomNum = ran.nextInt(users.length);
+        User selectedUsers[] = new User[users.length];
 
-           }
 
-       }*/
+       int k=0;
+        while((Integer.valueOf(SelectedShiftType)*type*numOfShifts)>0){
+            selectedUsers[k]=users[randomNum];
+            for(int i =0;i<Integer.valueOf(SelectedShiftType)*type*numOfShifts;i++){
+
+                for(int j =0;j<users.length;j++){
+
+
+
+
+
+                }
+
+
+
+
+            }
+
+        }
+
+
+
 
 
 

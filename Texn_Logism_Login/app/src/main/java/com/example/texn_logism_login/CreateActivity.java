@@ -68,7 +68,7 @@ public class CreateActivity  extends AppCompatActivity {
         User giannhs=new User("gian","nhs",8,6,"Programmer");
         User petran=new User("pe","tran",8,7,"Manager");
 
-
+        int type;
         /*kitsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
         panagiwtis.setTotalHours(SelectedScheduleType,SelectedShiftType);
         konstantinos.setTotalHours(SelectedScheduleType,SelectedShiftType);
@@ -89,7 +89,6 @@ public class CreateActivity  extends AppCompatActivity {
         {
             users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
         }
-
         if (SelectedScheduleType == "Weekly") {
            final int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*5*numOfShifts][7];
         }

@@ -59,7 +59,7 @@ public class CreateActivity  extends AppCompatActivity {
 
     public void createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession){
 
-
+        int numOfShifts = 1;
         User kitsos=new User("ki","tsos",8,1,"Programmer");
         User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
         User konstantinos = new User("konsta","ntinos",8,3,"Manager");
@@ -76,7 +76,6 @@ public class CreateActivity  extends AppCompatActivity {
         kotsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
         giannhs.setTotalHours(SelectedScheduleType,SelectedShiftType);
         petran.setTotalHours(SelectedScheduleType,SelectedShiftType);*/
-
         User users[] = new User[7];
         users[0] = kitsos;
         users[1] = panagiwtis;
@@ -91,16 +90,28 @@ public class CreateActivity  extends AppCompatActivity {
             users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
         }
 
+        if (SelectedScheduleType == "Weekly") {
+           final int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*5*numOfShifts][7];
+        }
+        else if(SelectedScheduleType == "Monthly") {
+            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*20*numOfShifts][7];
+        }
+        else if(SelectedScheduleType == "Trimester") {
+            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*60*numOfShifts][7];
 
-       int[][] schedule = new int[20][20];
-       for (int i = 0; i < 20; i++ )
+        }
+        else if(SelectedScheduleType == "Semester") {
+            int[][] schedule = new  int[Integer.valueOf(SelectedShiftType) * 120 * numOfShifts][7];
+        }
+        System.out.println();
+       /*for (int i = 0; i < 20; i++ )
        {
-           for (int j = 0; j < 20; j++)
+           for (int j = 0; j < 7; j++)
            {
 
            }
 
-       }
+       }*/
 
 
 

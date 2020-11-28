@@ -1,7 +1,6 @@
 package com.example.texn_logism_login;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,13 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -47,7 +44,7 @@ public class HireFireActivity extends AppCompatActivity {
         hireButton= (Button)findViewById(R.id.buttonHire);
 
 
-        ListView listView = (ListView) findViewById(R.id.employeeList);
+        ListView listView = (ListView) findViewById(R.id.employeelist);
 
         getEmployeesInfo(loggedInUsername,listView);
 

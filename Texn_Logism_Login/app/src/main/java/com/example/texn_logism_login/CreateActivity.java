@@ -68,16 +68,41 @@ public class CreateActivity  extends AppCompatActivity {
         User giannhs=new User("gian","nhs",8,6,"Programmer");
         User petran=new User("pe","tran",8,7,"Manager");
 
-        System.out.println(kitsos.totalHours);
-        kitsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
+
+        /*kitsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
         panagiwtis.setTotalHours(SelectedScheduleType,SelectedShiftType);
         konstantinos.setTotalHours(SelectedScheduleType,SelectedShiftType);
         kwstas.setTotalHours(SelectedScheduleType,SelectedShiftType);
         kotsos.setTotalHours(SelectedScheduleType,SelectedShiftType);
         giannhs.setTotalHours(SelectedScheduleType,SelectedShiftType);
-        petran.setTotalHours(SelectedScheduleType,SelectedShiftType);
+        petran.setTotalHours(SelectedScheduleType,SelectedShiftType);*/
 
-        System.out.println(kitsos.totalHours);
+        User users[] = new User[7];
+        users[0] = kitsos;
+        users[1] = panagiwtis;
+        users[2] = konstantinos;
+        users[3] = kwstas;
+        users[4] = kotsos;
+        users[5] = giannhs;
+        users[6] = petran;
+
+        for (int i = 0; i < users.length; i++)
+        {
+            users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
+        }
+
+
+       int[][] schedule = new int[20][20];
+       for (int i = 0; i < 20; i++ )
+       {
+           for (int j = 0; j < 20; j++)
+           {
+
+           }
+
+       }
+
+
 
     }
 

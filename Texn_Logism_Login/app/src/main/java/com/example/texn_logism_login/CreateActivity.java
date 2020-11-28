@@ -59,7 +59,7 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     public void createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession){
-
+        int[][] schedule;
         int numOfShifts = 1;
         User kitsos=new User("ki","tsos",8,1,"Programmer");
         User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
@@ -98,42 +98,37 @@ public class CreateActivity  extends AppCompatActivity {
 
 
         if (SelectedScheduleType == "Weekly") {
-            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         else if(SelectedScheduleType == "Monthly") {
-            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         else if(SelectedScheduleType == "Trimester") {
-            int[][] schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
 
         }
-        else if(SelectedScheduleType == "Semester") {
-            int[][] schedule = new  int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
+        else {
+            schedule = new  int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         Random ran= new Random();
-        int randomNum = ran.nextInt(users.length);
-        User selectedUsers[] = new User[users.length];
+        int randomNum = ran.nextInt(users.length-1);
+        User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
 
-
-       int k=0;
-        while((Integer.valueOf(SelectedShiftType)*type*numOfShifts)>0){
+        int totalTypeHours = Integer.valueOf(SelectedShiftType)*type*numOfShifts;
+        int k=0;
+        while((totalTypeHours) > 0){
             selectedUsers[k]=users[randomNum];
-            for(int i =0;i<Integer.valueOf(SelectedShiftType)*type*numOfShifts;i++){
+            for(int i = 0;i < Integer.valueOf(SelectedShiftType);i++){
 
-                for(int j =0;j<users.length;j++){
-
-
-
-
-
+                for(int j =0; j <users.length;j++){
+                    schedule[i][j] = selectedUsers[k].id;
                 }
-
-
-
-
+                totalTypeHours = totalTypeHours - Integer.valueOf(SelectedShiftType);
+                System.out.println(schedule[i][0]);
             }
-
+            k++;
         }
+        System.out.println();
 
 
 

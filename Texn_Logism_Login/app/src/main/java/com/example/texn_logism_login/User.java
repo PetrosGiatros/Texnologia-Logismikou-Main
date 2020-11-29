@@ -19,6 +19,7 @@ public class User extends AppCompatActivity {
             this.shiftHours = shiftHours;
             this.id = id;
             this.profession = profession;
+            //this.hasShift=hasShift;
 
         }
 

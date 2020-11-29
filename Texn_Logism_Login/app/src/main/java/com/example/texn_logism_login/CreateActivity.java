@@ -100,6 +100,16 @@ public class CreateActivity  extends AppCompatActivity {
             type=120;
             schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         }
+
+        for (int row = 0; row < schedule.length; row++)//Cycles through rows
+        {
+            for (int col = 0; col < schedule[row].length; col++)//Cycles through columns
+            {
+               schedule[row][col]=-1;//change the %5d to however much space you want
+            }
+
+        }
+
         final int min = 0;
         final int max = 6;
         int randomNum = new Random().nextInt((max - min) + 1) + min;
@@ -142,18 +152,19 @@ public class CreateActivity  extends AppCompatActivity {
                         iCheck=1;
 
                     }else{
+                        iCheck=0;
+                        thisDay=j;
                         if (j == 39)
                         {
                             isOver = true;
                         }
-                        iCheck=0;
-                        thisDay=j;
+
                         System.out.println("Den mphke o: "+users[randomNum].FirstName);
-                        try {
+                       /* try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                         break;
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
@@ -191,12 +202,15 @@ public class CreateActivity  extends AppCompatActivity {
             }
         }
 
-        for(int i =0;i<employeeAmountPerShift;i=i+1){
-            for(int j = 0;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 1){
-                System.out.println("users id: "+schedule[i][j]);
+        for (int row = 0; row < schedule.length; row++)//Cycles through rows
+        {
+            for (int col = 0; col < schedule[row].length; col++)//Cycles through columns
+            {
+                System.out.printf("%5d", schedule[row][col]); //change the %5d to however much space you want
             }
-
+            System.out.println(); //Makes a new row
         }
+//This allows you to print the array as matrix
 
 
 

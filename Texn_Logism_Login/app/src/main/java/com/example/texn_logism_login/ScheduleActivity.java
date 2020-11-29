@@ -36,7 +36,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.userslist);
 
-        getEmployeesInfo(loggedInUsername,listView);
+        getScheduleInfo(loggedInUsername,listView);
 
     /*    String morningEmp=" petros \n maria \n sia \n kostas", morningEmp2=" dimitris \n andreas \n mhtsos \n giannis";
         String afternoonEmp= " mhtsos\n andreas\n", afternoonEmp2=" petros \n sia\n";
@@ -80,11 +80,9 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
 
-    //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    public String[] getScheduleInfo(String loggedInUsername, ListView listView){
 
-    public String[] getEmployeesInfo(String loggedInUsername, ListView listView){
-
-        class GetEmployeesInfoClass extends AsyncTask<String,Void,String> {
+        class GetScheduleInfoClass extends AsyncTask<String,Void,String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -126,13 +124,11 @@ public class ScheduleActivity extends AppCompatActivity {
                 return finalResult;
             }
         }
-        GetEmployeesInfoClass getEmployeesInfoClass = new GetEmployeesInfoClass();
-        getEmployeesInfoClass.execute(loggedInUsername);
+        GetScheduleInfoClass getScheduleInfoClass = new GetScheduleInfoClass();
+        getScheduleInfoClass.execute(loggedInUsername);
         return employeeArray;
     }
-
-    //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-
+    
 }
 
 

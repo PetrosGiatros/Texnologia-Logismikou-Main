@@ -111,8 +111,7 @@ public class CreateActivity  extends AppCompatActivity {
 
         while((totalTypeHours)>0){
 
-            int randomNum = ran.nextInt(users.length-1);
-            selectedUsers[k]=users[randomNum];
+            int randomNum ;
             int iCheck=1;
             int thisDay=7;
             for(int i =0;i<users.length;i=i+iCheck){
@@ -144,6 +143,7 @@ public class CreateActivity  extends AppCompatActivity {
                         System.out.println("Reached max people per shift.");
                         i=0;
                         iCheck=1;
+
                         randomNum = ran.nextInt(users.length-1);
                         selectedUsers[k]=users[randomNum];
                         recentAmountOfEmployees=0;

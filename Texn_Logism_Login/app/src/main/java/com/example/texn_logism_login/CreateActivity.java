@@ -84,40 +84,42 @@ public class CreateActivity  extends AppCompatActivity {
             users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
         }
 
-
+        int employeeAmountPerShift=2;
         int type;
         int[][] schedule;
         if (SelectedScheduleType == "Weekly") {
             type=5;
-            schedule = new int[7][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
+            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         } else if (SelectedScheduleType == "Monthly") {
             type=20;
-            schedule = new int[7][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
+            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         } else if (SelectedScheduleType == "Trimester") {
             type=60;
-            schedule = new int[7][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
+            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         } else {
             type=120;
-            schedule = new int[7][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
+            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         }
-        Random ran= new Random();
+        final int min = 0;
+        final int max = 6;
+        int randomNum = new Random().nextInt((max - min) + 1) + min;
 
         boolean isOver = false;
 
         User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
         int k=0;
-        int employeeAmountPerShift=2;
+
         int recentAmountOfEmployees=0;
         System.out.println("prin while");
         while((totalTypeHours)>0){
             System.out.println("mesa sto while");
-            int randomNum ;
+
             int iCheck=1;
             int thisDay=7;
             int j =0;
             for(int i =0;i<users.length;i=i+iCheck){
-                randomNum = ran.nextInt(users.length);
+                randomNum = new Random().nextInt((max - min) + 1) + min;
                 //selectedUsers[k]=users[randomNum];
                 for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
                     iCheck=1;
@@ -189,7 +191,7 @@ public class CreateActivity  extends AppCompatActivity {
             }
         }
 
-        for(int i =0;i<users.length;i=i+1){
+        for(int i =0;i<employeeAmountPerShift;i=i+1){
             for(int j = 0;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 1){
                 System.out.println("users id: "+schedule[i][j]);
             }

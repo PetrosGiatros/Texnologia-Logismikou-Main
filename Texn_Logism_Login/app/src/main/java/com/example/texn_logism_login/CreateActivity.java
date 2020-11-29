@@ -108,32 +108,50 @@ public class CreateActivity  extends AppCompatActivity {
         int k=0;
         int employeeAmountPerShift=2;
         int recentAmountOfEmployees=0;
+
         while((totalTypeHours)>0){
+
             int randomNum = ran.nextInt(users.length-1);
             selectedUsers[k]=users[randomNum];
-
-            for(int i =0;i<users.length;i++){
+            int iCheck=1;
+            int thisDay=7;
+            for(int i =0;i<users.length;i=i+iCheck){
                 randomNum = ran.nextInt(users.length-1);
                 selectedUsers[k]=users[randomNum];
-                for(int j = 7;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
-
+                for(int j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
+                    iCheck=1;
                     if((selectedUsers[k].hasShift==true) && (selectedUsers[k].totalHours>0)) {
                         for (int z = j; z >= j - 7; z-- )
                         {
                             schedule[i][z] = selectedUsers[k].id;
+                            selectedUsers[k].hasShift=false;
+                            users[k].hasShift=false;
+                            selectedUsers[k].totalHours=selectedUsers[k].totalHours-Integer.valueOf(SelectedShiftType);
                         }
                         System.out.println("schedule test:" + schedule[i][j]);
                         recentAmountOfEmployees++;
+                        iCheck=1;
 
                     }else{
-                        randomNum = ran.nextInt(users.length-1);
-                        selectedUsers[k]=users[randomNum];
+                        iCheck=0;
+                        thisDay=j;
+                       /* randomNum = ran.nextInt(users.length-1);
+                        selectedUsers[k]=users[randomNum];*/
+
                         break;
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
                         System.out.println("Reached max people per shift.");
+                        i=0;
+                        iCheck=1;
+                        randomNum = ran.nextInt(users.length-1);
+                        selectedUsers[k]=users[randomNum];
+                        recentAmountOfEmployees=0;
+
                     }else{
                         System.out.println("Have not yet reached max people per shift.");
+                        iCheck=1;
+                        thisDay=j;
                         break;
                     }
 

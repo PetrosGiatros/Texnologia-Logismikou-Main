@@ -102,6 +102,7 @@ public class CreateActivity  extends AppCompatActivity {
         }
         Random ran= new Random();
 
+        boolean isOver = false;
 
         User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
@@ -109,7 +110,6 @@ public class CreateActivity  extends AppCompatActivity {
         int employeeAmountPerShift=2;
         int recentAmountOfEmployees=0;
         System.out.println("prin while");
-
         while((totalTypeHours)>0){
             System.out.println("mesa sto while");
             int randomNum ;
@@ -117,40 +117,42 @@ public class CreateActivity  extends AppCompatActivity {
             int thisDay=7;
             int j =0;
             for(int i =0;i<users.length;i=i+iCheck){
-                randomNum = ran.nextInt(users.length-1);
+                randomNum = ran.nextInt(users.length);
                 //selectedUsers[k]=users[randomNum];
                 for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
                     iCheck=1;
-
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
                         for (int z = j; z >= j - 7; z-- )
                         {
                             schedule[i][z] = users[randomNum].id;
-                            //selectedUsers[k].hasShift=false;
                             users[randomNum].hasShift=false;
                             k++;
-                            System.out.println("o user: "+users[randomNum].FirstName+"mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
+                            System.out.println("o user:"+users[randomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total horurs:"+users[randomNum].totalHours);
 
-                            try {
-                                Thread.sleep(500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
+                        }
+                        if (j == 39)
+                        {
+                            isOver = true;
                         }
                         users[randomNum].totalHours=users[randomNum].totalHours-Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees++;
+                        System.out.println("Total Hours: "+users[randomNum].totalHours);
                         iCheck=1;
 
-                    }else if((users[randomNum].hasShift==false) || (users[randomNum].totalHours<=0)){
-                        iCheck = 0;
-                        thisDay = j;
-                        System.out.println("Den mphke o:" + users[randomNum].FirstName);
-                       /* randomNum = ran.nextInt(users.length-1);
-                        selectedUsers[k]=users[randomNum];*/
-
+                    }else{
+                        if (j == 39)
+                        {
+                            isOver = true;
+                        }
+                        iCheck=0;
+                        thisDay=j;
+                        System.out.println("Den mphke o: "+users[randomNum].FirstName);
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         break;
-
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
                         System.out.println("Reached max people per shift.");
@@ -175,16 +177,21 @@ public class CreateActivity  extends AppCompatActivity {
                     }
 
                 }
-                    //iCheck=1;
-
+                if (isOver == true)
+                {
+                    break;
+                }
+                //Something to break out of I
             }
-
+            if (isOver == true)
+            {
+                break;
+            }
         }
 
         for(int i =0;i<users.length;i=i+1){
             for(int j = 0;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 1){
                 System.out.println("users id: "+schedule[i][j]);
-
             }
 
         }
@@ -200,3 +207,6 @@ public class CreateActivity  extends AppCompatActivity {
 
 
 }
+
+
+

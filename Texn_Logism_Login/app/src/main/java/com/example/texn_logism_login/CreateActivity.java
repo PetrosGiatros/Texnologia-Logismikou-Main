@@ -109,6 +109,7 @@ public class CreateActivity  extends AppCompatActivity {
         int employeeAmountPerShift=2;
         int recentAmountOfEmployees=0;
         System.out.println("prin while");
+
         while((totalTypeHours)>0){
             System.out.println("mesa sto while");
             int randomNum ;
@@ -127,27 +128,29 @@ public class CreateActivity  extends AppCompatActivity {
                             schedule[i][z] = users[randomNum].id;
                             //selectedUsers[k].hasShift=false;
                             users[randomNum].hasShift=false;
-
-                            users[randomNum].totalHours=users[randomNum].totalHours-Integer.valueOf(SelectedShiftType);
-
-                            // selectedUsers[k].totalHours=selectedUsers[k].totalHours-Integer.valueOf(SelectedShiftType);
                             k++;
-                            System.out.println("o user:"+users[randomNum].FirstName+"mphke ston pinaka shedule["+i+"]["+z+"]"+"me total horurs:"+users[randomNum].totalHours);
+                            System.out.println("o user: "+users[randomNum].FirstName+"mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
 
-                            //System.out.println("o user:"+selectedUsers[k].FirstName+"mphke ston pinaka shedule["+i+"]["+z+"]"+"me total horurs:"+selectedUsers[k].totalHours);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
                         }
-
+                        users[randomNum].totalHours=users[randomNum].totalHours-Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees++;
                         iCheck=1;
 
-                    }else{
-                        iCheck=0;
-                        thisDay=j;
-                        System.out.println("Den mphke o:"+users[randomNum].FirstName);
+                    }else if((users[randomNum].hasShift==false) || (users[randomNum].totalHours<=0)){
+                        iCheck = 0;
+                        thisDay = j;
+                        System.out.println("Den mphke o:" + users[randomNum].FirstName);
                        /* randomNum = ran.nextInt(users.length-1);
                         selectedUsers[k]=users[randomNum];*/
 
                         break;
+
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
                         System.out.println("Reached max people per shift.");
@@ -172,7 +175,7 @@ public class CreateActivity  extends AppCompatActivity {
                     }
 
                 }
-
+                    //iCheck=1;
 
             }
 

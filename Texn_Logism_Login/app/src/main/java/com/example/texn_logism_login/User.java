@@ -35,6 +35,8 @@ public class User extends AppCompatActivity {
         }
 
     }
-
-
+    public boolean isAvailable()
+    {
+        return(true);
+    }
 }

@@ -48,7 +48,7 @@ public class CreateActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession);
+                createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession);
 
 
 
@@ -59,7 +59,7 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     public void createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession){
-        int[][] schedule;
+
         int numOfShifts = 1;
         User kitsos=new User("ki","tsos",8,1,"Programmer");
         User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
@@ -84,56 +84,65 @@ public class CreateActivity  extends AppCompatActivity {
             users[i].setTotalHours(SelectedScheduleType,SelectedShiftType);
         }
 
+
         int type;
+        int[][] schedule;
         if (SelectedScheduleType == "Weekly") {
             type=5;
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         } else if (SelectedScheduleType == "Monthly") {
             type=20;
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         } else if (SelectedScheduleType == "Trimester") {
             type=60;
+            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         } else {
             type=120;
-        }
-
-
-
-        if (SelectedScheduleType == "Weekly") {
             schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
-        }
-        else if(SelectedScheduleType == "Monthly") {
-            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
-        }
-        else if(SelectedScheduleType == "Trimester") {
-            schedule = new int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
-
-        }
-        else {
-            schedule = new  int[Integer.valueOf(SelectedShiftType)*type*numOfShifts][7];
         }
         Random ran= new Random();
-        int randomNum = ran.nextInt(users.length-1);
+
+
         User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
-
-        int totalTypeHours = Integer.valueOf(SelectedShiftType)*type*numOfShifts;
+        int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
         int k=0;
-        while((totalTypeHours) > 0){
+        int employeeAmountPerShift=2;
+        int recentAmountOfEmployees=0;
+        while((totalTypeHours)>0){
+            int randomNum = ran.nextInt(users.length-1);
             selectedUsers[k]=users[randomNum];
-            for(int i = 0;i < Integer.valueOf(SelectedShiftType);i++){
 
-                for(int j =0; j <users.length;j++){
-                    schedule[i][j] = selectedUsers[k].id;
+            for(int i =0;i<users.length;i++){
+                randomNum = ran.nextInt(users.length-1);
+                selectedUsers[k]=users[randomNum];
+                for(int j = 7;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
+
+                    if((selectedUsers[k].hasShift==true) && (selectedUsers[k].totalHours>0)) {
+                        for (int z = j; z >= j - 7; z-- )
+                        {
+                            schedule[i][z] = selectedUsers[k].id;
+                        }
+                        System.out.println("schedule test:" + schedule[i][j]);
+                        recentAmountOfEmployees++;
+
+                    }else{
+                        randomNum = ran.nextInt(users.length-1);
+                        selectedUsers[k]=users[randomNum];
+                        break;
+                    }
+                    if(employeeAmountPerShift == recentAmountOfEmployees){
+                        System.out.println("Reached max people per shift.");
+                    }else{
+                        System.out.println("Have not yet reached max people per shift.");
+                        break;
+                    }
+
                 }
-                totalTypeHours = totalTypeHours - Integer.valueOf(SelectedShiftType);
-                System.out.println(schedule[i][0]);
+                totalTypeHours=totalTypeHours-Integer.valueOf(SelectedShiftType);
+                System.out.println("ID:"+schedule[i][0]);
             }
             k++;
         }
-        System.out.println();
-
-
-
-
-
 
     }
 

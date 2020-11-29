@@ -117,12 +117,12 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 scheduleMap.put("loggedinUsername",params[0]);
-
+                System.out.println(params[0]);
                 finalResult = httpParse.postRequest(scheduleMap, HttpURL);
                 employeeArray = finalResult.split(" ");
 
                 scheduleMap.put("employees",finalResult);
-                //System.out.println("result: "+finalResult);
+                System.out.println("result: "+finalResult);
                 return finalResult;
             }
         }

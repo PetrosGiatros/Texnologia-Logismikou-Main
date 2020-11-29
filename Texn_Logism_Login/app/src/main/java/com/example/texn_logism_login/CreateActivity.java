@@ -133,6 +133,7 @@ public class CreateActivity  extends AppCompatActivity {
                 //selectedUsers[k]=users[randomNum];
                 for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
                     iCheck=1;
+                    randomNum = new Random().nextInt((max - min) + 1) + min;
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
                         for (int z = j; z >= j - 7; z-- )
                         {
@@ -142,7 +143,7 @@ public class CreateActivity  extends AppCompatActivity {
                             System.out.println("o user:"+users[randomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total horurs:"+users[randomNum].totalHours);
 
                         }
-                        if (j == 39)
+                        if ((j == 39)&&(i==1))
                         {
                             isOver = true;
                         }
@@ -154,7 +155,7 @@ public class CreateActivity  extends AppCompatActivity {
                     }else{
                         iCheck=0;
                         thisDay=j;
-                        if (j == 39)
+                        if ((j == 39)&&(i==1))
                         {
                             isOver = true;
                         }
@@ -177,7 +178,7 @@ public class CreateActivity  extends AppCompatActivity {
                         System.out.println("Allagh meras");
                         System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
                         for(int q = 0;q<users.length;q++){
-                            users[i].hasShift=true;
+                            users[q].hasShift=true;
                         }
 
 
@@ -211,6 +212,14 @@ public class CreateActivity  extends AppCompatActivity {
             System.out.println(); //Makes a new row
         }
 //This allows you to print the array as matrix
+
+
+        for(int i =0;i<users.length;i++){
+            System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left.");
+        }
+
+
+
 
 
 

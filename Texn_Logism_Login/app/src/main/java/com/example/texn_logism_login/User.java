@@ -27,11 +27,11 @@ public class User extends AppCompatActivity {
     {
         if (scheduleType == "Weekly") {
             totalHours = 5 * (Integer.valueOf(shiftType));
-        } else if (shiftType == "Monthly") {
+        } else if (scheduleType == "Monthly") {
             totalHours = 20 * (Integer.valueOf(shiftType));
-        } else if (shiftType == "Trimester") {
+        } else if (scheduleType == "Trimester") {
             totalHours = 60 * (Integer.valueOf(shiftType));
-        } else {
+        } else if (scheduleType == "Semester"){
             totalHours = 120 * (Integer.valueOf(shiftType));
         }
 

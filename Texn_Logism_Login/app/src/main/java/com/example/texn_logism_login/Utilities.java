@@ -18,7 +18,7 @@ public class Utilities extends AppCompatActivity {
                 hours = userArray[i].totalHours;
 
             }
-            System.out.println("Index in for = " + index);
+            //System.out.println("Index in for = " + index);
         }
         return (index);
     }
@@ -30,7 +30,7 @@ public class Utilities extends AppCompatActivity {
         {
             for (int j = 0; j < rows; j++)
             {
-                System.out.println("Day " + day + ":  Employee  " + schedule[j][i]);
+              //  System.out.println("Day " + day + ":  Employee  " + schedule[j][i]);
             }
             day++;
             System.out.println();

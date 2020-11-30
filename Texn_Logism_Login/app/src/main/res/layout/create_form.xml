@@ -106,24 +106,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCreateSchedule" />
 
-    <TextView
-        android:id="@+id/textViewScheduleTypeLimit"
-        android:layout_width="100dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="44dp"
+    <EditText
+        android:id="@+id/EditTextEmployeesPerShift"
+        android:layout_width="103dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="28dp"
+        android:editable="true"
+        android:inputType="numberSigned"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/spinnerProfession" />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="118dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="40dp"
-        android:text="Schedule Type Limit (days):"
+        android:layout_width="134dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="48dp"
+        android:text="Employees Per Shift:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 

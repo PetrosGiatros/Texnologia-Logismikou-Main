@@ -139,18 +139,18 @@ public class CreateActivity  extends AppCompatActivity {
             //System.out.println("mesa sto while");
 
             int iCheck=1;
-            int thisDay=7;
+            int thisDay=Integer.valueOf(SelectedShiftType) - 1;
             int j =0;
             for(int i =0;i<users.length;i=i+iCheck){
                 //randomNum = util.getEmployeeWithFewestHours(users);
-                for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
+                for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + Integer.valueOf(SelectedShiftType)){
                     iCheck=1;
                     randomNum = util.getEmployeeWithFewestHours(users);
                    // System.out.println("Employee with fewest hours returned " + users[randomNum].FirstName + "With hours:  " +users[randomNum].totalHours + " With ID:  " +users[randomNum].id + " With index " + randomNum);
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
                         sumHoursPerEmployee[randomNum]=sumHoursPerEmployee[randomNum]+1;
 
-                        for (int z = j; z >= j - 7; z-- )
+                        for (int z = j; z >= j - (Integer.valueOf(SelectedShiftType) - 1) ; z-- )
                         {
                             schedule[i][z] = users[randomNum].id;
                             users[randomNum].hasShift=false;
@@ -184,21 +184,21 @@ public class CreateActivity  extends AppCompatActivity {
                         break;
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
-                        System.out.println("Reached max people per shift.");
+                        //System.out.println("Reached max people per shift.");
                         i=0;
                         iCheck=0;
                         totalTypeHours=totalTypeHours-Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees=0;
                         //k++;
-                        System.out.println("Allagh meras");
-                        System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
+                        //System.out.println("Allagh meras");
+                        //System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
                         for(int q = 0;q<users.length;q++){
                             users[q].hasShift=true;
                         }
 
 
                     }else{
-                        System.out.println("Have not yet reached max people per shift.");
+                        //System.out.println("Have not yet reached max people per shift.");
                         iCheck=1;
                         thisDay=j;
 
@@ -218,16 +218,16 @@ public class CreateActivity  extends AppCompatActivity {
             }
         }
 
-        /*for (int row = 0; row < schedule.length; row++)//Cycles through rows
+        for (int row = 0; row < schedule.length; row++)//Cycles through rows
         {
             for (int col = 0; col < schedule[row].length; col++)//Cycles through columns
             {
                 System.out.printf("%5d", schedule[row][col]); //change the %5d to however much space you want
             }
             System.out.println(); //Makes a new row
-        }*/
+        }
 
-        util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts);
+        util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
 
 
         for(int i =0;i<users.length;i++){

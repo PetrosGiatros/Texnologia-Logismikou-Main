@@ -24,13 +24,13 @@ public class Utilities extends AppCompatActivity {
     }
 
 
-    public void displaySchedule(User[] userArray, int schedule[][],int rows,int columns ) {
+    public void displaySchedule(User[] userArray, int schedule[][],int rows,int columns,int shiftType) {
         int day = 1;
-        for (int i = 0; i < columns ; i = i + 8)
+        for (int i = 0; i < columns ; i = i + shiftType )
         {
             for (int j = 0; j < rows; j++)
             {
-              //  System.out.println("Day " + day + ":  Employee  " + schedule[j][i]);
+               System.out.println("Day " + day + ":  Employee  " + schedule[j][i]);
             }
             day++;
             System.out.println();

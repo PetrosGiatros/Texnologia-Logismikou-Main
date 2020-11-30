@@ -59,7 +59,6 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     public void createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession){
-
         int numOfShifts = 1;
         User kitsos=new User("ki","tsos",8,1,"Programmer");
         User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
@@ -112,35 +111,36 @@ public class CreateActivity  extends AppCompatActivity {
 
         final int min = 0;
         final int max = 6;
-        int randomNum = new Random().nextInt((max - min) + 1) + min;
-
+        int randomNum;
         boolean isOver = false;
+        Utilities util = new Utilities();
 
-        User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
+        //User selectedUsers[] = new User[Integer.valueOf(SelectedShiftType)*type*numOfShifts];
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
         int k=0;
-
         int recentAmountOfEmployees=0;
+
         System.out.println("prin while");
-        while((totalTypeHours)>0){
+        while(totalTypeHours > 0){
             System.out.println("mesa sto while");
 
             int iCheck=1;
             int thisDay=7;
             int j =0;
             for(int i =0;i<users.length;i=i+iCheck){
-                randomNum = new Random().nextInt((max - min) + 1) + min;
+                //randomNum = util.getEmployeeWithFewestHours(users);
                 //selectedUsers[k]=users[randomNum];
                 for(j = thisDay;j<Integer.valueOf(SelectedShiftType)*type*numOfShifts;j = j + 8){
                     iCheck=1;
-                    randomNum = new Random().nextInt((max - min) + 1) + min;
+                    randomNum = util.getEmployeeWithFewestHours(users);
+                    System.out.println("Employee with fewest hours returned " + users[randomNum].FirstName + "With hours:  " +users[randomNum].totalHours + " With ID:  " +users[randomNum].id + " With index " + randomNum);
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
                         for (int z = j; z >= j - 7; z-- )
                         {
                             schedule[i][z] = users[randomNum].id;
                             users[randomNum].hasShift=false;
                             k++;
-                            System.out.println("o user:"+users[randomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total horurs:"+users[randomNum].totalHours);
+                            System.out.println("o user:"+users[randomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
 
                         }
                         if ((j == 39)&&(i==1))
@@ -155,7 +155,7 @@ public class CreateActivity  extends AppCompatActivity {
                     }else{
                         iCheck=0;
                         thisDay=j;
-                        if ((j == 39)&&(i==1))
+                        if (totalTypeHours <= 0)
                         {
                             isOver = true;
                         }
@@ -174,7 +174,7 @@ public class CreateActivity  extends AppCompatActivity {
                         iCheck=0;
                         totalTypeHours=totalTypeHours-Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees=0;
-                        k++;
+                        //k++;
                         System.out.println("Allagh meras");
                         System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
                         for(int q = 0;q<users.length;q++){
@@ -191,13 +191,13 @@ public class CreateActivity  extends AppCompatActivity {
                     }
 
                 }
-                if (isOver == true)
+                if (totalTypeHours <= 0)
                 {
                     break;
                 }
                 //Something to break out of I
             }
-            if (isOver == true)
+            if (totalTypeHours <= 0)
             {
                 break;
             }
@@ -224,7 +224,6 @@ public class CreateActivity  extends AppCompatActivity {
 
 
     }
-
 
 
 

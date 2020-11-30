@@ -143,7 +143,7 @@ public class CreateActivity  extends AppCompatActivity {
                             System.out.println("o user:"+users[randomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
 
                         }
-                        if ((j == 39)&&(i==1))
+                        if (totalTypeHours <= 0)
                         {
                             isOver = true;
                         }
@@ -203,15 +203,16 @@ public class CreateActivity  extends AppCompatActivity {
             }
         }
 
-        for (int row = 0; row < schedule.length; row++)//Cycles through rows
+        /*for (int row = 0; row < schedule.length; row++)//Cycles through rows
         {
             for (int col = 0; col < schedule[row].length; col++)//Cycles through columns
             {
                 System.out.printf("%5d", schedule[row][col]); //change the %5d to however much space you want
             }
             System.out.println(); //Makes a new row
-        }
-//This allows you to print the array as matrix
+        }*/
+
+        util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts);
 
 
         for(int i =0;i<users.length;i++){
@@ -219,15 +220,7 @@ public class CreateActivity  extends AppCompatActivity {
         }
 
 
-
-
-
-
     }
-
-
-
-
 
 
 }

@@ -124,10 +124,3 @@ public class LoginActivity extends AppCompatActivity {
         userLoginClass.execute(username,password);
         }
     }
-
-
-
-
-
-
-

@@ -191,12 +191,12 @@ public class HireFireActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
 
+
             }
             @Override
             protected String doInBackground(String... params) {
                 delMap.put("selectedUsername",params[0]);
                 finalResult = httpParse.postRequest(delMap, HttpURL2);
-               // System.out.println("result= "+ finalResult);
                 return finalResult;
             }
         }

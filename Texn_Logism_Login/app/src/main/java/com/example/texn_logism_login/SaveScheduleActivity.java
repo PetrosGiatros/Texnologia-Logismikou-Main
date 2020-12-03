@@ -8,15 +8,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
 public class SaveScheduleActivity extends AppCompatActivity {
-    HashMap<String,String> hireMap = new HashMap<>();
+    HashMap<String,String> scheduleMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
-    String HttpURL = "http://priapic-blower.000webhostapp.com/getEmployees.php";
+    String HttpURL = "http://priapic-blower.000webhostapp.com/saveSchedule.php";
     String finalResult ;
 
 
 
 
-    public void saveSchedule(int[][] schedule,int scheduleLength){
+    public void saveSchedule(int[][] schedule,int scheduleLength,int numberOfShifts){
 
         class SaveScheduleClass extends AsyncTask<String,Void,String> {
             @Override
@@ -32,8 +32,11 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(String... params) {
-                hireMap.put("schedule",params[0]);
-                finalResult = httpParse.postRequest(hireMap, HttpURL);
+                scheduleMap.put("schedule",params[0]);
+                scheduleMap.put("scheduleLength",params[1]);
+                scheduleMap.put("numberOfShifts",params[2]);
+
+                finalResult = httpParse.postRequest(scheduleMap, HttpURL);
                 //System.out.println("result = "+ finalResult);
                 return finalResult;
             }

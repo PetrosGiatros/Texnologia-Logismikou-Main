@@ -36,5 +36,42 @@ public class Utilities extends AppCompatActivity {
             System.out.println();
         }
     }
+    public void saveSchedule(User[] userArray, int schedule[][],int rows,int columns,int shiftType,int numOfShifts) {
+        int day = 1;
+        boolean hasChangedDay = false;
+        int shiftCount = 0;
+        String shift = "";
+        for (int i = 0; i < columns ; i = i + 8)
+        {
+            shiftCount++;
+            if (shiftCount == 3)
+            {
+                hasChangedDay = true;
+            }
+            for (int j = 0; j < rows; j++)
+            {
+                if (shiftCount == 1)
+                {
+                    shift = " Morning Shift: ";
+                }
+                else if (shiftCount == 2)
+                {
+                    shift = " Afternoon Shift: ";
+                }
+                else if(shiftCount == 3)
+                {
+                    shift = " Graveyard Shift: ";
+                }
+
+                System.out.println("Day " + day + " " + shift + ":  Employee  " + schedule[j][i]);
+            }
+            if (hasChangedDay)
+            {
+                day++;
+                hasChangedDay = false;
+                shiftCount = 0;
+            }
+        }
+    }
 }
 

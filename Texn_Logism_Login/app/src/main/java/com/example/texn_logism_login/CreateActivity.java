@@ -256,16 +256,17 @@ public class CreateActivity  extends AppCompatActivity {
                 System.out.println(); //Makes a new row
             }
 
-            util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+            //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+            util.saveSchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType),numOfShifts);
         }
 
 
 
-        for(int i =0;i<users.length;i++){
+        /*for(int i =0;i<users.length;i++){
 
             System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+sumHoursPerEmployee[i]+" fores.");
 
-        }
+        }*/
 
 
     }

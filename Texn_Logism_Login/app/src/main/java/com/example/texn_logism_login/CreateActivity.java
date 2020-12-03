@@ -62,7 +62,10 @@ public class CreateActivity  extends AppCompatActivity {
                 String SelectedProfession = spinnerProfession.getSelectedItem().toString();
                 String SelectedBusiness = spinnerBusiness.getSelectedItem().toString();
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
-                createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
+                int[][] schedule;
+                schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
+
+
 
 
 
@@ -72,7 +75,7 @@ public class CreateActivity  extends AppCompatActivity {
 
     }
 
-    public void createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession,Integer SelectedEmployeesPerShift,String SelectedBusinessType){
+    public int[][] createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession,Integer SelectedEmployeesPerShift,String SelectedBusinessType){
         int numOfShifts = 0;
         boolean allowedToCreateSchedule = true;
 
@@ -148,6 +151,10 @@ public class CreateActivity  extends AppCompatActivity {
         }
 
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
+
+
+
+
         int recentAmountOfEmployees=0;
         //System.out.println("Total Type Hours " +totalTypeHours);
 
@@ -266,7 +273,7 @@ public class CreateActivity  extends AppCompatActivity {
             System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+sumHoursPerEmployee[i]+" fores.");
 
         }
-
+        return schedule;
 
     }
 

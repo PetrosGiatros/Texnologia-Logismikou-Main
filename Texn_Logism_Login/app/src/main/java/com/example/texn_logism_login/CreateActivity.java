@@ -64,14 +64,14 @@ public class CreateActivity  extends AppCompatActivity {
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
                 int[][] schedule;
                 schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
-                SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
+
                 int scheduleLength=0;
+
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
 
 
 
-                //saveScheduleActivity.saveSchedule(schedule,scheduleLength,numberOfShifts);
 
 
 
@@ -191,9 +191,9 @@ public class CreateActivity  extends AppCompatActivity {
 
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
 
-
-
-
+        SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
+        StringBuilder builder = new StringBuilder("");
+        String text = builder.toString();
         int recentAmountOfEmployees=0;
         //System.out.println("Total Type Hours " +totalTypeHours);
 
@@ -221,13 +221,27 @@ public class CreateActivity  extends AppCompatActivity {
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
                         sumHoursPerEmployee[randomNum]=sumHoursPerEmployee[randomNum]+1;
 
+
+                        //builder.append("Apple").append(" ").append("Banana");
+
+
+
+
+
                         for (int z = j; z >= j - (Integer.valueOf(SelectedShiftType) - 1) ; z-- )
                         {
+
                             schedule[i][z] = users[randomNum].id;
                             users[randomNum].hasShift=false;
-
                             //System.out.println("o user:"+users[andomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
+                        }
+                        if(recentAmountOfEmployees>=1) {
+                            builder.append(users[randomNum].id).append(" ").append(schedule[i-1][j]);
+                            text=builder.toString();
+                            System.out.println("Douleuei o : "+users[randomNum].id+" kai o prohgoumenos: "+schedule[i-1][j]);
+                            System.out.println("Douleuoun: " + text);
 
+                            //saveScheduleActivity.saveSchedule(text);
                         }
                         if (totalTypeHours <= 0)
                         {
@@ -259,6 +273,7 @@ public class CreateActivity  extends AppCompatActivity {
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
                         //System.out.println("Reached max people per shift.");
+                        builder.setLength(0);
                         i=0;
                         iCheck=0;
                         totalTypeHours=totalTypeHours-Integer.valueOf(SelectedShiftType);
@@ -297,12 +312,15 @@ public class CreateActivity  extends AppCompatActivity {
             {
                 for (int col = 0; col < schedule[row].length; col++)//Cycles through columns
                 {
-                    System.out.printf("%5d", schedule[row][col]); //change the %5d to however much space you want
+
+                        System.out.printf("%5d", schedule[row][col]); //change the %5d to however much space you want
+
                 }
                 System.out.println(); //Makes a new row
             }
 
-            util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+           // util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+            util.saveSchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType),numOfShifts);
         }
 
 

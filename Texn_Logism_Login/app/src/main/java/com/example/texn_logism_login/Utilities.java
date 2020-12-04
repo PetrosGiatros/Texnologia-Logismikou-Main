@@ -43,57 +43,87 @@ public class Utilities extends AppCompatActivity {
         int shiftCount = 0;
         String shift = "";
         String shiftName="";
-        SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
+        boolean hasMorning=false,hasAfternoon=false,hasMidnight=false;
+
+
+        SaveScheduleActivity saveSchedulePHP=new SaveScheduleActivity();
         StringBuilder builder = new StringBuilder("");
-        String text = builder.toString();
+        String textMorning = builder.toString();
+        String textAfternoon = builder.toString();
+        String textMidnight = builder.toString();
         System.out.println("businnes type: "+businessType);
+
         for (int i = 0; i < columns ; i = i + 8)
         {
+            int workingEmployee;
             shiftCount++;
             if (shiftCount == businessType)
             {
-
+                //allagh meras
                 hasChangedDay = true;
             }
             for (int j = 0; j < rows; j++)
             {
                 if (shiftCount == 1)
                 {
-                    shiftName="Morninng";
+                    workingEmployee=schedule[j][i];
+                    builder.append(workingEmployee).append(" ");
+                    textMorning=builder.toString();
+                    hasMorning=true;
+                    shiftName="Morning";
                     shift = " Morning Shift: ";
-                    //return shiftName;
+
                 }
                 else if (shiftCount == 2)
                 {
+                    workingEmployee=schedule[j][i];
+                    builder.append(workingEmployee).append(" ");
+                    textAfternoon=builder.toString();
+                    hasAfternoon=true;
                     shiftName="Afternoon";
                     shift = " Afternoon Shift: ";
-                    //return shiftName;
+
                 }
                 else if(shiftCount == 3)
                 {
-                    shiftName="Graveyard";
-                    shift = " Graveyard Shift: ";
-                    //return shiftName;
+                    workingEmployee=schedule[j][i];
+                    builder.append(workingEmployee).append(" ");
+                    textMidnight=builder.toString();
+                    hasMidnight=true;
+                    shiftName="Midnight";
+                    shift = " Midnight Shift: ";
+
                 }
 
                 System.out.println("Day " + day + " " + shift + ":  Employee  " + schedule[j][i]);
-                int workingEmployee;
-                workingEmployee=schedule[j][i];
 
-                builder.append(workingEmployee).append(" ");
-                text=builder.toString();
 
-                //saveScheduleActivity.saveSchedule(shiftName,text);
+
+                //builder.append(workingEmployee).append(" ");
+                //textMorning=builder.toString();
+                /*if(j==rows-1){
+                    //allagh shift
+                    System.out.println("TextTo Send: "+text);
+                    saveSchedulePHP.saveScheduleActivity(shiftName,text,hasMorning,hasAfternoon,hasMidnight);
+                    builder.setLength(0);
+                }*/
+
             }
             if (hasChangedDay)
             {
+                saveSchedulePHP.saveScheduleActivity(shiftName,textMorning,textAfternoon,textMidnight,hasMorning,hasAfternoon,hasMidnight);
+                builder.setLength(0);
+
+
+                hasMorning=false;
+                hasAfternoon=false;
+                hasMidnight=false;
                 day++;
                 hasChangedDay = false;
                 shiftCount = 0;
                 shift="";
             }
         }
-        //return shiftName;
 
     }
 

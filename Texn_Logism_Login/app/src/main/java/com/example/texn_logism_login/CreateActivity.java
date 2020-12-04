@@ -89,6 +89,10 @@ public class CreateActivity  extends AppCompatActivity {
 
                 Utilities util = new Utilities();
                 String shiftName="";
+
+                SaveScheduleActivity saveSchedulePHP=new SaveScheduleActivity();
+                saveSchedulePHP.deleteScheduleActivity(shiftName);
+
                 util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness));
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
@@ -284,9 +288,9 @@ public class CreateActivity  extends AppCompatActivity {
                             isOver = true;
                         }
 
-                        System.out.println("Den mphke o: "+users[randomNum].FirstName);
-                        System.out.println("Total Hours: "+users[randomNum].totalHours);
-                        System.out.println("Total Type Hours : "+totalTypeHours);
+                       // System.out.println("Den mphke o: "+users[randomNum].FirstName);
+                       // System.out.println("Total Hours: "+users[randomNum].totalHours);
+                       // System.out.println("Total Type Hours : "+totalTypeHours);
 
                        /* try {
                             Thread.sleep(500);

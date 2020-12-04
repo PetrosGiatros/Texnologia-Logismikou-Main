@@ -16,7 +16,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
 
 
-    public void saveSchedule(int[][] schedule,int scheduleLength,int numberOfShifts){
+    public void saveScheduleActivity(String shiftName,String textToSend){
 
         class SaveScheduleClass extends AsyncTask<String,Void,String> {
             @Override
@@ -40,7 +40,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             }
         }
         SaveScheduleClass saveScheduleClass = new SaveScheduleClass();
-        saveScheduleClass.execute(String.valueOf(schedule));
+        saveScheduleClass.execute(String.valueOf(shiftName));
 
     }
 

@@ -66,6 +66,30 @@ public class CreateActivity  extends AppCompatActivity {
                 schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
 
                 int scheduleLength=0;
+                User kitsos=new User("ki","tsos",8,1,"Programmer");
+                User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
+                User konstantinos = new User("konsta","ntinos",8,3,"Manager");
+                User kwstas=new User("kw","stas",8,4,"Programmer");
+                User kotsos=new User("ko","tsos",8,5,"Analyst");
+                User giannhs=new User("gian","nhs",8,6,"Programmer");
+                User petran=new User("pe","tran",8,7,"Manager");
+
+
+                User users[] = new User[7];
+                users[0] = kitsos;
+                users[1] = panagiwtis;
+                users[2] = konstantinos;
+                users[3] = kwstas;
+                users[4] = kotsos;
+                users[5] = giannhs;
+                users[6] = petran;
+
+
+
+
+                Utilities util = new Utilities();
+                String shiftName="";
+                util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness));
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
@@ -191,7 +215,7 @@ public class CreateActivity  extends AppCompatActivity {
 
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
 
-        SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
+        //SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
         StringBuilder builder = new StringBuilder("");
         String text = builder.toString();
         int recentAmountOfEmployees=0;
@@ -236,12 +260,12 @@ public class CreateActivity  extends AppCompatActivity {
                             //System.out.println("o user:"+users[andomNum].FirstName+"  mphke ston pinaka shedule["+i+"]["+z+"]"+"me total hours:"+users[randomNum].totalHours);
                         }
                         if(recentAmountOfEmployees>=1) {
-                            builder.append(users[randomNum].id).append(" ").append(schedule[i-1][j]);
-                            text=builder.toString();
-                            System.out.println("Douleuei o : "+users[randomNum].id+" kai o prohgoumenos: "+schedule[i-1][j]);
-                            System.out.println("Douleuoun: " + text);
+                           // builder.append(users[randomNum].id).append(" ").append(schedule[i-1][j]);
+                           // text=builder.toString();
+                          //  System.out.println("Douleuei o : "+users[randomNum].id+" kai o prohgoumenos: "+schedule[i-1][j]);
+                          //  System.out.println("Douleuoun: " + text);
 
-                            //saveScheduleActivity.saveSchedule(text);
+
                         }
                         if (totalTypeHours <= 0)
                         {
@@ -306,6 +330,7 @@ public class CreateActivity  extends AppCompatActivity {
                 break;
             }
         }
+        String shiftName="";
         if (allowedToCreateSchedule)
         {
             for (int row = 0; row < schedule.length; row++)//Cycles through rows
@@ -319,8 +344,8 @@ public class CreateActivity  extends AppCompatActivity {
                 System.out.println(); //Makes a new row
             }
 
-           // util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
-            util.saveSchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType),numOfShifts);
+           //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+            //util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }
 
 

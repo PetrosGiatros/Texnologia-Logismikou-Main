@@ -4,12 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RequestActivity extends AppCompatActivity
-{
-
+public class NotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.requests_form);
+        setContentView(R.layout.notifications_form);
 
     }
 }

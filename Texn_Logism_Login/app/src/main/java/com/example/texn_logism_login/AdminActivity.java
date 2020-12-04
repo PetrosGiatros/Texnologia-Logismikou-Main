@@ -15,6 +15,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button button_view;
     private Button hireFireButton;
     private Button exitButton,buttonCreate;
+    private Button notificationsButton;
 
 
 
@@ -54,6 +55,19 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
+        notificationsButton = (Button)findViewById(R.id.notificationsButton);
+        notificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, NotificationsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

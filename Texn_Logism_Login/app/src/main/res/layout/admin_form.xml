@@ -42,10 +42,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:background="@drawable/button_notifications"
+        android:id="@+id/notificationsButton"
         android:layout_width="212dp"
         android:layout_height="76dp"
         android:layout_marginTop="448dp"
+        android:background="@drawable/button_notifications"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

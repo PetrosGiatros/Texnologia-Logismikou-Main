@@ -17,6 +17,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             />
+        <activity android:name=".NotificationsActivity"/>
         <activity android:name=".RequestActivity"/>
         <activity android:name=".CreateActivity" />
         <activity android:name=".HireActivity" />

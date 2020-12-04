@@ -17,7 +17,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
 
 
-    public void saveScheduleActivity(String shiftName,String textMorning,String textAfternoon,String textMidnight,boolean hasMorning,boolean hasAfternoon,boolean hasMidnight){
+    public void saveScheduleActivity(String shiftName,String textMorning,String textAfternoon,String textMidnight,String hasMorning,String hasAfternoon,String hasMidnight){
 
         class SaveScheduleClass extends AsyncTask<String,Void,String> {
             @Override
@@ -51,7 +51,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             }
         }
         SaveScheduleClass saveScheduleClass = new SaveScheduleClass();
-        saveScheduleClass.execute(shiftName,textMorning,textAfternoon,textMidnight);
+        saveScheduleClass.execute(shiftName,textMorning,textAfternoon,textMidnight,hasMorning,hasAfternoon,hasMidnight);
 
     }
 

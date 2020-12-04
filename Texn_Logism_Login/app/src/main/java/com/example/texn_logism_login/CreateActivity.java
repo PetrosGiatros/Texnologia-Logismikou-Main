@@ -230,6 +230,8 @@ public class CreateActivity  extends AppCompatActivity {
         {
             allowedToCreateSchedule = false;
             System.out.println("Not enough employees to complete schedule.");
+
+
         }
         //System.out.println("Left part " + users.length *  Integer.valueOf(SelectedShiftType)*type);
         //System.out.println("Right part" + type * (numOfShifts* Integer.valueOf(SelectedShiftType))*employeeAmountPerShift );

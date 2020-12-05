@@ -20,6 +20,8 @@ public class RequestActivity extends AppCompatActivity
     HashMap<String,String> hashMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
     String HttpURL = "http://priapic-blower.000webhostapp.com/getRequest.php";
+
+
     public void leaveFunction(String username,String days) {
         class leaveClass extends AsyncTask<String, Void, String> {
             @Override
@@ -30,7 +32,6 @@ public class RequestActivity extends AppCompatActivity
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 System.out.println(httpResponseMsg);
-
             }
 
 
@@ -45,6 +46,9 @@ public class RequestActivity extends AppCompatActivity
         leaveClass leaveObject = new leaveClass();
         leaveObject.execute(username,days);
     }
+
+
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -58,11 +62,8 @@ public class RequestActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
                 String requestedLeaveDays = leaveDays.getText().toString();
-                //System.out.println("Leave Days: " + requestedLeaveDays + "Username " + loggedInUsername);
                 leaveFunction(loggedInUsername,requestedLeaveDays);
-
             }
         });
 

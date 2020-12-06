@@ -109,7 +109,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
 
-                regMap.put("username",params[0];
+                regMap.put("username",params[0]);
                 regMap.put("password",params[1]);
                 regMap.put("email",params[2]);
 

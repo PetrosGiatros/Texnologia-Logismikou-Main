@@ -6,9 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,19 +19,18 @@ public class AdminRegisterActivity extends AppCompatActivity {
     private TextView usernameRegTextView, passwordRegTextView, emailRegTextView;
     private Button submitButton,backButton;
     ProgressDialog progressDialog;
-    HashMap<String,String> hireMap = new HashMap<>();
+    HashMap<String,String> regMap = new HashMap<>();
     HashMap<String,String> addedMap =new HashMap<>();
     HttpParse httpParse = new HttpParse();
     HttpParse httpParse2 = new HttpParse();
     String finalResult, finalResult2 ;
     String usernameHolder,passwordHolder,emailHolder;
     boolean CheckEditText;
-    String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     String HttpURL = "http://priapic-blower.000webhostapp.com/getid.php";
     String HttpURL2=  "http://priapic-blower.000webhostapp.com/addedInformation.php";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hire_form);
+        setContentView(R.layout.admin_register_form);
 
 
         usernameRegTextView = (TextView) findViewById(R.id.editTextUsernameReg);
@@ -44,7 +41,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
 
         submitButton = (Button) findViewById(R.id.buttonSubmitReg);
-        backButton = (Button) findViewById(R.id.Reg);
+        backButton = (Button) findViewById(R.id.ButtonBackReg);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +57,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(AdminRegisterActivity.this, "Please fill form fields.", Toast.LENGTH_LONG).show();
                 }
-                Intent intent = new Intent(AdminRegisterActivity.this, HireFireActivity.class);
+                Intent intent = new Intent(AdminRegisterActivity.this, AdminRegisterActivity.class);
                 //intent.putExtra(username,password);
                 startActivity(intent);
             }
@@ -84,7 +81,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
 
 
-        if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder))) {
+        if ((TextUtils.isEmpty(usernameHolder)) || (TextUtils.isEmpty(passwordHolder)) || (TextUtils.isEmpty(passwordHolder))) {
             CheckEditText = false;
         } else {
             CheckEditText = true;
@@ -92,9 +89,9 @@ public class AdminRegisterActivity extends AppCompatActivity {
     }
 
 
-    public void UserRegisterFunction(String loggedInUsername,String username,String password,String email){
+    public void AdminRegisterFunction(String username,String password,String email){
 
-        class UserRegisterFunctionClass extends AsyncTask<String,Void,String> {
+        class AdminRegisterFunctionClass extends AsyncTask<String,Void,String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -114,19 +111,18 @@ public class AdminRegisterActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
 
-                hireMap.put("loggedinUsername",params[0]);
-                hireMap.put("username",params[1]);
-                hireMap.put("password",params[2]);
-                hireMap.put("email",params[3]);
+                regMap.put("username",params[0];
+                regMap.put("password",params[1]);
+                regeMap.put("email",params[2]);
 
 
-                finalResult = httpParse.postRequest(hireMap, HttpURL);
+                finalResult = httpParse.postRequest(regMap, HttpURL);
                 System.out.println("result = "+ finalResult);
                 return finalResult;
             }
         }
-        UserRegisterFunctionClass userRegisterFunctionClass = new UserRegisterFunctionClass();
-        userRegisterFunctionClass.execute(loggedInUsername,username,password,email);
+        AdminRegisterFunctionClass AdminRegisterFunctionClass = new AdminRegisterFunctionClass();
+        AdminRegisterFunctionClass.execute(loggedInUsername,username,password,email);
     }
 
     public void AdminAddedInformationFunction(String username,String password,String email){

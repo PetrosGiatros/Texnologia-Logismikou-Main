@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private static TextView usernameTextView;
     private TextView passwordTextView;
     private TextView status;
-    private Button loginButton;
+    private Button loginButton,registerButton;
 
     String finalResult ;
     boolean CheckEditText;
@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = (Button) findViewById(R.id.buttonLogin);
+        registerButton = (Button) findViewById(R.id.buttonRegister)
         usernameTextView = (TextView) findViewById(R.id.editTextUsername);
         passwordTextView = (TextView) findViewById(R.id.editTextTextPassword);
         status = (TextView) findViewById(R.id.status);
@@ -56,6 +57,16 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"Please fill form fields.",Toast.LENGTH_LONG).show();
                 }
             }
+
+        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, AdminRegisterActivity.class);
+                    //intent.putExtra(username,password);
+                    startActivity(intent);
 
         });
 

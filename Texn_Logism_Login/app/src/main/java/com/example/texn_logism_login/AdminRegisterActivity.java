@@ -22,12 +22,10 @@ public class AdminRegisterActivity extends AppCompatActivity {
     HashMap<String,String> regMap = new HashMap<>();
     HashMap<String,String> addedMap =new HashMap<>();
     HttpParse httpParse = new HttpParse();
-    HttpParse httpParse2 = new HttpParse();
-    String finalResult, finalResult2 ;
+    String finalResult;
     String usernameHolder,passwordHolder,emailHolder;
     boolean CheckEditText;
     String HttpURL = "http://priapic-blower.000webhostapp.com/getid.php";
-    String HttpURL2=  "http://priapic-blower.000webhostapp.com/addedInformation.php";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_register_form);
@@ -53,7 +51,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
                 CheckEditTextIsEmptyOrNot();
                 if (CheckEditText) {
-                    AdminAddedInformationFunction(username, password, email);
+                    AdminRegisterFunction(username, password, email);
                 } else {
                     Toast.makeText(AdminRegisterActivity.this, "Please fill form fields.", Toast.LENGTH_LONG).show();
                 }
@@ -67,7 +65,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminRegisterActivity.this, HireFireActivity.class);
+                Intent intent = new Intent(AdminRegisterActivity.this, LoginActivity.class);
                 //intent.putExtra(username,password);
                 startActivity(intent);
 
@@ -103,7 +101,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 //httpResponseMsg = id tou admin, autou poy ekane login //
 
-                System.out.println("username login:"+loggedInUsername);
+                System.out.println("username login:"+username);
                 Toast.makeText(AdminRegisterActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
 
             }
@@ -113,7 +111,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
                 regMap.put("username",params[0];
                 regMap.put("password",params[1]);
-                regeMap.put("email",params[2]);
+                regMap.put("email",params[2]);
 
 
                 finalResult = httpParse.postRequest(regMap, HttpURL);
@@ -122,45 +120,9 @@ public class AdminRegisterActivity extends AppCompatActivity {
             }
         }
         AdminRegisterFunctionClass AdminRegisterFunctionClass = new AdminRegisterFunctionClass();
-        AdminRegisterFunctionClass.execute(loggedInUsername,username,password,email);
+        AdminRegisterFunctionClass.execute(username,password,email);
     }
 
-    public void AdminAddedInformationFunction(String username,String password,String email){
-
-        class AdminAddedInformationFunctionClass extends AsyncTask<String,Void,String> {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-            }
-            @Override
-            protected void onPostExecute(String httpResponseMsg) {
-                super.onPostExecute(httpResponseMsg);
-                progressDialog.dismiss();
-                //httpResponseMsg = id tou admin, autou poy ekane login //
-
-
-                Toast.makeText(AdminRegisterActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                addedMap.put("firstName",params[0]);
-                addedMap.put("lastName",params[1]);
-                addedMap.put("profession",params[2]);
-                addedMap.put("hours",params[3]);
-                addedMap.put("username",params[4]);
-
-                finalResult2 = httpParse2.postRequest(addedMap, HttpURL2);
-                System.out.println("result = "+ finalResult2);
-                return finalResult2;
-            }
-        }
-        AdminAddedInformationFunctionClass userAddedInformationFunctionClass = new AdminAddedInformationFunctionClass();
-        AdminAddedInformationFunctionClass.execute(username, password, email);
-    }
 
 
 

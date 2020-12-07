@@ -51,11 +51,17 @@ public class NotificationsActivity extends AppCompatActivity {
                         k++;
                     }
                 }
+                String format[] = new String[4];
+                format[0] = " UN ";
+                format[1] = " ID ";
+                format[2] = " EID ";
+                format[3] = " RLD ";
                 int j =0;
                 for(int i = 0;i<employeeArray.length;i = i + 4){
-                    employeeArray[j]=employeeArray[i] +" "+employeeArray[i+1]+" "+employeeArray[i+2]+" "+employeeArray[i+3];
+                    employeeArray[j]=format[0] + employeeArray[i] +format[1] +employeeArray[i+1]+ format[2]+employeeArray[i+2]+format[3]+employeeArray[i+3];
                     j=j+1;
                 }
+
                 int temp=j;
                 for(int i=temp;i<employeeArray.length;i++){
                     employeeArray[i]="";

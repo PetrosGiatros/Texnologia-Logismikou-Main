@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ListView
+        android:id="@+id/notificationsListView"
         android:layout_width="328dp"
         android:layout_height="566dp"
         app:layout_constraintBottom_toBottomOf="parent"

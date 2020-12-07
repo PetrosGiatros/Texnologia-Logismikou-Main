@@ -20,12 +20,11 @@ public class AdminRegisterActivity extends AppCompatActivity {
     private Button submitButton,backButton;
     ProgressDialog progressDialog;
     HashMap<String,String> regMap = new HashMap<>();
-    HashMap<String,String> addedMap =new HashMap<>();
     HttpParse httpParse = new HttpParse();
     String finalResult;
     String usernameHolder,passwordHolder,emailHolder;
     boolean CheckEditText;
-    String HttpURL = "http://priapic-blower.000webhostapp.com/getid.php";
+    String HttpURL = "http://priapic-blower.000webhostapp.com/adminreg.php";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_register_form);
@@ -115,7 +114,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
 
                 finalResult = httpParse.postRequest(regMap, HttpURL);
-                System.out.println("result = "+ finalResult);
+                //System.out.println("result = "+ finalResult);
                 return finalResult;
             }
         }

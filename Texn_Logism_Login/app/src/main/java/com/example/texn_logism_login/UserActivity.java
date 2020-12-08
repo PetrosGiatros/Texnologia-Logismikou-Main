@@ -11,6 +11,7 @@ public class UserActivity extends AppCompatActivity {
 
     private Button exitButton;
     private Button button_view2;
+    private Button requestButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,15 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        requestButton = (Button) findViewById(R.id.requestButton);
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, RequestActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }

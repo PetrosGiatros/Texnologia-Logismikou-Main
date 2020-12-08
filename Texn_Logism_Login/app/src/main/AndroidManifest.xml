@@ -24,7 +24,11 @@
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".UserActivity" />
         <activity android:name=".ScheduleActivity" />
+        <activity android:name=".AdminRegisterActivity"/>
         <activity android:name=".LoginActivity">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

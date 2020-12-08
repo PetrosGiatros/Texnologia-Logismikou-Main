@@ -10,6 +10,21 @@
     >
 
 
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="118dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="548dp"
+        android:background="@drawable/button_login"
+        android:clickable="true"
+        android:text="Register"
+        android:textColor="#B9B9B9"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
@@ -42,13 +57,14 @@
         android:id="@+id/buttonLogin"
         android:layout_width="118dp"
         android:layout_height="65dp"
-        android:layout_marginTop="525dp"
+        android:layout_marginTop="476dp"
+        android:background="@drawable/button_login"
         android:clickable="true"
         android:text="Login"
         android:textColor="#B9B9B9"
-        android:background="@drawable/button_login"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

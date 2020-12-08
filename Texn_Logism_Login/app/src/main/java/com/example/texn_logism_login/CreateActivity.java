@@ -1,6 +1,7 @@
 package com.example.texn_logism_login;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -8,35 +9,48 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.SQLOutput;
 import java.sql.Struct;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Random;
 
 
 public class CreateActivity  extends AppCompatActivity {
     private Button buttonCreateSchedule;
     private EditText textViewEmployeesPerShift;
+    private static String currentDay;
+    private static String  currentMonth;
+    private static String currentYear;
+    HashMap<String,String> startMap =new HashMap<>();
+    HttpParse startParse = new HttpParse();
+    String startResult;
+    String startURL=  "http://priapic-blower.000webhostapp.com/startDate.php";
+    String isAssignedTo = LoginActivity.getUsernameTextView().getText().toString();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_form);
 
-        buttonCreateSchedule=(Button)findViewById(R.id.buttonCreateSchedule);
+        buttonCreateSchedule = (Button) findViewById(R.id.buttonCreateSchedule);
 
         Spinner spinnerScheduleType = findViewById(R.id.spinnerScheduleType);
         Spinner spinnerShiftType = findViewById(R.id.spinnerShiftType);
         Spinner spinnerProfession = findViewById(R.id.spinnerProfession);
         Spinner spinnerBusiness = findViewById(R.id.spinnerBusiness);
-        EditText EditTextEmployeesPerShift = (EditText)findViewById(R.id.EditTextEmployeesPerShift);
+        EditText EditTextEmployeesPerShift = (EditText) findViewById(R.id.EditTextEmployeesPerShift);
 
-        String[] ScheduleTypes = new String[]{"Weekly","Monthly","Trimester","Semester"};
+        String[] ScheduleTypes = new String[]{"Weekly", "Monthly", "Trimester", "Semester"};
         String[] ShiftTypes = new String[]{"8", "4"};
-        String[] Profession = new String[]{"Programmer", "Analyst","Manager"};
-        String[] Business = new String[]{"8h" ,"16h" ,"24h"};
+        String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};
+        String[] Business = new String[]{"8h", "16h", "24h"};
 
 
-        ArrayAdapter<String> adapter ;
+        ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<>(CreateActivity.this, android.R.layout.simple_spinner_dropdown_item, ScheduleTypes);
         spinnerScheduleType.setAdapter(adapter);
 
@@ -57,11 +71,21 @@ public class CreateActivity  extends AppCompatActivity {
         buttonCreateSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Calendar calendar = Calendar.getInstance();
+                currentDay = String.valueOf(calendar.get(Calendar.DATE));
+                currentMonth = String.valueOf(calendar.get(Calendar.MONTH)+1);
+                currentYear = String.valueOf(calendar.get(Calendar.YEAR));
+
+
+                System.out.println("SHMERINH IMEROMHNIA:" + currentDay + " " + currentMonth + " " + currentYear);
+
                 String SelectedScheduleType = spinnerScheduleType.getSelectedItem().toString();
                 String SelectedShiftType = spinnerShiftType.getSelectedItem().toString();
                 String SelectedProfession = spinnerProfession.getSelectedItem().toString();
                 String SelectedBusiness = spinnerBusiness.getSelectedItem().toString();
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
+                createSchedule(SelectedScheduleType, SelectedShiftType, SelectedProfession, SelectedEmployeesPerShift, SelectedBusiness);
                 int[][] schedule;
                 schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
 
@@ -97,16 +121,12 @@ public class CreateActivity  extends AppCompatActivity {
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
-
-
-
-
-
-
+                startDateFunction(isAssignedTo, currentDay, currentMonth, currentYear);
 
 
 
             }
+
         });
 
     }
@@ -364,6 +384,43 @@ public class CreateActivity  extends AppCompatActivity {
         return schedule;
 
     }
+    public void startDateFunction(String isAssignedTo, String currentDay, String currentMonth, String currentYear){
+
+        class startDateFunctionClass extends AsyncTask<String,Void,String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+                //progressDialog.dismiss();
+                //httpResponseMsg = id tou admin, autou poy ekane login //
+
+
+                //Toast.makeText(HireActivity.this,httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                startMap.put("isAssignedTo",params[0]);
+                startMap.put("startingDay",params[1]);
+                startMap.put("startingMonth",params[2]);
+                startMap.put("startingYear",params[3]);
+
+
+                startResult = startParse.postRequest(startMap, startURL);
+                return startResult;
+            }
+        }
+        startDateFunctionClass startDateFunctionClass = new startDateFunctionClass();
+        startDateFunctionClass.execute(isAssignedTo, currentDay, currentMonth, currentYear);
+    }
+
+
 
 
 }

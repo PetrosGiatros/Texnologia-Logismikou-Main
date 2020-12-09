@@ -64,6 +64,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
+
         statisticsButton = (Button)findViewById(R.id.buttonStatistics);
         statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override

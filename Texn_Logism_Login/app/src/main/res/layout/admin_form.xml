@@ -56,10 +56,23 @@
         android:id="@+id/buttonExit"
         android:layout_width="169.88dp"
         android:layout_height="38.88dp"
-        android:layout_marginTop="572dp"
+        android:layout_marginTop="644dp"
         android:background="@drawable/button_exit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonStatistics"
+        android:layout_width="207dp"
+        android:layout_height="62dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
+        tools:text="Statistics" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

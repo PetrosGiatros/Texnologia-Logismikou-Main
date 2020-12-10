@@ -31,7 +31,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
     String HttpURL = "http://priapic-blower.000webhostapp.com/getSchedule.php";
-    String HttpURL2 = "http://priapic-blower.000webhostapp.com/getScheduleEmployees.php";
+    String HttpURL2 = "http://priapic-blower.000webhostapp.com/getNewScheduleEmployees.php";
     static String[] employeeArray = {};
     ArrayAdapter adapterMorning,adapterAfternoon,adapterNight;
     String finalResult;
@@ -56,7 +56,11 @@ public class ScheduleActivity extends AppCompatActivity {
         dateView = (TextView) findViewById(R.id.dateView);
         dateView.setText(selectedday + "/" + (selectedmonth + 1) + "/" + selectedyear);
 
-        getScheduleInfo(loggedInUsername,startingDate);
+        String selectedDate = selectedday + "-" + (selectedmonth + 1) + "-" + selectedyear;
+
+        getScheduleInfo(loggedInUsername, startingDate);
+
+        getScheduleEmployees(loggedInUsername, selectedDate, morningView, afternoonView, nightView);
 
         button_back = (Button) findViewById(R.id.button_back);
         button_back.setOnClickListener(new View.OnClickListener() {
@@ -69,39 +73,7 @@ public class ScheduleActivity extends AppCompatActivity {
             }
 
         });
-        buttonLoadList = (Button) findViewById(R.id.buttonLoadList);
-        buttonLoadList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int dateDifference = 0;
-
-                System.out.println("PLS WORK:"+date);
-                String firstDate[]= date.split(" ");
-                firstDate[1]=String.valueOf(Integer.valueOf(firstDate[1])-1);
-                System.out.println("FIRSTDAY:" + Integer.valueOf(firstDate[0]));
-
-                if (selectedday > Integer.valueOf(firstDate[0]) || selectedmonth > Integer.valueOf(firstDate[1]) || selectedyear > Integer.valueOf(firstDate[2])) {
-                    Calendar cal1 = Calendar.getInstance();
-                    Calendar cal2 = Calendar.getInstance();
-                    cal1.set(Integer.parseInt(firstDate[2]), Integer.parseInt(firstDate[1]), Integer.parseInt(firstDate[0]));
-                    cal2.set(selectedyear, selectedmonth, selectedday);
-                    long millis1 = cal1.getTimeInMillis();
-                    long millis2 = cal2.getTimeInMillis();
-                    long diff = millis2 - millis1;
-                    long diffDays = diff / (24 * 60 * 60 * 1000); //diafora merwn
-                    dateDifference = (int) diffDays+1;
-                } else if (selectedday == Integer.valueOf(firstDate[0]) && selectedmonth == Integer.valueOf(firstDate[1]) && selectedyear == Integer.valueOf(firstDate[2])) {
-                    dateDifference = 1;
-                } else {
-                    System.out.println("KENO PROGRAMMA");
-                }
-                System.out.println("dateDifference:"+ dateDifference);
-                getScheduleEmployees(loggedInUsername,dateDifference,morningView,afternoonView,nightView);
-            }
-
-        });
     }
-
 
 
     public void getScheduleInfo(String loggedInUsername,TextView startingDate) {
@@ -135,12 +107,11 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     public void setDate(String startedDate){
-        System.out.println("AAAAAAAAAAAA: "+startedDate);
         date = startedDate;
     }
 
 
-    public void getScheduleEmployees(String loggedInUsername,int dateDifference,ListView morningView, ListView afternoonView, ListView nightView){
+    public void getScheduleEmployees(String loggedInUsername,String selectedDate,ListView morningView, ListView afternoonView, ListView nightView){
 
         class GetScheduleEmployeesClass extends AsyncTask<String,Void,String> {
             @Override
@@ -150,43 +121,87 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
-                String[] employeeArrayMorning= {};
-                String[] employeeArrayAfternoon= {};
-                String[] employeeArrayNight= {};
+                String[] employeeArrayMorning= new String[2];
+                String[] employeeArrayAfternoon= new String[2];
+                String[] employeeArrayNight= new String[2];
 
+                /*
                 employeeArrayMorning= employeeArray[0].split(" ");
                 employeeArrayAfternoon= employeeArray[1].split(" ");
-                employeeArrayNight= employeeArray[2].split(" ");
+                employeeArrayNight= employeeArray[2].split(" ");*/
 
+                String[] employeeDummy;
+                String[] employeeShifts= new String[employeeArray.length];
+                String[] employeeIDs= new String[employeeArray.length];
+                int j=0,k=0,i=0;
+                System.out.println("HOCUS POCUS GAMW TON XRISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO: "+employeeArray.length);
 
+                for (i=0;i<employeeArray.length;i++) {
+                    employeeDummy = employeeArray[i].split(" ");
 
-                adapterMorning=new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayMorning);
-                morningView.setAdapter(adapterMorning);
+                    employeeIDs[i] = employeeDummy[0];
+                    employeeShifts[i] = employeeDummy[1];
+                }
 
-                adapterAfternoon=new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayAfternoon);
-                afternoonView.setAdapter(adapterAfternoon);
+                int morningcount=0;
+                int afternooncount=0;
+                int nightcount=0;
 
-                adapterNight=new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayNight);
-                nightView.setAdapter(adapterNight);
+                for (int peos=0;peos<4;peos++) {
+                    System.out.println("pussy: "+employeeIDs[peos]+" "+employeeShifts[peos]);
+                }
+
+                for (int l=0;l<employeeIDs.length;l++){
+
+                    if (employeeShifts[l].compareTo("Morning")==0){
+                        employeeArrayMorning[morningcount]=employeeIDs[l];
+                        morningcount++;
+                    }
+                    else if (employeeShifts[l].compareTo("Afternoon")==0){
+                        employeeArrayAfternoon[afternooncount]=employeeIDs[l];
+                        afternooncount++;
+                    }
+                    else if (employeeShifts[l].compareTo("Midnight")==0){
+                        employeeArrayNight[nightcount]=employeeIDs[l];
+                        nightcount++;
+                    }
+                }
+
+                for (int peos=0;peos<2;peos++) {
+                    System.out.println("AAAAAAAAAA: "+employeeArrayMorning[peos]+" "+employeeArrayAfternoon[peos]);
+                }
+
+                if (morningcount!=0) {
+                    adapterMorning = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayMorning);
+                    morningView.setAdapter(adapterMorning);
+                }
+
+                if (afternooncount!=0){
+                    adapterAfternoon = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayAfternoon);
+                    afternoonView.setAdapter(adapterAfternoon);
+                }
+                if (nightcount!=0) {
+                        adapterNight = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayNight);
+                        nightView.setAdapter(adapterNight);
+                }
             }
 
             @Override
             protected String doInBackground(String... params) {
                 scheduleEmployeesMap.put("loggedInUsername",params[0]);
-                scheduleEmployeesMap.put("dateDifference",params[1]);
+                scheduleEmployeesMap.put("selectedDate",params[1]);
 
 
                 finalResult = httpParse2.postRequest(scheduleEmployeesMap, HttpURL2);
+                System.out.println("GAMW TON XRISTO SOU: "+finalResult);
                 employeeArray = finalResult.split("-");
-                System.out.println("result:"+finalResult);
-                System.out.println("prwi:"+employeeArray[0]);
-                System.out.println("meshmeri:"+employeeArray[1]);
-                System.out.println("vrady:"+employeeArray[2]);
+
+
                 return finalResult;
             }
         }
         GetScheduleEmployeesClass getScheduleEmployeesClass = new GetScheduleEmployeesClass();
-        getScheduleEmployeesClass.execute(loggedInUsername,String.valueOf(dateDifference));
+        getScheduleEmployeesClass.execute(loggedInUsername,selectedDate);
     }
 
     

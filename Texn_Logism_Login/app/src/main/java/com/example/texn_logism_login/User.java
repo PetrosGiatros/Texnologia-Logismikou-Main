@@ -9,7 +9,7 @@ public class User extends AppCompatActivity {
         public String LastName;
         public int shiftHours,id,totalHours,hourWorked=0;
         public String profession,shiftType;
-        boolean hasShift=true;
+        public boolean hasShift=true;
 
 
         public User(String firstName, String lastName, int shiftHours, int id, String profession)
@@ -19,7 +19,6 @@ public class User extends AppCompatActivity {
             this.shiftHours = shiftHours;
             this.id = id;
             this.profession = profession;
-            //this.hasShift=hasShift;
 
         }
 

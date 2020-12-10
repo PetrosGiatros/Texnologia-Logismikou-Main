@@ -63,10 +63,6 @@ public class CreateActivity  extends AppCompatActivity {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Business);
         spinnerBusiness.setAdapter(adapter4);
 
-       /* String SelectedScheduleType = spinnerScheduleType.getSelectedItem().toString();
-        String SelectedShiftType = spinnerShiftType.getSelectedItem().toString();
-        String SelectedProfession = spinnerProfession.getSelectedItem().toString();*/
-
 
         buttonCreateSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +110,8 @@ public class CreateActivity  extends AppCompatActivity {
                 Utilities util = new Utilities();
                 String shiftName="";
 
-                SaveScheduleActivity saveSchedulePHP=new SaveScheduleActivity();
-                saveSchedulePHP.deleteScheduleActivity(shiftName);
-
+                SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
+                saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
                 util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness));
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
@@ -202,19 +197,6 @@ public class CreateActivity  extends AppCompatActivity {
 
         schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
 
-        /*if (SelectedScheduleType == "Weekly") {
-            type=5;
-            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
-        } else if (SelectedScheduleType == "Monthly") {
-            type=20;
-            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
-        } else if (SelectedScheduleType == "Trimester") {
-            type=60;
-            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
-        } else if (SelectedScheduleType == "Semester"){
-            type=120;
-            schedule = new int[employeeAmountPerShift][Integer.valueOf(SelectedShiftType)*type*numOfShifts];
-        }*/
 
         for (int row = 0; row < schedule.length; row++)//Cycles through rows
         {
@@ -225,9 +207,6 @@ public class CreateActivity  extends AppCompatActivity {
 
         }
 
-        //System.out.println("Schedule: "+Integer.valueOf(SelectedShiftType)*type*numOfShifts);
-        /*final int min = 0;
-        final int max = 6;*/
         int randomNum;
         boolean isOver = false;
         Utilities util = new Utilities();
@@ -239,13 +218,11 @@ public class CreateActivity  extends AppCompatActivity {
 
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
 
-        //SaveScheduleActivity saveScheduleActivity=new SaveScheduleActivity();
+
         StringBuilder builder = new StringBuilder("");
         String text = builder.toString();
         int recentAmountOfEmployees=0;
-        //System.out.println("Total Type Hours " +totalTypeHours);
 
-        //System.out.println("Before While + + + + + + +" );
         if (users.length *  Integer.valueOf(SelectedShiftType)*type < (type * (numOfShifts* Integer.valueOf(SelectedShiftType)))*employeeAmountPerShift )
         {
             allowedToCreateSchedule = false;
@@ -253,8 +230,6 @@ public class CreateActivity  extends AppCompatActivity {
 
 
         }
-        //System.out.println("Left part " + users.length *  Integer.valueOf(SelectedShiftType)*type);
-        //System.out.println("Right part" + type * (numOfShifts* Integer.valueOf(SelectedShiftType))*employeeAmountPerShift );
 
         while((totalTypeHours > 0) && (allowedToCreateSchedule) ){
             //System.out.println("In While + + + + + + +");
@@ -310,15 +285,6 @@ public class CreateActivity  extends AppCompatActivity {
                             isOver = true;
                         }
 
-                       // System.out.println("Den mphke o: "+users[randomNum].FirstName);
-                       // System.out.println("Total Hours: "+users[randomNum].totalHours);
-                       // System.out.println("Total Type Hours : "+totalTypeHours);
-
-                       /* try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
                         break;
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){

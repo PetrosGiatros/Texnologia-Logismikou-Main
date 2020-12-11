@@ -117,8 +117,8 @@ public class CreateActivity  extends AppCompatActivity {
                 Utilities util = new Utilities();
                 String shiftName="";
 
-                SaveScheduleActivity saveSchedulePHP=new SaveScheduleActivity();
-                saveSchedulePHP.deleteScheduleActivity(shiftName);
+                saveScheduleActivity saveSchedulePHP = new SaveScheduleActivity();
+                saveSchedulePHP.deletesSchedulesActivity(shiftName);
 
 
                 util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness));

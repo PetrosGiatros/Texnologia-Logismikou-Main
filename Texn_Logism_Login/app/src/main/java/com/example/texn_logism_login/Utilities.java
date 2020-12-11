@@ -58,7 +58,10 @@ public class Utilities extends AppCompatActivity {
         StringBuilder builderMorning = new StringBuilder("");
         StringBuilder builderAfternoon = new StringBuilder("");
         StringBuilder builderMidnight = new StringBuilder("");
-        System.out.println("businnes type: "+businessType);
+        String textMorning = builderMorning.toString();
+        String textAfternoon = builderAfternoon.toString();
+        String textMidnight = builderMidnight.toString();
+        System.out.println("business type: "+businessType);
 
         for (int i = 0; i < columns ; i = i + 8)
         {

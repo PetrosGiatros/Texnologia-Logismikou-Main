@@ -16,7 +16,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button hireFireButton;
     private Button exitButton,buttonCreate;
     private Button notificationsButton;
-
+    private Button statisticsButton;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,15 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
+        statisticsButton = (Button)findViewById(R.id.buttonStatistics);
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(AdminActivity.this, StatisticsActivity.class);
+                startActivity(intent);
 
+            }
+        });
 
 
         exitButton.setOnClickListener(new View.OnClickListener() {

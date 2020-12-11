@@ -34,7 +34,7 @@ public class CreateActivity  extends AppCompatActivity {
     public static Stats stObj = new Stats();
     String[] ScheduleTypes = new String[]{"Weekly", "Monthly", "Trimester", "Semester"};
     String[] ShiftTypes = new String[]{"8", "4"};
-    String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};
+    String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};  //When deleting the profession parameters, do not delete this.
     String[] Business = new String[]{"8h", "16h", "24h"};
 
 

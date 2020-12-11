@@ -1,15 +1,29 @@
 package com.example.texn_logism_login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsActivity extends AppCompatActivity
 {
+    private Button backStatsButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_form);
+        backStatsButton= (Button)findViewById(R.id.buttonBackStatistics);
+        backStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StatisticsActivity.this, AdminActivity.class);
+                //intent.putExtra(username,password);
+                startActivity(intent);
+
+            }
+        });
         TextView textView;
         Stats statObj = new Stats();
         if (!statObj.failFlag)

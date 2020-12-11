@@ -14,8 +14,11 @@ public class StatisticsActivity extends AppCompatActivity
         Stats statObj = new Stats();
         if (!statObj.failFlag)
         {
+            //These need to get the fuck out of here and into create activity along with a call to pushStatsToDB when the code is complete.
             statObj.calculateHoursPerProfession();
             statObj.calculateUsersPerProfession();
+            statObj.setLoggedInUsername();
+
             for (int i = 0; i < statObj.professions.length; i++)
             {
                 System.out.println("Profession: " + statObj.professions[i] + " Hours in schedule: " + statObj.professionHours[i]);
@@ -27,6 +30,8 @@ public class StatisticsActivity extends AppCompatActivity
         }
         else
         {
+            // Replace sout and add function to pull shit from DB if class does not already contain data.
+            // If there are no data to pull, THEN output the message in the following sout.
             System.out.println("No stats to show. Class does not contain data.");
         }
 

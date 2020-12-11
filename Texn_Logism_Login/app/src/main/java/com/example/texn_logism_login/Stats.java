@@ -1,19 +1,29 @@
 package com.example.texn_logism_login;
 
 
-//Using this class means you MUST pay attention to the order of calls. If not, you may return uninitialized variables.
+//Using this class means you MUST pay attention to the order of calls.
+// If not, you may return uninitialized variables,attempt to access empty arrays, fuck up data and so on.
 //I don't care about checks.
 
-//Class will change in the future. A constructor will probably be added to syphon the users from the DB. *Sigh.*
-//It will probably make half these functions useless. Fucking hardcoded data.
+//PushStatsToDB should ALWAYS be called last and after all data has been filled. Shit might break otherwise.
+
 
 // Please, do not touch my garbage.
+
+import android.os.AsyncTask;
+
+import java.util.HashMap;
 
 public class Stats {
     static public int activeUsersCount = -1,totalProfessions = -1,professionHours[],userProfessionCount[];
     static public User users[];
     static public String professions[], scheduleType, businessType;
     static public boolean failFlag = true;
+    static public HttpParse httpParse = new HttpParse();
+    static public HashMap<String,String> statsMap = new HashMap<>();
+    static public String HttpURL = "http://priapic-blower.000webhostapp.com/setStatistics.php";
+    static public String finalResult ;
+    static public String loggedInUsername;
 
     static public void setUsersCount(int totalUsers)
     {
@@ -87,5 +97,37 @@ public class Stats {
     {
         businessType = businessType1;
     }
+    static public void setLoggedInUsername()
+    {
+         loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+    }
+    public void pushStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+    {
+        class pushtoDBClass extends AsyncTask<String,Void,String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
 
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                statsMap.put("username",params[0]);     //I have no idea which parameters to send yet.
+                statsMap.put("No idea",params[1]);
+                statsMap.put("No idea",params[2]);
+
+
+                finalResult = httpParse.postRequest(statsMap, HttpURL);
+                return finalResult;
+            }
+        }
+        pushtoDBClass setObject = new pushtoDBClass();  //I have no idea if this'll work but I sure fucking hope so.
+        setObject.execute();
+    }
 }

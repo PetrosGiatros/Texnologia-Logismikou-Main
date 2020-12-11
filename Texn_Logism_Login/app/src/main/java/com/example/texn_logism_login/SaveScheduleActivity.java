@@ -10,16 +10,18 @@ import java.util.HashMap;
 public class SaveScheduleActivity extends AppCompatActivity {
     HashMap<String,String> scheduleMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
-    String HttpURL = "http://priapic-blower.000webhostapp.com/saveSchedule.php";
+    String HttpURL = "http://priapic-blower.000webhostapp.com/saveNewSchedule.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/deleteSchedule.php";
     String finalResult ;
 
 
 
 
-    public void saveScheduleActivity(String shiftName,String textMorning,String textAfternoon,String textMidnight,String hasMorning,String hasAfternoon,String hasMidnight){
 
-        class SaveScheduleClass extends AsyncTask<String,Void,String> {
+
+    public void saveNewScheduleActivity(String shiftName,String employeeID,String hasMorning,String hasAfternoon,String hasMidnight,String date,String loggedInUsername){
+
+        class SaveNewScheduleClass extends AsyncTask<String,Void,String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -31,16 +33,16 @@ public class SaveScheduleActivity extends AppCompatActivity {
             }
             @Override
             protected String doInBackground(String... params) {
-               // System.out.println("shiftname received: "+ shiftName);
-               // System.out.println("textToSend received: "+ textToSend);
+                // System.out.println("shiftname received: "+ shiftName);
+                // System.out.println("textToSend received: "+ textToSend);
 
                 scheduleMap.put("shiftName",params[0]);
-                scheduleMap.put("textMorning",params[1]);
-                scheduleMap.put("textAfternoon",params[2]);
-                scheduleMap.put("textMidnight",params[3]);
-                scheduleMap.put("hasMorning",params[4]);
-                scheduleMap.put("hasAfternoon",params[5]);
-                scheduleMap.put("hasMidnight",params[6]);
+                scheduleMap.put("employeeID",params[1]);
+                scheduleMap.put("hasMorning",params[2]);
+                scheduleMap.put("hasAfternoon",params[3]);
+                scheduleMap.put("hasMidnight",params[4]);
+                scheduleMap.put("date",params[5]);
+                scheduleMap.put("loggedInUsername",params[6]);
 
 
 
@@ -50,12 +52,12 @@ public class SaveScheduleActivity extends AppCompatActivity {
                 return finalResult;
             }
         }
-        SaveScheduleClass saveScheduleClass = new SaveScheduleClass();
-        saveScheduleClass.execute(shiftName,textMorning,textAfternoon,textMidnight,hasMorning,hasAfternoon,hasMidnight);
+        SaveNewScheduleClass saveNewScheduleClass = new SaveNewScheduleClass();
+        saveNewScheduleClass.execute(shiftName,employeeID,hasMorning,hasAfternoon,hasMidnight,date,loggedInUsername);
 
     }
 
-    public void deleteScheduleActivity(String shiftName){
+    public void deleteScheduleActivity(String loggedInUsername){
 
         class DeleteScheduleClass extends AsyncTask<String,Void,String> {
             @Override
@@ -71,7 +73,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 // System.out.println("shiftname received: "+ shiftName);
                 // System.out.println("textToSend received: "+ textToSend);
-                scheduleMap.put("shiftName",params[0]);
+                scheduleMap.put("loggedInUsername",params[0]);
                 finalResult = httpParse.postRequest(scheduleMap, HttpURL2);
 
 
@@ -79,7 +81,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             }
         }
         DeleteScheduleClass deleteScheduleClass = new DeleteScheduleClass();
-        deleteScheduleClass.execute(shiftName);
+        deleteScheduleClass.execute(loggedInUsername);
 
     }
 

@@ -28,8 +28,10 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.calendar_form);
 
 
+
         calendarView= (CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
             @Override
 
             public void onSelectedDayChange(CalendarView calendarView ,int year, int month, int day) {
@@ -43,6 +45,17 @@ public class CalendarActivity extends AppCompatActivity {
                 intent.putExtra("year",year);
                 startActivity(intent);
             }
+        });
+        Button buttonBackCalendar = (Button) findViewById(R.id.buttonBackCalendar);
+        buttonBackCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //Intent intent = new Intent(CalendarActivity.this, LoginActivity.class);
+                //startActivity(intent);
+            }
+
         });
     }
 

@@ -2,6 +2,7 @@ package com.example.texn_logism_login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class Utilities extends AppCompatActivity {
@@ -44,9 +45,16 @@ public class Utilities extends AppCompatActivity {
         String shift = "";
         String shiftName="";
         String hasMorning="",hasAfternoon="",hasMidnight="";
+        String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+        Calendar calendarSchedule = Calendar.getInstance();
+        String date;
+        String currentDay = String.valueOf(calendarSchedule.get(Calendar.DATE));
+        String currentMonth = String.valueOf(calendarSchedule.get(Calendar.MONTH)+1);
+        String currentYear = String.valueOf(calendarSchedule.get(Calendar.YEAR));
 
 
         SaveScheduleActivity saveSchedulePHP=new SaveScheduleActivity();
+        SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
         StringBuilder builderMorning = new StringBuilder("");
         StringBuilder builderAfternoon = new StringBuilder("");
         StringBuilder builderMidnight = new StringBuilder("");
@@ -70,7 +78,6 @@ public class Utilities extends AppCompatActivity {
                 {
                     workingEmployee=schedule[j][i];
                     builderMorning.append(workingEmployee).append(" ");
-                    textMorning=builderMorning.toString();
                     hasMorning="yes";
                     shiftName="Morning";
                     shift = " Morning Shift: ";
@@ -80,7 +87,6 @@ public class Utilities extends AppCompatActivity {
                 {
                     workingEmployee=schedule[j][i];
                     builderAfternoon.append(workingEmployee).append(" ");
-                    textAfternoon=builderAfternoon.toString();
                     hasAfternoon="yes";
                     shiftName="Afternoon";
                     shift = " Afternoon Shift: ";
@@ -90,7 +96,6 @@ public class Utilities extends AppCompatActivity {
                 {
                     workingEmployee=schedule[j][i];
                     builderMidnight.append(workingEmployee).append(" ");
-                    textMidnight=builderMidnight.toString();
                     hasMidnight="yes";
                     shiftName="Midnight";
                     shift = " Midnight Shift: ";
@@ -98,6 +103,16 @@ public class Utilities extends AppCompatActivity {
                 }
 
                 System.out.println("Day " + day + " " + shift + ":  Employee  " + schedule[j][i]);
+
+                String employeeID;
+
+                employeeID=String.valueOf(schedule[j][i]);
+
+                date=currentDay+"-"+currentMonth+"-"+currentYear;
+
+                System.out.println("tha stalthoun ta dedomena: "+shiftName+" "+employeeID+" "+hasMorning+" "+hasAfternoon+" "+hasMidnight+" "+date+" "+loggedInUsername);
+
+                saveNewSchedulePHP.saveNewScheduleActivity(shiftName,employeeID,hasMorning,hasAfternoon,hasMidnight,date,loggedInUsername);
 
 
 
@@ -112,7 +127,16 @@ public class Utilities extends AppCompatActivity {
             }
             if (hasChangedDay)
             {
-                saveSchedulePHP.saveScheduleActivity(shiftName,textMorning,textAfternoon,textMidnight,hasMorning,hasAfternoon,hasMidnight);
+                System.out.println("H prohgoumenh hmeromhnia htan: "+ currentDay + " " +currentMonth+ " " +currentYear);
+                long millisNext = calendarSchedule.getTimeInMillis() + 86400000;
+                calendarSchedule.setTimeInMillis(millisNext);
+
+                currentDay = String.valueOf(calendarSchedule.get(Calendar.DATE));
+                currentMonth = String.valueOf(calendarSchedule.get(Calendar.MONTH)+1);
+                currentYear = String.valueOf(calendarSchedule.get(Calendar.YEAR));
+
+                System.out.println("H hmeromhnia allakse se: "+ currentDay + " " +currentMonth+ " " +currentYear);
+
                 builderMorning.setLength(0);
                 builderAfternoon.setLength(0);
                 builderMidnight.setLength(0);
@@ -126,6 +150,9 @@ public class Utilities extends AppCompatActivity {
                 shift="";
             }
         }
+
+
+
 
     }
 

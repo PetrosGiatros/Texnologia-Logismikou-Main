@@ -377,6 +377,8 @@ public class CreateActivity  extends AppCompatActivity {
             stObj.setProfessionCount(Profession.length);
             stObj.setProfessions(Profession);
             stObj.failFlag = false;
+            stObj.setScheduleType(SelectedScheduleType);
+            stObj.setBusinessType(SelectedBusinessType);
         }
         return schedule;
 

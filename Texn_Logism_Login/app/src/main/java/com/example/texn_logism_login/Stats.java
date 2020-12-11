@@ -10,9 +10,9 @@ package com.example.texn_logism_login;
 // Please, do not touch my garbage.
 
 public class Stats {
-    static public int activeUsersCount = -1,totalProfessions = -1,professionHours[];
+    static public int activeUsersCount = -1,totalProfessions = -1,professionHours[],userProfessionCount[];
     static public User users[];
-    static public String professions[];
+    static public String professions[], scheduleType, businessType;
     static public boolean failFlag = true;
 
     static public void setUsersCount(int totalUsers)
@@ -62,6 +62,30 @@ public class Stats {
             }
             j++;
         }
+    }
+    static public void calculateUsersPerProfession()
+    {
+        userProfessionCount = new int[professions.length];
+        int j = 0;
+        while( j < professions.length)
+        {
+            for (int i = 0; i < users.length; i++)
+            {
+                if (users[i].profession == professions[j])
+                {
+                    userProfessionCount[j] = userProfessionCount[j] + 1;
+                }
+            }
+            j++;
+        }
+    }
+    static public void setScheduleType(String scheduleType1)
+    {
+        scheduleType = scheduleType1;
+    }
+    static public void setBusinessType(String businessType1)
+    {
+        businessType = businessType1;
     }
 
 }

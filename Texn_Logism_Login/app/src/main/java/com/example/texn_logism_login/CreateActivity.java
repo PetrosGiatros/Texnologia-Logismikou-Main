@@ -164,7 +164,7 @@ public class CreateActivity  extends AppCompatActivity {
         boolean allowedToCreateSchedule = true;
         //Xrhsh newn sunarthsewn//
         numOfShifts=getNumOfShifts(SelectedBusinessType);
-
+        int daycount=0;
         User kitsos=new User("ki","tsos",8,1,"Programmer");
         User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
         User konstantinos = new User("konsta","ntinos",8,3,"Manager");
@@ -289,6 +289,7 @@ public class CreateActivity  extends AppCompatActivity {
                     }
                     if(employeeAmountPerShift == recentAmountOfEmployees){
                         //System.out.println("Reached max people per shift.");
+                        daycount++;
                         builder.setLength(0);
                         i=0;
                         iCheck=0;
@@ -297,10 +298,12 @@ public class CreateActivity  extends AppCompatActivity {
                         //k++;
                         //System.out.println("Allagh meras");
                         //System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
-                        for(int q = 0;q<users.length;q++){
-                            users[q].hasShift=true;
+                        if(daycount==numOfShifts) {
+                            for (int q = 0; q < users.length; q++) {
+                                users[q].hasShift = true;
+                            }
+                            daycount=0;
                         }
-
 
                     }else{
                         //System.out.println("Have not yet reached max people per shift.");

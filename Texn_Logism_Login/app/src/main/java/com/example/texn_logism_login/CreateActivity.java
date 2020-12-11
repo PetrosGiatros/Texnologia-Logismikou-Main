@@ -31,6 +31,12 @@ public class CreateActivity  extends AppCompatActivity {
     String startResult;
     String startURL=  "http://priapic-blower.000webhostapp.com/startDate.php";
     String isAssignedTo = LoginActivity.getUsernameTextView().getText().toString();
+    public static Stats stObj = new Stats();
+    String[] ScheduleTypes = new String[]{"Weekly", "Monthly", "Trimester", "Semester"};
+    String[] ShiftTypes = new String[]{"8", "4"};
+    String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};
+    String[] Business = new String[]{"8h", "16h", "24h"};
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +50,7 @@ public class CreateActivity  extends AppCompatActivity {
         Spinner spinnerBusiness = findViewById(R.id.spinnerBusiness);
         EditText EditTextEmployeesPerShift = (EditText) findViewById(R.id.EditTextEmployeesPerShift);
 
-        String[] ScheduleTypes = new String[]{"Weekly", "Monthly", "Trimester", "Semester"};
-        String[] ShiftTypes = new String[]{"8", "4"};
-        String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};
-        String[] Business = new String[]{"8h", "16h", "24h"};
+
 
 
         ArrayAdapter<String> adapter;
@@ -233,11 +236,6 @@ public class CreateActivity  extends AppCompatActivity {
         int randomNum;
         boolean isOver = false;
         Utilities util = new Utilities();
-        int[] sumHoursPerEmployee;
-        sumHoursPerEmployee= new int[users.length];
-        for(int i =0;i<users.length;i++){
-            sumHoursPerEmployee[i]=0;
-        }
 
         int totalTypeHours=Integer.valueOf(SelectedShiftType)*type*numOfShifts;
 
@@ -270,7 +268,7 @@ public class CreateActivity  extends AppCompatActivity {
                     randomNum = util.getEmployeeWithFewestHours(users);
                     //System.out.println("Employee with fewest hours returned " + users[randomNum].FirstName + "  With hours:  " +users[randomNum].totalHours + " With ID:  " +users[randomNum].id + " With hasShit " + users[randomNum].hasShift);
                     if((users[randomNum].hasShift==true) && (users[randomNum].totalHours>0)) {
-                        sumHoursPerEmployee[randomNum]=sumHoursPerEmployee[randomNum]+1;
+                        users[randomNum].timesWorked=users[randomNum].timesWorked+1;
                         //builder.append("Apple").append(" ").append("Banana");
                         for (int z = j; z >= j - (Integer.valueOf(SelectedShiftType) - 1) ; z-- )
                         {
@@ -284,6 +282,7 @@ public class CreateActivity  extends AppCompatActivity {
                         }
                         users[randomNum].hasShift=false;
                         users[randomNum].totalHours=users[randomNum].totalHours-Integer.valueOf(SelectedShiftType);
+                        users[randomNum].hoursWorked = users[randomNum].hoursWorked+Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees++;
                         //System.out.println("Total Hours: "+users[randomNum].totalHours);
                         iCheck=1;
@@ -366,14 +365,21 @@ public class CreateActivity  extends AppCompatActivity {
             util.saveSchedule(users,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }
 
+        /*for(int i =0;i<users.length;i++){
 
+            System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+users[i].timesWorked + " fores.");
 
-        for(int i =0;i<users.length;i++){
-
-            System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+sumHoursPerEmployee[i]+" fores.");
-
+        }*/
+        if (allowedToCreateSchedule)
+        {
+            stObj.setUsersCount(users.length);  //Do NOT change the call order.
+            stObj.setUsers(users);
+            stObj.setProfessionCount(Profession.length);
+            stObj.setProfessions(Profession);
+            stObj.failFlag = false;
         }
         return schedule;
+
 
     }
     public void startDateFunction(String isAssignedTo, String currentDay, String currentMonth, String currentYear){

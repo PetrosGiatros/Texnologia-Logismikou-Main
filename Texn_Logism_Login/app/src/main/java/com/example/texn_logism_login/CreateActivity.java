@@ -70,13 +70,15 @@ public class CreateActivity  extends AppCompatActivity {
         buttonCreateSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User kitsos=new User("ki","tsos",8,1,"Programmer");
-                User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
-                User konstantinos = new User("konsta","ntinos",8,3,"Manager");
-                User kwstas=new User("kw","stas",8,4,"Programmer");
-                User kotsos=new User("ko","tsos",8,5,"Analyst");
-                User giannhs=new User("gian","nhs",8,6,"Programmer");
-                User petran=new User("pe","tran",8,7,"Manager");
+                //This shit needs to be deleted
+
+                User kitsos=new User(1,8,"Programmer");
+                User panagiwtis = new User(2,8,"Analyst");
+                User konstantinos = new User(3,8,"Manager");
+                User kwstas=new User(4,8,"Programmer");
+                User kotsos=new User(5,8,"Analyst");
+                User giannhs=new User(6,8,"Programmer");
+                User petran=new User(7,8,"Manager");
 
 
                 User users[] = new User[7];
@@ -171,14 +173,15 @@ public class CreateActivity  extends AppCompatActivity {
         //Xrhsh newn sunarthsewn//
         numOfShifts=getNumOfShifts(SelectedBusinessType);
         int daycount=0;
-        User kitsos=new User("ki","tsos",8,1,"Programmer");
-        User panagiwtis = new User("pana","giwtis",8,2,"Analyst");
-        User konstantinos = new User("konsta","ntinos",8,3,"Manager");
-        User kwstas=new User("kw","stas",8,4,"Programmer");
-        User kotsos=new User("ko","tsos",8,5,"Analyst");
-        User giannhs=new User("gian","nhs",8,6,"Programmer");
-        User petran=new User("pe","tran",8,7,"Manager");
 
+        //This shit as well.
+        User kitsos=new User(1,8,"Programmer");
+        User panagiwtis = new User(2,8,"Analyst");
+        User konstantinos = new User(3,8,"Manager");
+        User kwstas=new User(4,8,"Programmer");
+        User kotsos=new User(5,8,"Analyst");
+        User giannhs=new User(6,8,"Programmer");
+        User petran=new User(7,8,"Manager");
 
         User users[] = new User[7];
         users[0] = kitsos;

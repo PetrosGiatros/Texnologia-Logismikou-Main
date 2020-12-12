@@ -5,18 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 public class User extends AppCompatActivity {
 
     //Current constructor arguments.
-    static public int shiftHours, id;
-    static public String profession;
+     public int shiftHours, id;
+     public String firstName,lastName,profession;
 
     // Current irrelevant arguments.
-    static public int totalHours, hoursWorked = 0,timesWorked = 0;
-    static public boolean hasShift = true;
+     public int totalHours, hoursWorked = 0,timesWorked = 0;
+     public boolean hasShift = true;
 
 
-     public User(int id, int shiftHours, String profession) {
+     public User(int id, String firstName, String lastName, String profession, int shiftHours) {
          this.id = id;
-         this.shiftHours = shiftHours;
+         this.firstName = firstName;
+         this.lastName = lastName;
          this.profession = profession;
+         this.shiftHours = shiftHours;
 
     }
 

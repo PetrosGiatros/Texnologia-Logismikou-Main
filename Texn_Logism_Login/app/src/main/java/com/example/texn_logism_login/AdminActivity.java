@@ -23,7 +23,9 @@ public class AdminActivity extends AppCompatActivity {
     private Button notificationsButton;
     private Button statisticsButton;
     public static int userAmount;
+    public static String primitiveUserArray[] = {};
     User usersArray[];
+
 
     String finalResult;
     HashMap<String, String> adminMap = new HashMap<>();
@@ -39,6 +41,7 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_form);
         getUserCountFunction(loggedInUsername);
+        getUsersFunction(loggedInUsername);
 
         buttonCreate= (Button)findViewById(R.id.buttonCreate);
         button_view = (Button) findViewById(R.id.button_view);
@@ -51,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
-
+        /*
         buttonCreate.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -59,7 +62,7 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
 
 
@@ -101,11 +104,6 @@ public class AdminActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
     public void getUserCountFunction(String loggedInUsername)
     {
@@ -120,8 +118,8 @@ public class AdminActivity extends AppCompatActivity {
                 super.onPostExecute(httpResponseMsg);
                 userAmount = Integer.parseInt(httpResponseMsg);
                 System.out.println("User Amount: " + userAmount);
-                usersArray = new User[userAmount];
-                System.out.println("Employee Array length: " + usersArray.length);
+
+
 
             }
 
@@ -148,8 +146,25 @@ public class AdminActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 System.out.println(httpResponseMsg);
-                System.out.println("HTTP Response Message: " + httpResponseMsg);
+                usersArray = new User[userAmount];
+                primitiveUserArray = httpResponseMsg.split(" ");
+                int k = 0;
+                for (int i = 0; i < primitiveUserArray.length; i++)
+                {
+                    System.out.println(primitiveUserArray[i]);
+                }
 
+                System.out.println("Employee Array length: " + usersArray.length);
+                for (int i = 0; i < usersArray.length; i++) {
+                    usersArray[i] = new User(Integer.parseInt(primitiveUserArray[k]),primitiveUserArray[k+1],
+                            primitiveUserArray[k+2],primitiveUserArray[k+3],Integer.parseInt(primitiveUserArray[k+4]));
+                    k = k + 5;
+                }
+
+                for (int i = 0; i < usersArray.length; i++)
+                {
+                    System.out.println("ID in Array Loop: " + usersArray[i].id + "  First Name: "+ usersArray[i].firstName);
+                }
             }
 
 

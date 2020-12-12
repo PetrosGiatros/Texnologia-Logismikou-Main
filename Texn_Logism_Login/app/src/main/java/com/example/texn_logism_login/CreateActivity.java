@@ -72,13 +72,13 @@ public class CreateActivity  extends AppCompatActivity {
             public void onClick(View v) {
                 //This shit needs to be deleted
 
-                User kitsos=new User(1,8,"Programmer");
-                User panagiwtis = new User(2,8,"Analyst");
-                User konstantinos = new User(3,8,"Manager");
-                User kwstas=new User(4,8,"Programmer");
-                User kotsos=new User(5,8,"Analyst");
-                User giannhs=new User(6,8,"Programmer");
-                User petran=new User(7,8,"Manager");
+                User kitsos=new User(1,"tsos","tsos","Programmer",8);
+                User panagiwtis = new User(2,"tsos","tsos","Programmer",8);
+                User konstantinos = new User(3,"tsos","tsos","Programmer",8);
+                User kwstas=new User(4,"tsos","tsos","Programmer",8);
+                User kotsos=new User(5,"tsos","tsos","Programmer",8);
+                User giannhs=new User(6,"tsos","tsos","Programmer",8);
+                User petran=new User(7,"tsos","tsos","Programmer",8);
 
 
                 User users[] = new User[7];
@@ -175,13 +175,13 @@ public class CreateActivity  extends AppCompatActivity {
         int daycount=0;
 
         //This shit as well.
-        User kitsos=new User(1,8,"Programmer");
-        User panagiwtis = new User(2,8,"Analyst");
-        User konstantinos = new User(3,8,"Manager");
-        User kwstas=new User(4,8,"Programmer");
-        User kotsos=new User(5,8,"Analyst");
-        User giannhs=new User(6,8,"Programmer");
-        User petran=new User(7,8,"Manager");
+        User kitsos=new User(1,"tsos","tsos","Programmer",8);
+        User panagiwtis = new User(2,"tsos","tsos","Programmer",8);
+        User konstantinos = new User(3,"tsos","tsos","Programmer",8);
+        User kwstas=new User(4,"tsos","tsos","Programmer",8);
+        User kotsos=new User(5,"tsos","tsos","Programmer",8);
+        User giannhs=new User(6,"tsos","tsos","Programmer",8);
+        User petran=new User(7,"tsos","tsos","Programmer",8);
 
         User users[] = new User[7];
         users[0] = kitsos;
@@ -339,6 +339,7 @@ public class CreateActivity  extends AppCompatActivity {
             System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+users[i].timesWorked + " fores.");
 
         }*/
+
         if (allowedToCreateSchedule)
         {
             stObj.setUsersCount(users.length);  //Do NOT change the call order.

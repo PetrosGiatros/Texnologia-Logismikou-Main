@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class Utilities extends AppCompatActivity {
+    public static User userObjects[];
+
+
     public int getEmployeeWithFewestHours(User[] userArray) {
         final int min = 0;
         final int max = userArray.length - 1;
@@ -156,6 +159,17 @@ public class Utilities extends AppCompatActivity {
 
     }
 
+    static public void initializeUserObjects(int length)
+    {
+        userObjects = new User[length];
+    }
+    static public void copyUsersArray(User userArrayArg[])
+    {
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            userObjects[i] = userArrayArg[i];
+        }
+    }
 
 
 

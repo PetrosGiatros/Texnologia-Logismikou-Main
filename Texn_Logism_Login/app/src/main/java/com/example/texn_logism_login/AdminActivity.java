@@ -165,6 +165,10 @@ public class AdminActivity extends AppCompatActivity {
                 {
                     System.out.println("ID in Array Loop: " + usersArray[i].id + "  First Name: "+ usersArray[i].firstName);
                 }
+                Utilities utilObj = new Utilities();
+                utilObj.initializeUserObjects(userAmount);      //These are the two functions that make the users globally available.
+                utilObj.copyUsersArray(usersArray);             //Please do not touch my garbage. 
+
             }
 
 

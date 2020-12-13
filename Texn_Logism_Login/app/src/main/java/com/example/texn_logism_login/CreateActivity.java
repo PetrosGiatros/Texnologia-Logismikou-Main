@@ -307,6 +307,7 @@ public class CreateActivity  extends AppCompatActivity {
 
         if (allowedToCreateSchedule)
         {
+            System.out.println("I was allowed to create a schedule.");
             stObj.setUsersCount(util.userObjects.length);  //Do NOT change the call order.
             stObj.setUsers(util.userObjects);
             stObj.setProfessionCount(Profession.length);

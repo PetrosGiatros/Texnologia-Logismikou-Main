@@ -54,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
-        /*
+
         buttonCreate.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });*/
+        });
 
 
 

@@ -117,9 +117,6 @@ public class AdminActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 userAmount = Integer.parseInt(httpResponseMsg);
-                System.out.println("User Amount: " + userAmount);
-
-
 
             }
 
@@ -146,28 +143,35 @@ public class AdminActivity extends AppCompatActivity {
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
                 System.out.println(httpResponseMsg);
-                usersArray = new User[userAmount];
-                primitiveUserArray = httpResponseMsg.split(" ");
-                int k = 0;
-                for (int i = 0; i < primitiveUserArray.length; i++)
+                if (userAmount== 0) {
+                    System.out.println("YEET");
+                }
+                else
                 {
-                    System.out.println(primitiveUserArray[i]);
-                }
+                    System.out.println("Users " + userAmount);
+                    usersArray = new User[userAmount];
+                    primitiveUserArray = httpResponseMsg.split(" ");
+                    int k = 0;
+                    for (int i = 0; i < primitiveUserArray.length; i++)
+                    {
+                        System.out.println(primitiveUserArray[i]);
+                    }
+                    System.out.println("Employee Array length: " + usersArray.length);
+                    for (int i = 0; i < usersArray.length; i++) {
+                        usersArray[i] = new User(Integer.parseInt(primitiveUserArray[k]),primitiveUserArray[k+1],
+                                primitiveUserArray[k+2],primitiveUserArray[k+3],Integer.parseInt(primitiveUserArray[k+4]));
+                        k = k + 5;
+                    }
 
-                System.out.println("Employee Array length: " + usersArray.length);
-                for (int i = 0; i < usersArray.length; i++) {
-                    usersArray[i] = new User(Integer.parseInt(primitiveUserArray[k]),primitiveUserArray[k+1],
-                            primitiveUserArray[k+2],primitiveUserArray[k+3],Integer.parseInt(primitiveUserArray[k+4]));
-                    k = k + 5;
-                }
+                    for (int i = 0; i < usersArray.length; i++)
+                    {
+                        System.out.println("ID in Array Loop: " + usersArray[i].id + "  First Name: "+ usersArray[i].firstName);
+                    }
+                    Utilities utilObj = new Utilities();
+                    utilObj.initializeUserObjects(userAmount);      //These are the two functions that make the users globally available.
+                    utilObj.copyUsersArray(usersArray);             //Please do not touch my garbage.
 
-                for (int i = 0; i < usersArray.length; i++)
-                {
-                    System.out.println("ID in Array Loop: " + usersArray[i].id + "  First Name: "+ usersArray[i].firstName);
                 }
-                Utilities utilObj = new Utilities();
-                utilObj.initializeUserObjects(userAmount);      //These are the two functions that make the users globally available.
-                utilObj.copyUsersArray(usersArray);             //Please do not touch my garbage. 
 
             }
 

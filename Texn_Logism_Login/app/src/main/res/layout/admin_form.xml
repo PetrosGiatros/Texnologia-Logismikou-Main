@@ -67,7 +67,7 @@
         android:id="@+id/buttonStatistics"
         android:layout_width="207dp"
         android:layout_height="62dp"
-        android:text="Statistics"
+        android:background="@drawable/button_statistics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

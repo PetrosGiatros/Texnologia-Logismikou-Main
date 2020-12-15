@@ -21,7 +21,7 @@ import java.util.Random;
 
 
 public class CreateActivity  extends AppCompatActivity {
-    private Button buttonCreateSchedule;
+    private Button buttonCreateSchedule,backButton;
     private EditText textViewEmployeesPerShift;
     Utilities util = new Utilities();
     private static String currentDay;
@@ -44,6 +44,7 @@ public class CreateActivity  extends AppCompatActivity {
         setContentView(R.layout.create_form);
 
         buttonCreateSchedule = (Button) findViewById(R.id.buttonCreateSchedule);
+        backButton = (Button) findViewById(R.id.buttonBackSchedule);
 
         Spinner spinnerScheduleType = findViewById(R.id.spinnerScheduleType);
         Spinner spinnerShiftType = findViewById(R.id.spinnerShiftType);
@@ -110,6 +111,15 @@ public class CreateActivity  extends AppCompatActivity {
 
             }
 
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateActivity.this, AdminActivity.class);
+                //intent.putExtra(username,password);
+                startActivity(intent);
+
+            }
         });
 
     }

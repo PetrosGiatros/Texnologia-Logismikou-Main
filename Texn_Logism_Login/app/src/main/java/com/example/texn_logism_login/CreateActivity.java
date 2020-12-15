@@ -107,6 +107,9 @@ public class CreateActivity  extends AppCompatActivity {
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
                 startDateFunction(isAssignedTo, currentDay, currentMonth, currentYear);
 
+                Intent intent = new Intent(CreateActivity.this, AdminActivity.class);
+                startActivity(intent);
+
 
 
             }
@@ -116,7 +119,7 @@ public class CreateActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateActivity.this, AdminActivity.class);
-                //intent.putExtra(username,password);
+
                 startActivity(intent);
 
             }

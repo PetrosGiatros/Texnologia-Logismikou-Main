@@ -39,7 +39,7 @@ public class StatisticsActivity extends AppCompatActivity
             }
             for(int i =0;i<statObj.users.length;i++)
             {
-                System.out.println("User: "+statObj.users[i].FirstName+" has "+statObj.users[i].totalHours+" hours left. Has worked "+statObj.users[i].timesWorked + " times and "+ statObj.users[i].hoursWorked + " hours.");
+                System.out.println("User: "+statObj.users[i].id+" has "+statObj.users[i].totalHours+" hours left. Has worked "+statObj.users[i].timesWorked + " times and "+ statObj.users[i].hoursWorked + " hours.");
             }
         }
         else

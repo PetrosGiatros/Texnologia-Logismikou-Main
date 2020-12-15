@@ -55,6 +55,7 @@ public class Stats {
         for (int i = 0; i < professions.length; i++)
         {
             professions[i] = professionsArg[i];
+            System.out.println("Set Profession:" + professions[i]);
         }
     }
     static public void calculateHoursPerProfession()
@@ -65,7 +66,8 @@ public class Stats {
         {
             for (int i = 0; i < users.length; i++)
             {
-                if (users[i].profession == professions[j])
+                System.out.println("User Profession:" + users[i].profession);
+                if (users[i].profession.equals(professions[j]))
                 {
                     professionHours[j] = professionHours[j]+ users[i].hoursWorked;
                 }
@@ -81,8 +83,10 @@ public class Stats {
         {
             for (int i = 0; i < users.length; i++)
             {
-                if (users[i].profession == professions[j])
+
+                if (users[i].profession.equals(professions[j]))
                 {
+
                     userProfessionCount[j] = userProfessionCount[j] + 1;
                 }
             }

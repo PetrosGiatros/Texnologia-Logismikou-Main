@@ -24,6 +24,7 @@ public class ScheduleActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Button button_back,buttonLoadList;
     public static String date;
+    public boolean failFlag = false;
     public TextView dateView /*,  morningEmployees , afternoonEmployees , nightEmployees*/;
     //public TextView startingDate;
     HashMap<String, String> scheduleMap = new HashMap<>();
@@ -34,7 +35,7 @@ public class ScheduleActivity extends AppCompatActivity {
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/getNewScheduleEmployees.php";
     static String[] employeeArray = {};
     ArrayAdapter adapterMorning,adapterAfternoon,adapterNight;
-    String finalResult;
+    String finalResult,finalResult2;
     HttpParse httpParse = new HttpParse();
     HttpParse httpParse2 = new HttpParse();
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
@@ -44,6 +45,7 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_form);
+        System.out.println("LGUN: " +loggedInUsername);
         Bundle bundle = getIntent().getExtras();
         ListView morningView = (ListView) findViewById(R.id.morninglist);
         ListView afternoonView = (ListView) findViewById(R.id.afternoonlist);
@@ -121,68 +123,70 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
-                String[] employeeArrayMorning= new String[2];
-                String[] employeeArrayAfternoon= new String[2];
-                String[] employeeArrayNight= new String[2];
+                if (failFlag == false)
+                {
+                    System.out.println("Response Message " + httpResponseMsg);
+                    String[] employeeArrayMorning =new String[employeeArray.length];
+                    String[] employeeArrayAfternoon = new String[employeeArray.length];
+                    String[] employeeArrayNight= new String[employeeArray.length];
 
                 /*
                 employeeArrayMorning= employeeArray[0].split(" ");
                 employeeArrayAfternoon= employeeArray[1].split(" ");
                 employeeArrayNight= employeeArray[2].split(" ");*/
 
-                String[] employeeDummy;
-                String[] employeeShifts= new String[employeeArray.length];
-                String[] employeeIDs= new String[employeeArray.length];
-                int j=0,k=0,i=0;
-                System.out.println("HOCUS POCUS GAMW TON XRISTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO: "+employeeArray.length);
+                    String[] employeeDummy;
+                    String[] employeeShifts= new String[employeeArray.length];
+                    String[] employeeIDs= new String[employeeArray.length];
+                    int j=0,k=0,i=0;
+                    System.out.println("I made it before the employee ID's.");
+                    System.out.println("EmployeeID's Length"+employeeArray.length);
+                    for (i=0;i<employeeArray.length;i++) {
+                        employeeDummy = employeeArray[i].split(" ");
 
-                for (i=0;i<employeeArray.length;i++) {
-                    employeeDummy = employeeArray[i].split(" ");
-
-                    employeeIDs[i] = employeeDummy[0];
-                    employeeShifts[i] = employeeDummy[1];
-                }
-
-                int morningcount=0;
-                int afternooncount=0;
-                int nightcount=0;
-
-                for (int peos=0;peos<4;peos++) {
-                    System.out.println("pussy: "+employeeIDs[peos]+" "+employeeShifts[peos]);
-                }
-
-                for (int l=0;l<employeeIDs.length;l++){
-
-                    if (employeeShifts[l].compareTo("Morning")==0){
-                        employeeArrayMorning[morningcount]=employeeIDs[l];
-                        morningcount++;
+                        employeeIDs[i] = employeeDummy[0];
+                        employeeShifts[i] = employeeDummy[1];
                     }
-                    else if (employeeShifts[l].compareTo("Afternoon")==0){
-                        employeeArrayAfternoon[afternooncount]=employeeIDs[l];
-                        afternooncount++;
+
+                    int morningcount=0;
+                    int afternooncount=0;
+                    int nightcount=0;
+
+                    for (int l=0;l<employeeIDs.length;l++){
+
+                        if (employeeShifts[l].compareTo("Morning")==0){
+                            employeeArrayMorning[morningcount]=employeeIDs[l];
+                            morningcount++;
+                        }
+                        else if (employeeShifts[l].compareTo("Afternoon")==0){
+                            employeeArrayAfternoon[afternooncount]=employeeIDs[l];
+                            afternooncount++;
+                        }
+                        else if (employeeShifts[l].compareTo("Midnight")==0){
+                            employeeArrayNight[nightcount]=employeeIDs[l];
+                            nightcount++;
+                        }
                     }
-                    else if (employeeShifts[l].compareTo("Midnight")==0){
-                        employeeArrayNight[nightcount]=employeeIDs[l];
-                        nightcount++;
+
+
+                    if (morningcount!=0) {
+                        adapterMorning = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayMorning);
+                        morningView.setAdapter(adapterMorning);
                     }
-                }
 
-                for (int peos=0;peos<2;peos++) {
-                    System.out.println("AAAAAAAAAA: "+employeeArrayMorning[peos]+" "+employeeArrayAfternoon[peos]);
-                }
-
-                if (morningcount!=0) {
-                    adapterMorning = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayMorning);
-                    morningView.setAdapter(adapterMorning);
-                }
-
-                if (afternooncount!=0){
-                    adapterAfternoon = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayAfternoon);
-                    afternoonView.setAdapter(adapterAfternoon);
-                }
-                if (nightcount!=0) {
+                    if (afternooncount!=0){
+                        adapterAfternoon = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayAfternoon);
+                        afternoonView.setAdapter(adapterAfternoon);
+                    }
+                    if (nightcount!=0) {
                         adapterNight = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayNight);
                         nightView.setAdapter(adapterNight);
+                    }
+
+                }
+                else
+                {
+                    System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET");
                 }
             }
 
@@ -191,13 +195,24 @@ public class ScheduleActivity extends AppCompatActivity {
                 scheduleEmployeesMap.put("loggedInUsername",params[0]);
                 scheduleEmployeesMap.put("selectedDate",params[1]);
 
+                finalResult2 = httpParse2.postRequest(scheduleEmployeesMap, HttpURL2);
+                //System.out.println("GAMW TON XRISTO SOU: "+finalResult2);
+                employeeArray = finalResult2.split("-");
+                System.out.println("Employee Array Length" + employeeArray.length);
+                System.out.println("Final Result 2: " + finalResult2);
+                if (employeeArray.length < 2)
+                {
+                    for (int i = 0; i < employeeArray.length; i++)
+                    {
+                        if (!employeeArray[i].contains("Morning"))
+                        {
+                            failFlag = true;
+                        }
+                    }
+                }
 
-                finalResult = httpParse2.postRequest(scheduleEmployeesMap, HttpURL2);
-                System.out.println("GAMW TON XRISTO SOU: "+finalResult);
-                employeeArray = finalResult.split("-");
 
-
-                return finalResult;
+                return finalResult2;
             }
         }
         GetScheduleEmployeesClass getScheduleEmployeesClass = new GetScheduleEmployeesClass();

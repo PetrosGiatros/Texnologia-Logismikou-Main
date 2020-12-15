@@ -126,14 +126,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 if (failFlag == false)
                 {
                     System.out.println("Response Message " + httpResponseMsg);
-                    String[] employeeArrayMorning =new String[employeeArray.length];
-                    String[] employeeArrayAfternoon = new String[employeeArray.length];
-                    String[] employeeArrayNight= new String[employeeArray.length];
-
-                /*
-                employeeArrayMorning= employeeArray[0].split(" ");
-                employeeArrayAfternoon= employeeArray[1].split(" ");
-                employeeArrayNight= employeeArray[2].split(" ");*/
 
                     String[] employeeDummy;
                     String[] employeeShifts= new String[employeeArray.length];
@@ -143,7 +135,6 @@ public class ScheduleActivity extends AppCompatActivity {
                     System.out.println("EmployeeID's Length"+employeeArray.length);
                     for (i=0;i<employeeArray.length;i++) {
                         employeeDummy = employeeArray[i].split(" ");
-
                         employeeIDs[i] = employeeDummy[0];
                         employeeShifts[i] = employeeDummy[1];
                     }
@@ -151,6 +142,27 @@ public class ScheduleActivity extends AppCompatActivity {
                     int morningcount=0;
                     int afternooncount=0;
                     int nightcount=0;
+
+                    for (int l=0;l<employeeIDs.length;l++){
+
+                        if (employeeShifts[l].compareTo("Morning")==0){
+                            morningcount++;
+                        }
+                        else if (employeeShifts[l].compareTo("Afternoon")==0){
+                            afternooncount++;
+                        }
+                        else if (employeeShifts[l].compareTo("Midnight")==0){
+                            nightcount++;
+                        }
+                    }
+
+                    String[] employeeArrayMorning =new String[morningcount];
+                    String[] employeeArrayAfternoon = new String[afternooncount];
+                    String[] employeeArrayNight= new String[nightcount];
+
+                    morningcount=0;
+                    afternooncount=0;
+                    nightcount=0;
 
                     for (int l=0;l<employeeIDs.length;l++){
 
@@ -167,7 +179,6 @@ public class ScheduleActivity extends AppCompatActivity {
                             nightcount++;
                         }
                     }
-
 
                     if (morningcount!=0) {
                         adapterMorning = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_listview, R.id.label, employeeArrayMorning);
@@ -196,7 +207,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 scheduleEmployeesMap.put("selectedDate",params[1]);
 
                 finalResult2 = httpParse2.postRequest(scheduleEmployeesMap, HttpURL2);
-                //System.out.println("GAMW TON XRISTO SOU: "+finalResult2);
                 employeeArray = finalResult2.split("-");
                 System.out.println("Employee Array Length" + employeeArray.length);
                 System.out.println("Final Result 2: " + finalResult2);
@@ -210,8 +220,6 @@ public class ScheduleActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
                 return finalResult2;
             }
         }

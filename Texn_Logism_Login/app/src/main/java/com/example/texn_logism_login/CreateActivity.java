@@ -318,6 +318,7 @@ public class CreateActivity  extends AppCompatActivity {
                 stObj.setBusinessType(SelectedBusinessType);
                 stObj.peoplePerShift = employeeAmountPerShift;
                 stObj.pushScheduleStatsToDB();
+                stObj.pushUserStatsToDB();
 
             util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }

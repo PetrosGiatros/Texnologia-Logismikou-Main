@@ -125,9 +125,12 @@ public class Stats {
             @Override
             protected String doInBackground(String... params) {
 
-                statsMapUser.put("username",params[0]);
-                statsMapUser.put("",params[1]);
-                statsMapUser.put("No idea",params[2]);
+                statsMapUser.put("username",loggedInUsername);
+                for (int i = 0; i < activeUsersCount; i++)
+                {
+                    statsMapUser.put("ID",String.valueOf(users[i].id));
+                    statsMapUser.put("hours",String.valueOf(users[i].hoursWorked));
+                }
 
 
                 finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
@@ -153,7 +156,7 @@ public class Stats {
 
             @Override
             protected String doInBackground(String... params) {
-                
+
                 statsMapSchedule.put("username",loggedInUsername);
                 statsMapSchedule.put("scheduleType",scheduleType);
                 statsMapSchedule.put("businessType",businessType);

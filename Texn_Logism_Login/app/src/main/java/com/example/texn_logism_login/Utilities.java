@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.Random;
 
+/**
+ * Utilities.Java serves as a support class which contains various data and methods.
+ */
 public class Utilities extends AppCompatActivity {
     public static User userObjects[];
 
     /**
+     *  <h1>Get Employees With Fewest Hours</h1>
+     *  This mehtod receives an array of Users and randomly selects the one with the fewest hours worked.
      *
-     * @param userArray
+     * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
      * @return
      */
     public int getEmployeeWithFewestHours(User[] userArray) {
@@ -33,12 +38,13 @@ public class Utilities extends AppCompatActivity {
 
     /**
      * <h1> Display Schedule </h1>
+     * This method is used to display the schedule that was created in CreateActivity.java
      *
-     * @param userArray
-     * @param schedule
-     * @param rows
-     * @param columns
-     * @param shiftType
+     * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
+     * @param schedule An array that has the already saved Schedule inside it.
+     * @param rows An integer number that contains the number of rows of the previous array and that is used to make editing the schedule table easier.
+     * @param columns An integer number that contains the number of columns of the previous array and that is  used to make editing the schedule table easier.
+     * @param shiftType Shows if the admin has requested a program based on 4h or 8h shifts.
      */
     public void displaySchedule(User[] userArray, int schedule[][],int rows,int columns,int shiftType) {
         int day = 1;
@@ -55,14 +61,14 @@ public class Utilities extends AppCompatActivity {
 
     /**
      * <h1> Save Schedule </h1>
-     * This method takes the finsihed schedule from CreateActivity.java and uses some parameters given by the admin in order to place the specific information to the correct column of the online database via PHP files.
+     * This method takes the finished schedule from CreateActivity.java and uses some parameters given by the admin in order to place the specific information to the correct column of the online database via PHP files.
      *
      *
      *
      * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
      * @param schedule An array that has the already saved Schedule inside it.
-     * @param rows An integer number used to make editing the schedule table easier.
-     * @param columns An integer number used to make editing the schedule table easier.
+     * @param rows An integer number that contains the number of rows of the previous array and that is  used to make editing the schedule table easier.
+     * @param columns An integer number that contains the number of columns of the previous array and that is  used to make editing the schedule table easier.
      * @param businessType Shows if the admin has requested a 8h/16h/24h program
      */
     public void saveSchedule(User[] userArray, int schedule[][],int rows,int columns,int businessType) {
@@ -184,17 +190,17 @@ public class Utilities extends AppCompatActivity {
     }
 
     /** <h1>Initialize User Objects </h1>
-     *
-     * @param length
+     * This method is used to initialize the Array used to store the User objects pulled from the database.
+     * @param length is the number of employees
      */
     static public void initializeUserObjects(int length)
     {
         userObjects = new User[length];
     }
 
-    /**
-     *
-     * @param userArrayArg
+    /**<h1>Copy Users Array </h1>
+     * This method is used to copy the scope-restricted UserArray into a global Array of User objects.
+     * @param userArrayArg is an array containing all the employees
      */
     static public void copyUsersArray(User userArrayArg[])
     {

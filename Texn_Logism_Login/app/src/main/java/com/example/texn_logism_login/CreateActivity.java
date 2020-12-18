@@ -308,6 +308,16 @@ public class CreateActivity  extends AppCompatActivity {
             }
 
            //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
+                System.out.println("I was allowed to create a schedule.");
+                stObj.setUsersCount(util.userObjects.length);  //Do NOT change the call order.
+                stObj.setUsers(util.userObjects);
+                stObj.setProfessionCount(Profession.length);
+                stObj.setProfessions(Profession);
+                stObj.failFlag = false;
+                stObj.setScheduleType(SelectedScheduleType);
+                stObj.setBusinessType(SelectedBusinessType);
+                stObj.peoplePerShift = employeeAmountPerShift;
+                stObj.pushScheduleStatsToDB();
 
             util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }
@@ -318,17 +328,7 @@ public class CreateActivity  extends AppCompatActivity {
 
         }*/
 
-        if (allowedToCreateSchedule)
-        {
-            System.out.println("I was allowed to create a schedule.");
-            stObj.setUsersCount(util.userObjects.length);  //Do NOT change the call order.
-            stObj.setUsers(util.userObjects);
-            stObj.setProfessionCount(Profession.length);
-            stObj.setProfessions(Profession);
-            stObj.failFlag = false;
-            stObj.setScheduleType(SelectedScheduleType);
-            stObj.setBusinessType(SelectedBusinessType);
-        }
+
         return schedule;
 
 

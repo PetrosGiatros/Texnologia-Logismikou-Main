@@ -15,14 +15,17 @@ import android.os.AsyncTask;
 import java.util.HashMap;
 
 public class Stats {
-    static public int activeUsersCount = -1,totalProfessions = -1,professionHours[],userProfessionCount[];
+    static public int activeUsersCount = -1,totalProfessions = -1,professionHours[],userProfessionCount[],peoplePerShift = -1;
     static public User users[];
     static public String professions[], scheduleType, businessType;
     static public boolean failFlag = true;
     static public HttpParse httpParse = new HttpParse();
-    static public HashMap<String,String> statsMap = new HashMap<>();
-    static public String HttpURL = "http://priapic-blower.000webhostapp.com/setStatistics.php";
-    static public String finalResult ;
+    static public HashMap<String,String> statsMapUser = new HashMap<>();
+    static public HashMap<String,String> statsMapSchedule = new HashMap<>();
+    static public String HttpURLSchedule = "http://priapic-blower.000webhostapp.com/setScheduleStatistics.php";
+    static public String HttpURLUser = "http://priapic-blower.000webhostapp.com/setUserStatistics.php";
+    static public String finalResultUser;
+    static public String finalResultSchedule;
     static public String loggedInUsername;
 
     static public void setUsersCount(int totalUsers)
@@ -105,9 +108,9 @@ public class Stats {
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     }
-    public void pushStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+    public void pushUserStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
     {
-        class pushtoDBClass extends AsyncTask<String,Void,String> {
+        class pushtoDBClassUser extends AsyncTask<String,Void,String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -122,16 +125,49 @@ public class Stats {
             @Override
             protected String doInBackground(String... params) {
 
-                statsMap.put("username",params[0]);     //I have no idea which parameters to send yet.
-                statsMap.put("No idea",params[1]);
-                statsMap.put("No idea",params[2]);
+                statsMapUser.put("username",params[0]);
+                statsMapUser.put("",params[1]);
+                statsMapUser.put("No idea",params[2]);
 
 
-                finalResult = httpParse.postRequest(statsMap, HttpURL);
-                return finalResult;
+                finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
+                return finalResultUser;
             }
         }
-        pushtoDBClass setObject = new pushtoDBClass();  //I have no idea if this'll work but I sure fucking hope so.
+        pushtoDBClassUser setObject = new pushtoDBClassUser();  //I have no idea if this'll work but I sure fucking hope so.
         setObject.execute();
+    }
+    public void pushScheduleStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+    {
+        class pushtoDBClassSchedule extends AsyncTask<String,Void,String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                
+                statsMapSchedule.put("username",loggedInUsername);
+                statsMapSchedule.put("scheduleType",scheduleType);
+                statsMapSchedule.put("businessType",businessType);
+                statsMapSchedule.put("peoplePerShift",String.valueOf(peoplePerShift));
+                statsMapSchedule.put("Programmer",String.valueOf(userProfessionCount[0]));
+                statsMapSchedule.put("Analyst",String.valueOf(userProfessionCount[1]));
+                statsMapSchedule.put("Manager",String.valueOf(userProfessionCount[2]));
+
+
+                finalResultSchedule = httpParse.postRequest(statsMapSchedule, HttpURLSchedule);
+                return finalResultSchedule;
+            }
+        }
+        pushtoDBClassSchedule setScheduleObject = new pushtoDBClassSchedule();  //I have no idea if this'll work but I sure fucking hope so.
+        setScheduleObject.execute();
     }
 }

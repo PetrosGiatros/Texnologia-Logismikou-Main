@@ -213,6 +213,13 @@ public class NotificationsActivity extends AppCompatActivity {
         acceptDenyEmployees.execute(selectedUsername);
     }
 
+    /**
+     * <h1>peos</h1>
+     * I klasi me tinopoia pernoume tis plirofories tou xristi
+     * @author Nikos Simeonidis
+     * @param loggedInUsername xristis pou exei sundethei
+     * @param listView listview pou periexei tous employees
+     */
     public void getEmployeesInfo(String loggedInUsername, ListView listView){
         //do nothing
     }

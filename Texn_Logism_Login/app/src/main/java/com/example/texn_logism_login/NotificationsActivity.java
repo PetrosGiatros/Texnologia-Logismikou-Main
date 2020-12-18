@@ -31,7 +31,21 @@ public class NotificationsActivity extends AppCompatActivity {
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/acceptDenyRequest.php";
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
-
+    /**
+     * setFunction is the main function of the specific class. It contains:
+     *
+     *  <ul>
+     *     <li>setClass <ul>
+     *           <li>onPreExecute</li>
+     *           <li>onPostExecute</li>
+     *           <li>doInBackground</li>
+     *          </ul>
+     *          </li>
+     *  </ul>
+     * @param loggedInUsername The username of the user that is logged in the app
+     * @param listView A listview that contains the employees that belong to the connected user and requested to leave.
+     * @author Nikos Simeonidis
+     */
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
             @Override
@@ -183,6 +197,16 @@ public class NotificationsActivity extends AppCompatActivity {
         setClass setObject = new setClass();
         setObject.execute(loggedInUsername);
     }
+
+    /**
+     * <h1>On Create method</h1>
+     * onCreate is used to start an activity.
+     * Super is used to call the parent class constructor.
+     * SetContentView is used to set the xml.
+     * It Also calls the setFunction Function
+     * @param savedInstanceState Saved instance State is used to Save and return to a previous State, if need be. When there is some disturbance by the system, then the data that was  kept stored in bundle can be accessed again.
+     * @author Nikos Simeonidis
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -191,6 +215,13 @@ public class NotificationsActivity extends AppCompatActivity {
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
     }
+
+    /**
+     * <h1>Accepting / Denying employees</h1>
+     * Method that accepts or denies employees requests that requested to leave a specific date.
+     * @param selectedUsername The employees username that the Admin has selected to accept/deny his/her request
+     * @author Nikos Simeonidis
+     */
     public void acceptDenyEmployees(String selectedUsername){
         //eisagoume kodika kai edo
         class AcceptDenyEmployees extends AsyncTask<String,Void,String> {
@@ -214,16 +245,11 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>peos</h1>
-     * I klasi me tinopoia pernoume tis plirofories tou xristi
-<<<<<<< Updated upstream
-     * xixixixix aaaaaaaaaaaaaaaaaaaaaaaaa
-=======
-     * geia sou kosme
->>>>>>> Stashed changes
+     * <h1>Testing Javadoc</h1>
+     * Class that returns the connected user's information
      * @author Nikos Simeonidis
-     * @param loggedInUsername xristis pou exei sundethei
-     * @param listView listview pou periexei tous employees
+     * @param loggedInUsername Connected user
+     * @param listView Listview that contains the employees
      */
     public void getEmployeesInfo(String loggedInUsername, ListView listView){
         //do nothing

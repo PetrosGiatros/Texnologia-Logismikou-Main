@@ -15,6 +15,9 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ *
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private static TextView usernameTextView;
@@ -71,10 +74,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static TextView getUsernameTextView() {
         return usernameTextView;
     }
 
+    /**
+     *
+     */
     public void CheckEditTextIsEmptyOrNot(){
         usernameHolder = usernameTextView.getText().toString();
         passwordHolder = passwordTextView.getText().toString();
@@ -84,6 +94,12 @@ public class LoginActivity extends AppCompatActivity {
             CheckEditText = true;
         }
     }
+
+    /**
+     *
+     * @param username
+     * @param password
+     */
     public void UserLoginFunction(String username,String password){
         class UserLoginClass extends AsyncTask<String,Void,String> {
             @Override

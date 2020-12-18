@@ -3,7 +3,7 @@ package com.example.texn_logism_login;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * The class that holds the data for the user Objects
+ * The class that holds the data for the user Objects.
  */
 public class User extends AppCompatActivity {
 

@@ -20,6 +20,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ *
+ */
 public class ScheduleActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Button button_back,buttonLoadList;
@@ -77,6 +80,11 @@ public class ScheduleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * @param loggedInUsername
+     * @param startingDate
+     */
 
     public void getScheduleInfo(String loggedInUsername,TextView startingDate) {
 
@@ -104,15 +112,30 @@ public class ScheduleActivity extends AppCompatActivity {
         getScheduleInfoClass.execute(loggedInUsername);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDate(){
         return date;
     }
 
+    /**
+     *
+     * @param startedDate
+     */
     public void setDate(String startedDate){
         date = startedDate;
     }
 
-
+    /**
+     *
+     * @param loggedInUsername
+     * @param selectedDate
+     * @param morningView
+     * @param afternoonView
+     * @param nightView
+     */
     public void getScheduleEmployees(String loggedInUsername,String selectedDate,ListView morningView, ListView afternoonView, ListView nightView){
 
         class GetScheduleEmployeesClass extends AsyncTask<String,Void,String> {

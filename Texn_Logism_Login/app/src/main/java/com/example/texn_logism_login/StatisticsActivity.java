@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ *
+ */
 public class StatisticsActivity extends AppCompatActivity
 {
     private Button backStatsButton;

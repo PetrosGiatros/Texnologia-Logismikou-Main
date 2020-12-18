@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class SaveScheduleActivity extends AppCompatActivity {
     HashMap<String,String> scheduleMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
@@ -15,8 +18,16 @@ public class SaveScheduleActivity extends AppCompatActivity {
     String finalResult ;
 
 
-
-
+    /**
+     *
+     * @param shiftName
+     * @param employeeID
+     * @param hasMorning
+     * @param hasAfternoon
+     * @param hasMidnight
+     * @param date
+     * @param loggedInUsername
+     */
 
 
     public void saveNewScheduleActivity(String shiftName,String employeeID,String hasMorning,String hasAfternoon,String hasMidnight,String date,String loggedInUsername){
@@ -57,6 +68,10 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param loggedInUsername
+     */
     public void deleteScheduleActivity(String loggedInUsername){
 
         class DeleteScheduleClass extends AsyncTask<String,Void,String> {

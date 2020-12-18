@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class HireActivity extends AppCompatActivity {
 
     private TextView usernameHireTextView, passwordHireTextView, emailHireTextView,firstNameHireTextView,lastNameHireTextView;
@@ -94,6 +97,10 @@ public class HireActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *
+     */
     public void CheckEditTextIsEmptyOrNot(){
         firstNameHolder = firstNameHireTextView.getText().toString();
         lastNameHolder = lastNameHireTextView.getText().toString();
@@ -110,6 +117,13 @@ public class HireActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param loggedInUsername
+     * @param username
+     * @param password
+     * @param email
+     */
 
     public void UserRegisterFunction(String loggedInUsername,String username,String password,String email){
 
@@ -147,6 +161,15 @@ public class HireActivity extends AppCompatActivity {
         UserRegisterFunctionClass userRegisterFunctionClass = new UserRegisterFunctionClass();
         userRegisterFunctionClass.execute(loggedInUsername,username,password,email);
     }
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param profession
+     * @param hours
+     * @param username
+     */
 
     public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username){
 

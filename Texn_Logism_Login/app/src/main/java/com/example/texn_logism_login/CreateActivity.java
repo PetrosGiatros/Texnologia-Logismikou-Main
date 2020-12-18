@@ -19,7 +19,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Random;
 
-
+/**
+ *
+ */
 public class CreateActivity  extends AppCompatActivity {
     private Button buttonCreateSchedule,backButton;
     private EditText textViewEmployeesPerShift;
@@ -127,6 +129,12 @@ public class CreateActivity  extends AppCompatActivity {
 
     }
 //prosthikh newn sunarthsewn gia to megethos tou schedule kai twn arithmo twn shifts per day.
+
+    /**
+     *
+     * @param SelectedScheduleType
+     * @return
+     */
     public int getScheduleLength(String SelectedScheduleType){
         int scheduleLength=0;
 
@@ -146,6 +154,12 @@ public class CreateActivity  extends AppCompatActivity {
         return scheduleLength;
     }
 
+    /**
+     *
+     * @param SelectedBusiness
+     * @return
+     */
+
     public int getNumOfShifts(String SelectedBusiness){
         int num=0;
     if (SelectedBusiness == "8h") {
@@ -159,7 +173,15 @@ public class CreateActivity  extends AppCompatActivity {
 }
 
 
-
+    /**
+     *
+     * @param SelectedScheduleType
+     * @param SelectedShiftType
+     * @param SelectedProfession
+     * @param SelectedEmployeesPerShift
+     * @param SelectedBusinessType
+     * @return
+     */
     public int[][] createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession,Integer SelectedEmployeesPerShift,String SelectedBusinessType){
         int numOfShifts = 0;
         int dayCount = 0;
@@ -333,6 +355,14 @@ public class CreateActivity  extends AppCompatActivity {
 
 
     }
+
+    /**
+     *
+     * @param isAssignedTo
+     * @param currentDay
+     * @param currentMonth
+     * @param currentYear
+     */
     public void startDateFunction(String isAssignedTo, String currentDay, String currentMonth, String currentYear){
 
         class startDateFunctionClass extends AsyncTask<String,Void,String> {

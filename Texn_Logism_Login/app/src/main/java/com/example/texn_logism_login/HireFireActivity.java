@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-
+/**
+ *
+ */
 public class HireFireActivity extends AppCompatActivity {
     private Button hireButton,backHireButton,deleteButton;
     HashMap<String,String> hireMap = new HashMap<>();
@@ -120,7 +122,12 @@ public class HireFireActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     *
+     * @param loggedInUsername
+     * @param listView
+     * @return
+     */
      public String[] getEmployeesInfo(String loggedInUsername, ListView listView){
 
         class GetEmployeesInfoClass extends AsyncTask<String,Void,String> {
@@ -179,6 +186,10 @@ public class HireFireActivity extends AppCompatActivity {
         return employeeArray;
     }
 
+    /**
+     *
+     * @param selectedUsername
+     */
     public void deleteEmployees(String selectedUsername){
 
         class DeleteEmployees extends AsyncTask<String,Void,String> {

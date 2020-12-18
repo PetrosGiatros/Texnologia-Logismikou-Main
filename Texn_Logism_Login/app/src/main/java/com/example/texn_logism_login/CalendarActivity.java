@@ -18,6 +18,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
+/**
+ * Calendar that lets the user select a date and open a new form
+ */
 public class CalendarActivity extends AppCompatActivity {
     private static final String TAG = "CalendarActivity";
     private CalendarView calendarView;
@@ -31,7 +34,15 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView= (CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
+            /**
+             *
+             *  * <h1>onSelectedDayChange</h1>
+             *  * This method is responsible to open the new form based on the Date picked
+             *  * @param calendarView Is our Calendar
+             *  * @param year Int that specifies the year selected
+             *  * @param month Int that specifies the month selected
+             *  * @param day Int that specifies the day selected
+             */
             @Override
 
             public void onSelectedDayChange(CalendarView calendarView ,int year, int month, int day) {
@@ -59,7 +70,10 @@ public class CalendarActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * <h1>Opens the schedule form</h1>
+     * When a data is chosen, it opens schedule form, with the selected date.
+     */
     public  void openSchedule_form() {
 
         Intent intent =new Intent(this, ScheduleActivity.class);

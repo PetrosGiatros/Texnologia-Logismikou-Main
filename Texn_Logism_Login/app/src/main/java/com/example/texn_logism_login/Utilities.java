@@ -8,7 +8,11 @@ import java.util.Random;
 public class Utilities extends AppCompatActivity {
     public static User userObjects[];
 
-
+    /**
+     *
+     * @param userArray
+     * @return
+     */
     public int getEmployeeWithFewestHours(User[] userArray) {
         final int min = 0;
         final int max = userArray.length - 1;
@@ -27,7 +31,15 @@ public class Utilities extends AppCompatActivity {
         return (index);
     }
 
-
+    /**
+     * <h1> Display Schedule </h1>
+     *
+     * @param userArray
+     * @param schedule
+     * @param rows
+     * @param columns
+     * @param shiftType
+     */
     public void displaySchedule(User[] userArray, int schedule[][],int rows,int columns,int shiftType) {
         int day = 1;
         for (int i = 0; i < columns ; i = i + shiftType )
@@ -41,6 +53,18 @@ public class Utilities extends AppCompatActivity {
         }
     }
 
+    /**
+     * <h1> Save Schedule </h1>
+     * This method takes the finsihed schedule from CreateActivity.java and uses some parameters given by the admin in order to place the specific information to the correct column of the online database via PHP files.
+     *
+     *
+     *
+     * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
+     * @param schedule An array that has the already saved Schedule inside it.
+     * @param rows An integer number used to make editing the schedule table easier.
+     * @param columns An integer number used to make editing the schedule table easier.
+     * @param businessType Shows if the admin has requested a 8h/16h/24h program
+     */
     public void saveSchedule(User[] userArray, int schedule[][],int rows,int columns,int businessType) {
         int day = 1;
         boolean hasChangedDay = false;
@@ -159,10 +183,19 @@ public class Utilities extends AppCompatActivity {
 
     }
 
+    /** <h1>Initialize User Objects </h1>
+     *
+     * @param length
+     */
     static public void initializeUserObjects(int length)
     {
         userObjects = new User[length];
     }
+
+    /**
+     *
+     * @param userArrayArg
+     */
     static public void copyUsersArray(User userArrayArg[])
     {
         for (int i = 0; i < userObjects.length; i++)

@@ -216,6 +216,7 @@ public class NotificationsActivity extends AppCompatActivity {
     /**
      * <h1>peos</h1>
      * I klasi me tinopoia pernoume tis plirofories tou xristi
+     * xixixixix aaaaaaaaaaaaaaaaaaaaaaaaa
      * @author Nikos Simeonidis
      * @param loggedInUsername xristis pou exei sundethei
      * @param listView listview pou periexei tous employees

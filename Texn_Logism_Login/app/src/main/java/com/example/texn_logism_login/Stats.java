@@ -22,10 +22,13 @@ public class Stats {
     static public HttpParse httpParse = new HttpParse();
     static public HashMap<String,String> statsMapUser = new HashMap<>();
     static public HashMap<String,String> statsMapSchedule = new HashMap<>();
+    static public HashMap<String,String> statsMapDelUser = new HashMap<>();
     static public String HttpURLSchedule = "http://priapic-blower.000webhostapp.com/setScheduleStatistics.php";
     static public String HttpURLUser = "http://priapic-blower.000webhostapp.com/setUserStatistics.php";
+    static public String HttpURLDeleteUser = "http://priapic-blower.000webhostapp.com/deleteUserStatistics.php";
     static public String finalResultUser;
     static public String finalResultSchedule;
+    static public String finalResultDelUser;
     static public String loggedInUsername;
 
     static public void setUsersCount(int totalUsers)
@@ -130,10 +133,11 @@ public class Stats {
                 {
                     statsMapUser.put("ID",String.valueOf(users[i].id));
                     statsMapUser.put("hours",String.valueOf(users[i].hoursWorked));
+                    finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
                 }
 
 
-                finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
+
                 return finalResultUser;
             }
         }
@@ -173,5 +177,30 @@ public class Stats {
         }
         pushtoDBClassSchedule setScheduleObject = new pushtoDBClassSchedule();  //I have no idea if this'll work but I sure fucking hope so.
         setScheduleObject.execute();
+    }
+    public void deleteUserStats()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+    {
+        class deleteUserStatsClass extends AsyncTask<String,Void,String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                statsMapDelUser.put("username",loggedInUsername);
+                finalResultDelUser = httpParse.postRequest(statsMapDelUser, HttpURLDeleteUser);
+                return finalResultDelUser;
+            }
+        }
+        deleteUserStatsClass setObject = new deleteUserStatsClass();  //I have no idea if this'll work but I sure fucking hope so.
+        setObject.execute();
     }
 }

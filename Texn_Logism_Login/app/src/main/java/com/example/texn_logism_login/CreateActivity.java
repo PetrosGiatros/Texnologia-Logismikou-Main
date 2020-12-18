@@ -309,6 +309,8 @@ public class CreateActivity  extends AppCompatActivity {
 
            //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
                 System.out.println("I was allowed to create a schedule.");
+
+                stObj.setLoggedInUsername();
                 stObj.setUsersCount(util.userObjects.length);  //Do NOT change the call order.
                 stObj.setUsers(util.userObjects);
                 stObj.setProfessionCount(Profession.length);
@@ -317,8 +319,10 @@ public class CreateActivity  extends AppCompatActivity {
                 stObj.setScheduleType(SelectedScheduleType);
                 stObj.setBusinessType(SelectedBusinessType);
                 stObj.peoplePerShift = employeeAmountPerShift;
+                stObj.calculateHoursPerProfession();
+                stObj.calculateUsersPerProfession();
                 stObj.pushScheduleStatsToDB();
-                stObj.pushUserStatsToDB();
+                //stObj.pushUserStatsToDB();
 
             util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }

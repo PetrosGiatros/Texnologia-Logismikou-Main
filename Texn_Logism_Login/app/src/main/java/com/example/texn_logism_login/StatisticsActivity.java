@@ -29,9 +29,7 @@ public class StatisticsActivity extends AppCompatActivity
         if (!statObj.failFlag)
         {
             //These need to get the fuck out of here and into create activity along with a call to pushStatsToDB when the code is complete.
-            statObj.calculateHoursPerProfession();
-            statObj.calculateUsersPerProfession();
-            statObj.setLoggedInUsername();
+
 
             for (int i = 0; i < statObj.professions.length; i++)
             {

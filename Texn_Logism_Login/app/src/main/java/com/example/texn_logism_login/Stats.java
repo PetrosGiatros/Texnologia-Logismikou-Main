@@ -58,7 +58,7 @@ public class Stats {
         for (int i = 0; i < professions.length; i++)
         {
             professions[i] = professionsArg[i];
-            System.out.println("Set Profession:" + professions[i]);
+            //System.out.println("Set Profession:" + professions[i]);
         }
     }
     static public void calculateHoursPerProfession()
@@ -69,7 +69,7 @@ public class Stats {
         {
             for (int i = 0; i < users.length; i++)
             {
-                System.out.println("User Profession:" + users[i].profession);
+                //System.out.println("User Profession:" + users[i].profession);
                 if (users[i].profession.equals(professions[j]))
                 {
                     professionHours[j] = professionHours[j]+ users[i].hoursWorked;
@@ -151,19 +151,20 @@ public class Stats {
             @Override
             protected void onPostExecute(String httpResponseMsg) {
                 super.onPostExecute(httpResponseMsg);
+                System.out.println("HTTP Response "+ httpResponseMsg );
 
             }
 
             @Override
             protected String doInBackground(String... params) {
-
+                System.out.println("If this shows ,I'm in background.");
                 statsMapSchedule.put("username",loggedInUsername);
                 statsMapSchedule.put("scheduleType",scheduleType);
                 statsMapSchedule.put("businessType",businessType);
                 statsMapSchedule.put("peoplePerShift",String.valueOf(peoplePerShift));
-                statsMapSchedule.put("Programmer",String.valueOf(userProfessionCount[0]));
-                statsMapSchedule.put("Analyst",String.valueOf(userProfessionCount[1]));
-                statsMapSchedule.put("Manager",String.valueOf(userProfessionCount[2]));
+                statsMapSchedule.put("Programmer",String.valueOf(professionHours[0]));
+                statsMapSchedule.put("Analyst",String.valueOf(professionHours[1]));
+                statsMapSchedule.put("Manager",String.valueOf(professionHours[2]));
 
 
                 finalResultSchedule = httpParse.postRequest(statsMapSchedule, HttpURLSchedule);

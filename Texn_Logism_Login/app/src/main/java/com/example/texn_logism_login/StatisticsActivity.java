@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- *
+ * Statistics Activity provides the stats concerning how many hours each profession and each employee has worked.
  */
 public class StatisticsActivity extends AppCompatActivity
 {

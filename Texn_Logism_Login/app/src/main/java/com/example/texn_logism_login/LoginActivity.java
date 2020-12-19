@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- *
+ * Login Activity is responsible for checking if the data that was adeed in the login form match the ones in the database.
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,14 +75,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
+     * <h1>Get Username Text View</h1>
+     * This method is used to receive the username that was added in the textview of the login form.
      *
-     * @return
+     * @return usernameTextView's content
      */
     public static TextView getUsernameTextView() {
         return usernameTextView;
     }
 
     /**
+     * <h1>Check Edit Text Is Empty Or Not</h1>
+     * This method is responsible for checking if any of the TextViews concerning the username or password of the login form are empty.
      *
      */
     public void CheckEditTextIsEmptyOrNot(){
@@ -96,9 +100,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
+     *  h1>User Login Function</h1>
+     *  This Function is responsible of recognising if the data entered into the login form are correct and correspond with that of the database.
+     *  It also states through a Toast message if the person logging in is a user or an admin
      *
-     * @param username
-     * @param password
+     * @param username is the text that was entered into the usernameTextView
+     * @param password is the text that was entered into the passwordTextView
      */
     public void UserLoginFunction(String username,String password){
         class UserLoginClass extends AsyncTask<String,Void,String> {

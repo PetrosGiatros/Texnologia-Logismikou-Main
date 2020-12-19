@@ -160,19 +160,8 @@ public class HireActivity extends AppCompatActivity {
         userRegisterFunctionClass.execute(loggedInUsername,username,password,email);
     }
 
-<<<<<<< HEAD
-   
-=======
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param profession
-     * @param hours
-     * @param username
-     */
 
->>>>>>> 96e1671936a58d33ce63fb7ba5bd564be3188089
+
     public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username){
 
         class UserAddedInformationFunctionClass extends AsyncTask<String,Void,String> {

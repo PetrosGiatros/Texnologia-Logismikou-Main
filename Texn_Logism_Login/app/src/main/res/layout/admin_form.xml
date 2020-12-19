@@ -5,73 +5,99 @@
     android:theme="@style/Theme.Design.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundsample"
+    android:background="@drawable/background_black"
     tools:context=".AdminActivity">
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="381dp"
+        android:layout_height="950dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082"
+        app:srcCompat="@drawable/frame" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="224dp"
+        android:layout_height="402dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/notificationsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/kanapedes_logo" />
 
     <Button
         android:id="@+id/buttonCreate"
-        android:layout_width="212dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="228dp"
+        android:layout_width="150dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="244dp"
         android:background="@drawable/button_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:layout_width="212dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="116dp"
+        android:id="@+id/button_view"
+        android:layout_width="150dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="244dp"
         android:background="@drawable/button_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.827"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/button_view"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonHireFire"
-        android:layout_width="212dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="340dp"
+        android:layout_width="150dp"
+        android:layout_height="141dp"
         android:background="@drawable/button_hire_fire"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonCreate" />
 
     <Button
         android:id="@+id/notificationsButton"
-        android:layout_width="212dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="448dp"
+        android:layout_width="150dp"
+        android:layout_height="141dp"
         android:background="@drawable/button_notifications"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.827"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button_view" />
 
     <Button
         android:id="@+id/buttonExit"
-        android:layout_width="169.88dp"
-        android:layout_height="38.88dp"
-        android:layout_marginTop="644dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="632dp"
         android:background="@drawable/button_exit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonStatistics"
-        android:layout_width="207dp"
-        android:layout_height="62dp"
+        android:layout_width="150dp"
+        android:layout_height="141dp"
         android:background="@drawable/button_statistics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonHireFire"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

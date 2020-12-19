@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 /**
  * HireFire Activity is responsible to show the Employees that belong to the connected admin, making him able to fire or hire a new employee
+ *
  */
 public class HireFireActivity extends AppCompatActivity {
     private Button hireButton,backHireButton,deleteButton;

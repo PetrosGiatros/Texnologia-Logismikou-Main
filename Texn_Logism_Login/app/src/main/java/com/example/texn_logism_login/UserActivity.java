@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ *
+ */
 public class UserActivity extends AppCompatActivity {
 
     private Button exitButton;

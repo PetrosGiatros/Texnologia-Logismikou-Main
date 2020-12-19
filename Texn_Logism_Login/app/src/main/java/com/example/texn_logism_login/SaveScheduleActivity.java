@@ -29,6 +29,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
      * @param date the date of the specific day when creating a schedule
      * @param loggedInUsername Reffers to the username of the account currently logged in
      */
+
     public void saveNewScheduleActivity(String shiftName,String employeeID,String hasMorning,String hasAfternoon,String hasMidnight,String date,String loggedInUsername){
 
         class SaveNewScheduleClass extends AsyncTask<String,Void,String> {

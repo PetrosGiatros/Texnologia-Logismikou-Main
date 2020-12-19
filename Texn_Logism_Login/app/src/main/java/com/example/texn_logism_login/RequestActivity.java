@@ -10,7 +10,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
-
+/**
+ *
+ */
 public class RequestActivity extends AppCompatActivity
 {
     private Button submitLeaveRequestButton;
@@ -21,7 +23,11 @@ public class RequestActivity extends AppCompatActivity
     HttpParse httpParse = new HttpParse();
     String HttpURL = "http://priapic-blower.000webhostapp.com/getRequest.php";
 
-
+    /**
+     *
+     * @param username
+     * @param days
+     */
     public void leaveFunction(String username,String days) {
         class leaveClass extends AsyncTask<String, Void, String> {
             @Override

@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class AdminRegisterActivity extends AppCompatActivity {
 
     private TextView usernameRegTextView, passwordRegTextView, emailRegTextView;
@@ -71,6 +74,10 @@ public class AdminRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *
+     */
     public void CheckEditTextIsEmptyOrNot(){
         usernameHolder = usernameRegTextView.getText().toString();
         passwordHolder = passwordRegTextView.getText().toString();
@@ -86,6 +93,12 @@ public class AdminRegisterActivity extends AppCompatActivity {
     }
 
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @param email
+     */
     public void AdminRegisterFunction(String username,String password,String email){
 
         class AdminRegisterFunctionClass extends AsyncTask<String,Void,String> {

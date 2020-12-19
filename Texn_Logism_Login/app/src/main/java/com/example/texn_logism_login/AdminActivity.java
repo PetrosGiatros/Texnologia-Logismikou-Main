@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-
+/**
+ *
+ */
 public class AdminActivity extends AppCompatActivity {
     private Button button_view;
     private Button hireFireButton;
@@ -105,6 +107,11 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *
+     * @param loggedInUsername
+     */
     public void getUserCountFunction(String loggedInUsername)
     {
         class getUserCountClass extends AsyncTask<String, Void, String> {
@@ -131,6 +138,10 @@ public class AdminActivity extends AppCompatActivity {
         getUserCountObject.execute(loggedInUsername);
     }
 
+    /**
+     *
+     * @param loggedInUsername
+     */
     public void getUsersFunction (String loggedInUsername)
     {
         class getUsersClass extends AsyncTask<String, Void, String> {

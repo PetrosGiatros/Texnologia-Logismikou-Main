@@ -15,8 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
+/**
+ * Notifications Activity is used to display the requests or the answer of those requests according to the type of user legged in
+ */
 public class NotificationsActivity extends AppCompatActivity {
-    private Button denyButton,acceptButton;
+    /**
+     * Button used to accept a request as an admin
+     */
+    private Button acceptButton;
+    /**
+     * Button used to deny a request as an admin
+     */
+    private Button denyButton;
     static String[] employeeArray={};
     ArrayAdapter adapter;
     ListView listView;
@@ -32,19 +42,11 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
     /**
-     * setFunction is the main function of the specific class. It contains:
+     * <h1>setFunction</h1>
+     * setFunction is used to display the listView that contains all the employees <b>that submitted a leave request.</b> Specifically, it prints the username, ID, employerID, and how many days the user requested.
      *
-     *  <ul>
-     *     <li>setClass <ul>
-     *           <li>onPreExecute</li>
-     *           <li>onPostExecute</li>
-     *           <li>doInBackground</li>
-     *          </ul>
-     *          </li>
-     *  </ul>
      * @param loggedInUsername The username of the user that is logged in the app
-     * @param listView A listview that contains the employees that belong to the connected user and requested to leave.
-     * @author Nikos Simeonidis
+     * @param listView A listView that contains the employees that belong to the connected user and requested to leave.
      */
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
@@ -198,15 +200,6 @@ public class NotificationsActivity extends AppCompatActivity {
         setObject.execute(loggedInUsername);
     }
 
-    /**
-     * <h1>On Create method</h1>
-     * onCreate is used to start an activity.
-     * Super is used to call the parent class constructor.
-     * SetContentView is used to set the xml.
-     * It Also calls the setFunction Function
-     * @param savedInstanceState Saved instance State is used to Save and return to a previous State, if need be. When there is some disturbance by the system, then the data that was  kept stored in bundle can be accessed again.
-     * @author Nikos Simeonidis
-     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -220,7 +213,6 @@ public class NotificationsActivity extends AppCompatActivity {
      * <h1>Accepting / Denying employees</h1>
      * Method that accepts or denies employees requests that requested to leave a specific date.
      * @param selectedUsername The employees username that the Admin has selected to accept/deny his/her request
-     * @author Nikos Simeonidis
      */
     public void acceptDenyEmployees(String selectedUsername){
         //eisagoume kodika kai edo
@@ -246,8 +238,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
     /**
      * <h1>Testing Javadoc</h1>
-     * Class that returns the connected user's information
-     * @author Nikos Simeonidis
+     * <u>Test</u>
      * @param loggedInUsername Connected user
      * @param listView Listview that contains the employees
      */

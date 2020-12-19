@@ -8,12 +8,21 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- *
+ * UserActivity is available only for users (not admins) and is the <b>main menu</b> of the connected user.
  */
 public class UserActivity extends AppCompatActivity {
 
+    /**
+     * Is a button that exits the application
+     */
     private Button exitButton;
+    /**
+     * Is a button that lets the user view the calendar and see his schedule
+     */
     private Button button_view2;
+    /**
+     * Is the button that gives the option for the user to submit a leave request
+     */
     private Button requestButton;
 
     protected void onCreate(Bundle savedInstanceState) {

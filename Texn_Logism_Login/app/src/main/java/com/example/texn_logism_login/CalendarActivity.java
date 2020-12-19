@@ -23,6 +23,9 @@ import java.util.HashMap;
  */
 public class CalendarActivity extends AppCompatActivity {
     private static final String TAG = "CalendarActivity";
+    /**
+     * Is the Calendar needed for users to pick a date.
+     */
     private CalendarView calendarView;
 
     @Override

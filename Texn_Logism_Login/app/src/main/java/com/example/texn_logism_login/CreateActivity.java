@@ -20,24 +20,62 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- *
+ * Create Activity is responsible for generating a schedule, when the admin presses the Create button.
  */
 public class CreateActivity  extends AppCompatActivity {
-    private Button buttonCreateSchedule,backButton;
+    /**
+     * Button used to Generate the schedule
+     */
+    private Button buttonCreateSchedule;
+    /**
+     * Button used to go back to the previous form.
+     */
+    private Button backButton;
     private EditText textViewEmployeesPerShift;
+
     Utilities util = new Utilities();
+    /**
+     * String used to provide the current day
+     */
     private static String currentDay;
+    /**
+     * String used to provide the current month
+     */
     private static String  currentMonth;
+    /**
+     * String used to provide the current year
+     */
     private static String currentYear;
+    /**
+     * Hashmap used for the startURL
+     */
     HashMap<String,String> startMap =new HashMap<>();
+    /**
+     * Used to parse the URL
+     */
     HttpParse startParse = new HttpParse();
     String startResult;
+    /**
+     * String that stores the URL needed to connect to php
+     */
     String startURL=  "http://priapic-blower.000webhostapp.com/startDate.php";
     String isAssignedTo = LoginActivity.getUsernameTextView().getText().toString();
     public static Stats stObj = new Stats();
+    /**
+     * String Array that Stores the schedule types (Weekly, Monthly, Trimester or Semester
+     */
     String[] ScheduleTypes = new String[]{"Weekly", "Monthly", "Trimester", "Semester"};
+    /**
+     * String Array that stores the Shift types, 8h or 4h
+     */
     String[] ShiftTypes = new String[]{"8", "4"};
+    /**
+     * String Array that stores the Professions available (Programmer, Analyst, Manager)
+     */
     String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};  //When deleting the profession parameters, do not delete this.
+    /**
+     * String Array that stores the Business type (8h, 16h, or 24h of working schedule)
+     */
     String[] Business = new String[]{"8h", "16h", "24h"};
 
 
@@ -131,9 +169,10 @@ public class CreateActivity  extends AppCompatActivity {
 //prosthikh newn sunarthsewn gia to megethos tou schedule kai twn arithmo twn shifts per day.
 
     /**
-     *
-     * @param SelectedScheduleType
-     * @return
+     * <h1>getScheduleLength</h1>
+     * getScheduleLength is used to return the length of the schedule, based on the Selected Schedule type (Weekly, Monthly, etc.)
+     * @param SelectedScheduleType Is the Schedule type that the admin has selected
+     * @return Returns the Schedule Length
      */
     public int getScheduleLength(String SelectedScheduleType){
         int scheduleLength=0;
@@ -155,9 +194,10 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param SelectedBusiness
-     * @return
+     * <h1>getNumOfShifts</h1>
+     * getNumOfShifts is used to return the number of Shifts, based on the selected business type (8h, 16h or 24h)
+     * @param SelectedBusiness Is the business type selected (8h, 16h, 24h)
+     * @return returns num, based on the business type
      */
 
     public int getNumOfShifts(String SelectedBusiness){
@@ -174,13 +214,14 @@ public class CreateActivity  extends AppCompatActivity {
 
 
     /**
-     *
-     * @param SelectedScheduleType
-     * @param SelectedShiftType
-     * @param SelectedProfession
-     * @param SelectedEmployeesPerShift
-     * @param SelectedBusinessType
-     * @return
+     * <h1>createSchedule</h1>
+     * CreateSchedule is the main class needed to <b>generate a Schedule</b>, based on multiple options the admin has picked
+     * @param SelectedScheduleType String Array that Stores the schedule types (Weekly, Monthly, Trimester or Semester
+     * @param SelectedShiftType String Array that stores the Shift types, 8h or 4h
+     * @param SelectedProfession String Array that stores the Professions available (Programmer, Analyst, Manager)
+     * @param SelectedEmployeesPerShift Is a number that clarifies how many users per shift the admin wants
+     * @param SelectedBusinessType String Array that stores the Business type (8h, 16h, or 24h of working schedule)
+     * @return Returns the generated Schedule
      */
     public int[][] createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession,Integer SelectedEmployeesPerShift,String SelectedBusinessType){
         int numOfShifts = 0;
@@ -357,11 +398,12 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param isAssignedTo
-     * @param currentDay
-     * @param currentMonth
-     * @param currentYear
+     * <h1>startDateFunction</h1>
+     * startDateFunction is responsible to <b>clarify the date</b> that the admin wants to create the schedule.
+     * @param isAssignedTo Defines to whom the schedule refers to (Used to avoid conflicts with users that do <b>not</b> belong to the specific admin
+     * @param currentDay String used to provide the current day
+     * @param currentMonth String used to provide the current month
+     * @param currentYear String used to provide the current year
      */
     public void startDateFunction(String isAssignedTo, String currentDay, String currentMonth, String currentYear){
 

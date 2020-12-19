@@ -57,31 +57,31 @@ public class StatisticsActivity extends AppCompatActivity
                 resultArray = httpResponseMsg.split(" ");
                 System.out.println("HHTATTATAESDT" + httpResponseMsg);
 
-                textView = (TextView) findViewById(R.id.textView12);
+                textView = (TextView) findViewById(R.id.programmerHoursTextView);
                 textView.setText("Programmer: " + resultArray[3] + " hours assigned.");
 
-                textView = (TextView) findViewById(R.id.textView14);
+                textView = (TextView) findViewById(R.id.AnalystHoursTextView);
                 textView.setText("Analyst: " + resultArray[4] + " hours assigned.");
 
-                textView = (TextView) findViewById(R.id.textView15);
+                textView = (TextView) findViewById(R.id.ManagerHoursTextView);
                 textView.setText("Manager: " + resultArray[5] + " hours assigned.");
 
-                textView = (TextView) findViewById(R.id.textView17);
+                textView = (TextView) findViewById(R.id.programmerCountTextview);
                 textView.setText("Programmers:" + resultArray[6]);
 
-                textView = (TextView) findViewById(R.id.textView18);
+                textView = (TextView) findViewById(R.id.analystCountTextview);
                 textView.setText("Analysts:" + resultArray[7]);
 
-                textView = (TextView) findViewById(R.id.textView19);
+                textView = (TextView) findViewById(R.id.managerCountTextview);
                 textView.setText("Managers:" + resultArray[8]);
 
-                textView = (TextView) findViewById(R.id.textView20);
+                textView = (TextView) findViewById(R.id.employeesPerShiftTextview);
                 textView.setText("Employees per shift " + resultArray[2]);
 
-                textView = (TextView) findViewById(R.id.textView21);
+                textView = (TextView) findViewById(R.id.scheduleTypeTextview);
                 textView.setText("Schedule Type: " + resultArray[0]);
 
-                textView = (TextView) findViewById(R.id.textView22);
+                textView = (TextView) findViewById(R.id.businessTypeTextView);
                 textView.setText("Business Type: " + resultArray[1]);
             }
 

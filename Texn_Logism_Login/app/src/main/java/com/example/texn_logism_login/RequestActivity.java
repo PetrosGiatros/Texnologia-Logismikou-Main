@@ -24,7 +24,7 @@ public class RequestActivity extends AppCompatActivity
     String HttpURL = "http://priapic-blower.000webhostapp.com/getRequest.php";
 
     /**
-     * <h1>leaveFunction</h1>
+     * <h1>Leave Function</h1>
      * leaveFunction is responsible for claryfing the username and the days needed for the user that wants to request a leave.
      * @param username username of the user
      * @param days Number of days that the user wants to leave

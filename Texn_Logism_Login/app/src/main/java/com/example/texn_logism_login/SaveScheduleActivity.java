@@ -19,7 +19,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
 
     /**
-     * <h1>saveNewScheduleActivity</h1>
+     * <h1>Save New Schedule Activity</h1>
      * saveNewScheduleActivity - Is a method that gets the data from the schedule create algorithm, and saves it into our database table "newschedule"
      * @param shiftName Is the name of the current shift (Morning, Afternoon, Midnight)
      * @param employeeID Is the ID of the employee
@@ -69,7 +69,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>deleteScheduleActivity</h1>
+     * <h1>Delete Schedule Activity</h1>
      * deleteScheduleActivity - Is a method that deletes the lines from newschedule table in our database, selected from the isAssigned variable
      * @param loggedInUsername Reffers to the username of the account currently logged in
      */

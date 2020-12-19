@@ -169,7 +169,7 @@ public class CreateActivity  extends AppCompatActivity {
 //prosthikh newn sunarthsewn gia to megethos tou schedule kai twn arithmo twn shifts per day.
 
     /**
-     * <h1>getScheduleLength</h1>
+     * <h1>Get Schedule Length</h1>
      * getScheduleLength is used to return the length of the schedule, based on the Selected Schedule type (Weekly, Monthly, etc.)
      * @param SelectedScheduleType Is the Schedule type that the admin has selected
      * @return Returns the Schedule Length
@@ -194,7 +194,7 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     /**
-     * <h1>getNumOfShifts</h1>
+     * <h1>Get Number Of Shifts</h1>
      * getNumOfShifts is used to return the number of Shifts, based on the selected business type (8h, 16h or 24h)
      * @param SelectedBusiness Is the business type selected (8h, 16h, 24h)
      * @return returns num, based on the business type
@@ -214,7 +214,7 @@ public class CreateActivity  extends AppCompatActivity {
 
 
     /**
-     * <h1>createSchedule</h1>
+     * <h1>Create Schedule</h1>
      * CreateSchedule is the main class needed to <b>generate a Schedule</b>, based on multiple options the admin has picked
      * @param SelectedScheduleType String Array that Stores the schedule types (Weekly, Monthly, Trimester or Semester
      * @param SelectedShiftType String Array that stores the Shift types, 8h or 4h
@@ -398,7 +398,7 @@ public class CreateActivity  extends AppCompatActivity {
     }
 
     /**
-     * <h1>startDateFunction</h1>
+     * <h1>Start Date Function</h1>
      * startDateFunction is responsible to <b>clarify the date</b> that the admin wants to create the schedule.
      * @param isAssignedTo Defines to whom the schedule refers to (Used to avoid conflicts with users that do <b>not</b> belong to the specific admin
      * @param currentDay String used to provide the current day

@@ -42,7 +42,7 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
     /**
-     * <h1>setFunction</h1>
+     * <h1>Set Function</h1>
      * setFunction is used to display the listView that contains all the employees <b>that submitted a leave request.</b> Specifically, it prints the username, ID, employerID, and how many days the user requested.
      *
      * @param loggedInUsername The username of the user that is logged in the app

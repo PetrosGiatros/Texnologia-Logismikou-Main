@@ -142,7 +142,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>getUserCountFunction</h1>
+     * <h1>Get User Count Function</h1>
      * Used to get the Users count that belong to the admin currently logged in
      * @param loggedInUsername Refers to the username of the account currently logged in.
      */
@@ -173,7 +173,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>getUsersFunction</h1>
+     * <h1>Get Users Function</h1>
      * Used to get all the Users that belong to the admin that is currently logged in
      * @param loggedInUsername Refers to the username of the account currently logged in
      */

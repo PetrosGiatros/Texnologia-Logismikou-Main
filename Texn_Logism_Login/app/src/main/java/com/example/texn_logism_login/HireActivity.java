@@ -100,7 +100,8 @@ public class HireActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     *<h1>Check Edit Text Is Empty Or Not</h1>
+     *      This method is responsible for checking if any of the TextViews concerning the first name, last name, username , password or email of the hire form are empty.
      */
     public void CheckEditTextIsEmptyOrNot(){
         firstNameHolder = firstNameHireTextView.getText().toString();
@@ -119,7 +120,7 @@ public class HireActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>UserRegisterFunction</h1>
+     * <h1>User Register Function</h1>
      * UserRegisterFunction - Is a method that gets the data from the form HireActivity that the admin filled, and sends the username,password and email from the registered user into our database table "login"
      * @param loggedInUsername Reffers to the username of the account currently logged in
      * @param username Is the username of the employee
@@ -168,6 +169,7 @@ public class HireActivity extends AppCompatActivity {
     }
 
     /**
+     * <H1> User Added Information Function</H1>
      * UserAddedInformationFunction - Is a method that gets the remaining data from the form HireActivity that the admin filled. This includes first name, last name, profession and shiftType that the user will have. Then sends all of these into our database table "user"
      * @param firstName Is the first name of the employee to be hired
      * @param lastName is the last name of the employee to be hired

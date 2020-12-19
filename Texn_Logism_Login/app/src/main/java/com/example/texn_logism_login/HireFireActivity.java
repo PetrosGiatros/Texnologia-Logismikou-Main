@@ -126,7 +126,7 @@ public class HireFireActivity extends AppCompatActivity {
 
 
     /**
-     * <h1>getEmployeesInfo</h1>
+     * <h1>Get Employees Info</h1>
      * getEmployeesInfo - Is a method that gets all the user that belong to the logged in administrator, and shows their data in a Listview that we created. The users can be selected in this Listview
      * @param loggedInUsername Reffers to the username of the account currently logged in
      * @param listView Is the listView that the employees will be stored in
@@ -191,7 +191,7 @@ public class HireFireActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>deleteEmployees</h1>
+     * <h1>Delete Employees</h1>
      * deleteEmployees - Is a method that makes it possible to delete an employee from said Listview, removing them from the layout and the database tables "login" and "users"
      * @param selectedUsername Refers to the username that is currently selected
      */

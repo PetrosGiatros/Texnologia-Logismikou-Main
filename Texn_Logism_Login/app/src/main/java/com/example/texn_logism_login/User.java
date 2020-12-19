@@ -26,7 +26,7 @@ public class User extends AppCompatActivity {
     }
 
     /**
-     * <h1>setTotalHours</h1>
+     * <h1>Set Total Hours</h1>
      * Calculates the amount of hours each user will have to work based on the scheduleType and shiftType.
      * @param scheduleType Is the type of Schedule selected (Weekly, Monthly, Trimester, Semester)
      * @param shiftType Is the type of shift selected (4h or 8h)

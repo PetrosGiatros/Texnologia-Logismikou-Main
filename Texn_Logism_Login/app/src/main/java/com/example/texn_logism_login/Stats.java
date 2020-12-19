@@ -41,7 +41,7 @@ public class Stats {
     static public String loggedInUsername;
 
     /**
-     * <h1>setUsersCount</h1>
+     * <h1>Set Users Count</h1>
      * Stores the amount of users pulled from the database
      * @param totalUsers Total Users that exist in the database and are conencted to the specific admin
      */
@@ -52,7 +52,7 @@ public class Stats {
     }
 
     /**
-     * <h1>defineActiveUsers</h1>
+     * <h1>Define Active Users</h1>
      * Initializes the array that will store the users
      * @param totalActiveUsers the array used to store the users
      */
@@ -62,7 +62,7 @@ public class Stats {
     }
 
     /**
-     * <h1>setUsers</h1>
+     * <h1>Set Users</h1>
      * Stores the users
      * @param userArg An array used to store the users
      */
@@ -75,7 +75,7 @@ public class Stats {
     }
 
     /**
-     * <h1>setProfessionCount</h1>
+     * <h1>Set Profession Count</h1>
      * Stores the amount of professions.
      * @param professionsCount
      */
@@ -86,7 +86,7 @@ public class Stats {
     }
 
     /**
-     * <h1>defineProfessionCount</h1>
+     * <h1>Define Profession Count</h1>
      * Initializes the array that'll store the professions.
      * @param count
      */
@@ -96,7 +96,7 @@ public class Stats {
     }
 
     /**
-     * <h1>setProfessions</h1>
+     * <h1>Set Professions</h1>
      * Stores the professions
      * @param professionsArg (Analyst, Programmer or Manager)
      */
@@ -110,7 +110,7 @@ public class Stats {
     }
 
     /**
-     * <h1>calculateHoursPerProfession</h1>
+     * <h1>Calculate Hours Per Profession</h1>
      * Calculates the hours per profession (8h or 4h)
      */
     static public void calculateHoursPerProfession()
@@ -132,7 +132,7 @@ public class Stats {
     }
 
     /**
-     * <h1>calculateUsersPerProfession</h1>
+     * <h1>Calculate Users Per Profession</h1>
      * Calculates the Users per Profession (Number between 1 - max Users working)
      */
     static public void calculateUsersPerProfession()
@@ -155,7 +155,7 @@ public class Stats {
     }
 
     /**
-     * <h1>setScheduleType</h1>
+     * <h1>Set Schedule Type</h1>
      * Sets the ScheduleType
      * @param scheduleType1 Is the type of Schedule the admin wants to generate(Weekly, Monthly, etc.)
      */
@@ -165,7 +165,7 @@ public class Stats {
     }
 
     /**
-     * <h1>setBusinessType</h1>
+     * <h1>Set Business Type</h1>
      * Sets the businessType
      * @param businessType1 - 8h, 16h, or 24h of working in the company.
      */
@@ -175,13 +175,19 @@ public class Stats {
     }
 
     /**
-     * <h1>setLoggedInUsername</h1>
+     * <h1>Set Logged In Username</h1>
      * Sets the logged in Username
      */
     static public void setLoggedInUsername()
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     }
+
+    /**
+     * <H1>Push Stats To Database</H1>
+     * Sends the calculated result of each stat to a table in the database.
+     *
+     */
     public void pushStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
     {
         /**

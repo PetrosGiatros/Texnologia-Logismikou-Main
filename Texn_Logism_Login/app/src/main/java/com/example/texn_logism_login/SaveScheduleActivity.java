@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
+/**
+ * Class that is responsible for Saving the new Schedule created
+ */
 public class SaveScheduleActivity extends AppCompatActivity {
     HashMap<String,String> scheduleMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
@@ -15,10 +18,17 @@ public class SaveScheduleActivity extends AppCompatActivity {
     String finalResult ;
 
 
-
-
-
-
+    /**
+     * <h1>saveNewScheduleActivity</h1>
+     * saveNewScheduleActivity - Is a method that gets the data from the schedule create algorithm, and saves it into our database table "newschedule"
+     * @param shiftName Is the name of the current shift (Morning, Afternoon, Midnight)
+     * @param employeeID Is the ID of the employee
+     * @param hasMorning boolean that clarifies if the schedule will have Morning shifts
+     * @param hasAfternoon boolean that clarifies if the schedule will have Afternoon shifts
+     * @param hasMidnight boolean that clarifies if the schedule will have Midnight shifts
+     * @param date the date of the specific day when creating a schedule
+     * @param loggedInUsername Reffers to the username of the account currently logged in
+     */
     public void saveNewScheduleActivity(String shiftName,String employeeID,String hasMorning,String hasAfternoon,String hasMidnight,String date,String loggedInUsername){
 
         class SaveNewScheduleClass extends AsyncTask<String,Void,String> {
@@ -57,6 +67,11 @@ public class SaveScheduleActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * <h1>deleteScheduleActivity</h1>
+     * deleteScheduleActivity - Is a method that deletes the lines from newschedule table in our database, selected from the isAssigned variable
+     * @param loggedInUsername Reffers to the username of the account currently logged in
+     */
     public void deleteScheduleActivity(String loggedInUsername){
 
         class DeleteScheduleClass extends AsyncTask<String,Void,String> {

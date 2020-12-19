@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
+
 public class HireActivity extends AppCompatActivity {
 
     private TextView usernameHireTextView, passwordHireTextView, emailHireTextView,firstNameHireTextView,lastNameHireTextView;
@@ -111,6 +112,7 @@ public class HireActivity extends AppCompatActivity {
     }
 
 
+
     public void UserRegisterFunction(String loggedInUsername,String username,String password,String email){
 
         class UserRegisterFunctionClass extends AsyncTask<String,Void,String> {
@@ -148,6 +150,7 @@ public class HireActivity extends AppCompatActivity {
         userRegisterFunctionClass.execute(loggedInUsername,username,password,email);
     }
 
+   
     public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username){
 
         class UserAddedInformationFunctionClass extends AsyncTask<String,Void,String> {

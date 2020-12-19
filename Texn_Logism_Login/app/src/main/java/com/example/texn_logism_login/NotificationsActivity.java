@@ -21,7 +21,7 @@ public class NotificationsActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView listView;
 
-    String finalResult;
+    String finalResult,finalresult2;
     HashMap<String, String> hashMap = new HashMap<>();
     HashMap<String,String> acceptMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
@@ -29,7 +29,42 @@ public class NotificationsActivity extends AppCompatActivity {
 
     String HttpURL = "http://priapic-blower.000webhostapp.com/setNotifications.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/acceptDenyRequest.php";
+    String HttpURL3 = "http://priapic-blower.000webhostapp.com/denyRequest.php";
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+
+
+    public void denyEmployees(String loggedInUsername) {
+        class DenyEmployees extends AsyncTask<String, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+                System.out.println(httpResponseMsg);
+            }
+
+
+            @Override
+            protected String doInBackground(String... params) {
+                hashMap.put("selectedUsername", params[0]);
+                finalresult2 = httpParse.postRequest(hashMap, HttpURL3);
+                System.out.println("apotelesmata php: "+finalresult2);
+                //checkLeaveFunction(finalResult);
+                return finalresult2;
+            }
+        }
+        DenyEmployees denyObj = new DenyEmployees();
+        denyObj.execute(loggedInUsername);
+
+
+    }
+
+
+
+
+
 
 
     public void setFunction (String loggedInUsername, ListView listView){
@@ -58,13 +93,13 @@ public class NotificationsActivity extends AppCompatActivity {
                         }
                     }
                     String format[] = new String[4];
-                    format[0] = " UN ";
-                    format[1] = " ID ";
-                    format[2] = " EID ";
-                    format[3] = " RLD ";
+                    format[0] = " Username: ";
+                    format[1] = " ID: ";
+                    format[2] = " Days: ";
+                    format[3] = " Date: ";
                     int j =0;
                     for(int i = 0;i<employeeArray.length;i = i + 4){
-                        employeeArray[j]=format[0] + employeeArray[i] +format[1] +employeeArray[i+1]+ format[2]+employeeArray[i+2]+format[3]+employeeArray[i+3];
+                        employeeArray[j]=format[0] + employeeArray[i] +format[1] +employeeArray[i+1]+format[2] +employeeArray[i+2]+format[3] +employeeArray[i+3];
                         j=j+1;
                     }
 
@@ -142,7 +177,7 @@ public class NotificationsActivity extends AppCompatActivity {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     //Do your Yes progress
                                                     System.out.println(selectedUsername[2]);
-                                                    acceptDenyEmployees(selectedUsername[2]);
+                                                    denyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     denyButton.setVisibility(view.GONE);
                                                     break;

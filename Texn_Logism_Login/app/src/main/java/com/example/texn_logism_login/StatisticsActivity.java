@@ -76,7 +76,7 @@ public class StatisticsActivity extends AppCompatActivity
                 textView.setText("Managers:" + resultArray[8]);
 
                 textView = (TextView) findViewById(R.id.employeesPerShiftTextview);
-                textView.setText("Employees per shift " + resultArray[2]);
+                textView.setText("Employees per shift: " + resultArray[2]);
 
                 textView = (TextView) findViewById(R.id.scheduleTypeTextview);
                 textView.setText("Schedule Type: " + resultArray[0]);

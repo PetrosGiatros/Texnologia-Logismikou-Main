@@ -3,21 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/sickButton"
-        android:layout_width="411dp"
-        android:layout_height="87dp"
-        android:text="Call in sick"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/sickButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/frame" />
+
+    <Button
+        android:id="@+id/sickButton"
+        android:layout_width="132dp"
+        android:layout_height="56dp"
+        android:background="@drawable/button_call_in_sick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="Call in sick" />
+        app:layout_constraintVertical_bias="0.96" />
 
     <Button
         android:id="@+id/leaveButton"
@@ -36,6 +47,7 @@
         android:layout_width="84dp"
         android:layout_height="26dp"
         android:text="Days"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"

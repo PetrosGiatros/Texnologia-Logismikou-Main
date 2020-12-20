@@ -53,19 +53,11 @@ public class RequestActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requests_form);
-        submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
         EditText leaveDays = (EditText)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
-        submitLeaveRequestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                String requestedLeaveDays = leaveDays.getText().toString();
-                leaveFunction(loggedInUsername,requestedLeaveDays);
-            }
-        });
+       
 
     }
 

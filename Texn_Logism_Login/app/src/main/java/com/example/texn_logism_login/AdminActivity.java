@@ -15,41 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-/**
- * Admin activity is the main form that appears only to the admins connected.
- */
+
 public class AdminActivity extends AppCompatActivity {
-    /**
-     * Button that Shows the calendar to the admin. Will transfer you to another form with a calendar
-     */
     private Button button_view;
-    /**
-     * Button that when pressed, it will transfer you to another form to hire/fire users that belong to the admin currently logged in
-     */
     private Button hireFireButton;
-    /**
-     * Button that will create a new schedule
-     */
-    private Button buttonCreate;
-    /**
-     * Button that will force the application to exit
-     */
-    private Button exitButton;
-    /**
-     * Button that will open a new form with the admin's notifications
-     */
+    private Button exitButton,buttonCreate;
     private Button notificationsButton;
-    /**
-     * Button that will open a new form with the statistics
-     */
     private Button statisticsButton;
-    /**
-     * Variable used to store the number of users that belong to the specific admin
-     */
     public static int userAmount;
-    /**
-     * Primitive User Array
-     */
     public static String primitiveUserArray[] = {};
     User usersArray[];
 
@@ -58,21 +31,13 @@ public class AdminActivity extends AppCompatActivity {
     HashMap<String, String> adminMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
 
-    /**
-     * A String that stores the URL needed for php (Getting users per admin)
-     */
+
     String HttpURL = "http://priapic-blower.000webhostapp.com/getUsersPerAdmin.php";
-    /**
-     * A String that stores the URL needed for php (Getting users count)
-     */
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/getUserCount.php";
-    /**
-     * Refers to the username of the account currently logged in
-     */
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {  //Hocus pocus gamw ton xristo tous. Ai sto diaolo me afti tin gamimeni glwssa.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_form);
         getUserCountFunction(loggedInUsername);
@@ -140,12 +105,6 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * <h1>Get User Count Function</h1>
-     * Used to get the Users count that belong to the admin currently logged in
-     * @param loggedInUsername Refers to the username of the account currently logged in.
-     */
     public void getUserCountFunction(String loggedInUsername)
     {
         class getUserCountClass extends AsyncTask<String, Void, String> {
@@ -172,11 +131,6 @@ public class AdminActivity extends AppCompatActivity {
         getUserCountObject.execute(loggedInUsername);
     }
 
-    /**
-     * <h1>Get Users Function</h1>
-     * Used to get all the Users that belong to the admin that is currently logged in
-     * @param loggedInUsername Refers to the username of the account currently logged in
-     */
     public void getUsersFunction (String loggedInUsername)
     {
         class getUsersClass extends AsyncTask<String, Void, String> {

@@ -19,9 +19,7 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
-/**
- * RequestActivity.java is available only for users (not admins) and is responsible for <b>sending leave requests</b> to the admin that the user is connected to
- */
+
 public class RequestActivity extends AppCompatActivity
 {
     private Button submitLeaveRequestButton,BackButton;
@@ -47,14 +45,8 @@ public class RequestActivity extends AppCompatActivity
 
 
 
+
     public void leaveFunction(String username,String days,String startingDate) {
-    /**
-     * <h1>Leave Function</h1>
-     * leaveFunction is responsible for claryfing the username and the days needed for the user that wants to request a leave.
-     * @param username username of the user
-     * @param days Number of days that the user wants to leave
-     */
-    public void leaveFunction(String username,String days) {
         class leaveClass extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {

@@ -15,18 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-/**
- * Notifications Activity is used to display the requests or the answer of those requests according to the type of user legged in
- */
 public class NotificationsActivity extends AppCompatActivity {
-    /**
-     * Button used to accept a request as an admin
-     */
-    private Button acceptButton;
-    /**
-     * Button used to deny a request as an admin
-     */
-    private Button denyButton;
+    private Button denyButton,acceptButton;
     static String[] employeeArray={};
     ArrayAdapter adapter;
     ListView listView;
@@ -77,13 +67,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
 
 
-    /**
-     * <h1>Set Function</h1>
-     * setFunction is used to display the listView that contains all the employees <b>that submitted a leave request.</b> Specifically, it prints the username, ID, employerID, and how many days the user requested.
-     *
-     * @param loggedInUsername The username of the user that is logged in the app
-     * @param listView A listView that contains the employees that belong to the connected user and requested to leave.
-     */
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
             @Override
@@ -236,7 +219,6 @@ public class NotificationsActivity extends AppCompatActivity {
         setClass setObject = new setClass();
         setObject.execute(loggedInUsername);
     }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -245,12 +227,6 @@ public class NotificationsActivity extends AppCompatActivity {
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
     }
-
-    /**
-     * <h1>Accepting / Denying employees</h1>
-     * Method that accepts or denies employees requests that requested to leave a specific date.
-     * @param selectedUsername The employees username that the Admin has selected to accept/deny his/her request
-     */
     public void acceptDenyEmployees(String selectedUsername){
         //eisagoume kodika kai edo
         class AcceptDenyEmployees extends AsyncTask<String,Void,String> {
@@ -274,12 +250,6 @@ public class NotificationsActivity extends AppCompatActivity {
         acceptDenyEmployees.execute(selectedUsername);
     }
 
-    /**
-     * <h1>Testing Javadoc</h1>
-     * <u>Test</u>
-     * @param loggedInUsername Connected user
-     * @param listView Listview that contains the employees
-     */
     public void getEmployeesInfo(String loggedInUsername, ListView listView){
         //do nothing
     }

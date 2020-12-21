@@ -14,9 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-/**
- * AdminRegisterActivity is responsible for the registration of an admin account and for transfering this account's info into the online database.
- */
 public class AdminRegisterActivity extends AppCompatActivity {
 
     private TextView usernameRegTextView, passwordRegTextView, emailRegTextView;
@@ -74,11 +71,6 @@ public class AdminRegisterActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * <h1>Check Edit Text Is Empty Or Not</h1>
-     * This method is responsible for checking if any of the TextViews concerning the username, password or email of the admin register form are empty.
-     */
     public void CheckEditTextIsEmptyOrNot(){
         usernameHolder = usernameRegTextView.getText().toString();
         passwordHolder = passwordRegTextView.getText().toString();
@@ -94,13 +86,6 @@ public class AdminRegisterActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * <h1>Admin Register Function </h1>
-     * This method is responsible of sending all of the info linked to an admin account into the correct columns of the online database.
-     * @param username is the chosen username the admin has decided to enter into the form.
-     * @param password  is the password the admin has chosen for their account
-     * @param email is the email that was entered in the from by the admin.
-     */
     public void AdminRegisterFunction(String username,String password,String email){
 
         class AdminRegisterFunctionClass extends AsyncTask<String,Void,String> {

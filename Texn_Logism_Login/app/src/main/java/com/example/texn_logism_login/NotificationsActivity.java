@@ -32,6 +32,35 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
+
+    public void denyEmployees(String loggedInUsername) {
+        class DenyEmployees extends AsyncTask<String, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+                super.onPostExecute(httpResponseMsg);
+                System.out.println(httpResponseMsg);
+            }
+
+
+            @Override
+            protected String doInBackground(String... params) {
+                hashMap.put("selectedUsername", params[0]);
+                finalresult2 = httpParse.postRequest(hashMap, HttpURL3);
+                System.out.println("apotelesmata php: "+finalresult2);
+                //checkLeaveFunction(finalResult);
+                return finalresult2;
+            }
+        }
+        DenyEmployees denyObj = new DenyEmployees();
+        denyObj.execute(loggedInUsername);
+
+
+    }
+
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
             @Override

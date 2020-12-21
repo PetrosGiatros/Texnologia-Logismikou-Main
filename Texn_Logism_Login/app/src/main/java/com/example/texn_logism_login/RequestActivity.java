@@ -22,7 +22,14 @@ public class RequestActivity extends AppCompatActivity
     String HttpURL = "http://priapic-blower.000webhostapp.com/getRequest.php";
 
 
-    public void leaveFunction(String username,String days) {
+
+
+
+
+
+    public void leaveFunction(String username,String days,String startingDate) {
+
+
         class leaveClass extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {

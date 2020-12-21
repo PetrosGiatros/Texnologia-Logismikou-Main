@@ -2,7 +2,6 @@ package com.example.texn_logism_login;
 
 
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,6 @@ public class SaveScheduleActivity extends AppCompatActivity {
     String HttpURL = "http://priapic-blower.000webhostapp.com/saveNewSchedule.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/deleteSchedule.php";
     String finalResult ;
-    ProgressDialog progressDialog;
 
 
 
@@ -27,7 +25,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-               // progressDialog = ProgressDialog.show(SaveScheduleActivity.this,"Loading Data",null,true,true);
+                //progressDialog = ProgressDialog.show(HireActivity.this,"Loading Data",null,true,true);
             }
             @Override
             protected void onPostExecute(String httpResponseMsg) {

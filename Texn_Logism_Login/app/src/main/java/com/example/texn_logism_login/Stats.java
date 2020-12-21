@@ -20,9 +20,17 @@ public class Stats {
     static public String professions[], scheduleType, businessType;
     static public boolean failFlag = true;
     static public HttpParse httpParse = new HttpParse();
-    static public HashMap<String,String> statsMap = new HashMap<>();
-    static public String HttpURL = "http://priapic-blower.000webhostapp.com/setStatistics.php";
-    static public String finalResult ;
+
+    static public HashMap<String,String> statsMapUser = new HashMap<>();
+    static public HashMap<String,String> statsMapSchedule = new HashMap<>();
+    static public HashMap<String,String> statsMapDelUser = new HashMap<>();
+    static public String HttpURLSchedule = "http://priapic-blower.000webhostapp.com/setScheduleStatistics.php";
+    static public String HttpURLUser = "http://priapic-blower.000webhostapp.com/setUserStatistics.php";
+    static public String HttpURLDeleteUser = "http://priapic-blower.000webhostapp.com/deleteNewUserStatistics.php";
+    static public String finalResultUser;
+    static public String finalResultSchedule;
+    static public String finalResultDelUser;
+
     static public String loggedInUsername;
 
     static public void setUsersCount(int totalUsers)
@@ -105,9 +113,11 @@ public class Stats {
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     }
-    public void pushStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+
+    public void pushUserStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
     {
-        class pushtoDBClass extends AsyncTask<String,Void,String> {
+        class pushtoDBClassUser extends AsyncTask<String,Void,String> {
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();

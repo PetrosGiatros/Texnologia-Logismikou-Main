@@ -21,7 +21,7 @@ public class NotificationsActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView listView;
 
-    String finalResult,finalresult2;
+    String finalResult;
     HashMap<String, String> hashMap = new HashMap<>();
     HashMap<String,String> acceptMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();
@@ -29,8 +29,8 @@ public class NotificationsActivity extends AppCompatActivity {
 
     String HttpURL = "http://priapic-blower.000webhostapp.com/setNotifications.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/acceptDenyRequest.php";
-    String HttpURL3 = "http://priapic-blower.000webhostapp.com/denyRequest.php";
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+
 
 
     public void denyEmployees(String loggedInUsername) {
@@ -61,12 +61,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
             @Override
@@ -93,13 +87,13 @@ public class NotificationsActivity extends AppCompatActivity {
                         }
                     }
                     String format[] = new String[4];
-                    format[0] = " Username: ";
-                    format[1] = " ID: ";
-                    format[2] = " Days: ";
-                    format[3] = " Date: ";
+                    format[0] = " UN ";
+                    format[1] = " ID ";
+                    format[2] = " EID ";
+                    format[3] = " RLD ";
                     int j =0;
                     for(int i = 0;i<employeeArray.length;i = i + 4){
-                        employeeArray[j]=format[0] + employeeArray[i] +format[1] +employeeArray[i+1]+format[2] +employeeArray[i+2]+format[3] +employeeArray[i+3];
+                        employeeArray[j]=format[0] + employeeArray[i] +format[1] +employeeArray[i+1]+ format[2]+employeeArray[i+2]+format[3]+employeeArray[i+3];
                         j=j+1;
                     }
 
@@ -112,7 +106,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         employeeArrayNew[i]=employeeArray[i];
                     }
 
-                    adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayNew);
+                    adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArray);
                     listView.setAdapter(adapter);
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                     acceptButton=(Button)findViewById(R.id.acceptButton);
@@ -177,7 +171,7 @@ public class NotificationsActivity extends AppCompatActivity {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     //Do your Yes progress
                                                     System.out.println(selectedUsername[2]);
-                                                    denyEmployees(selectedUsername[2]);
+                                                    acceptDenyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     denyButton.setVisibility(view.GONE);
                                                     break;
@@ -212,7 +206,6 @@ public class NotificationsActivity extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 hashMap.put("username", params[0]);
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
-                System.out.println("final result apo php: "+finalResult);
                 return finalResult;
             }
         }
@@ -242,7 +235,6 @@ public class NotificationsActivity extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 acceptMap.put("selectedUsername",params[0]);
                 finalResult = httpParse.postRequest(acceptMap, HttpURL2);
-                System.out.println("final result apo php accept: "+finalResult);
                 return finalResult;
             }
         }

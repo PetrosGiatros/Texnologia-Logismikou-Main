@@ -4,21 +4,26 @@ package com.example.texn_logism_login;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 
 
 public class RequestActivity extends AppCompatActivity
 {
     private Button submitLeaveRequestButton,BackButton;
-    private EditText leaveDays;
+    private TextView leaveDays;
     private Spinner spinnerWorkDates;
 
     String finalResult ,finalresult2;
@@ -27,8 +32,17 @@ public class RequestActivity extends AppCompatActivity
     HttpParse httpParse = new HttpParse();
     String HttpURL = "http://priapic-blower.000webhostapp.com/getRequest.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/getUserWorkingDates.php";
-
     String[] workingDates={};
+    String startingDate,leaveDayHolder;
+    Object startingDate2;
+    boolean CheckEditText;
+
+
+
+
+
+
+
 
 
 
@@ -60,9 +74,13 @@ public class RequestActivity extends AppCompatActivity
         }
         leaveClass leaveObject = new leaveClass();
         leaveObject.execute(username,days,startingDate);
-        System.out.println("finale result ejw apo clss : "+finalresult2);
+
 
     }
+
+
+
+
 
     public void userWorkingDates(String username) {
         class userWorkingDatesClass extends AsyncTask<String, Void, String> {
@@ -97,7 +115,7 @@ public class RequestActivity extends AppCompatActivity
         setContentView(R.layout.requests_form);
         BackButton = (Button)findViewById(R.id.buttonBack);
         submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
-        EditText leaveDays = (EditText)findViewById(R.id.leaveDays);
+        leaveDays = (TextView)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
         spinnerWorkDates=(Spinner)findViewById(R.id.spinnerWorkDates);
         userWorkingDates(loggedInUsername);
@@ -111,8 +129,22 @@ public class RequestActivity extends AppCompatActivity
             {
 
                 String requestedLeaveDays = leaveDays.getText().toString();
-                String startingDate= spinnerWorkDates.getSelectedItem().toString();
-                leaveFunction(loggedInUsername,requestedLeaveDays,startingDate);
+                startingDate2= spinnerWorkDates.getSelectedItem();
+
+                CheckEditTextIsEmptyOrNot();
+                if(CheckEditText){
+                    if(startingDate2==null){
+                        Toast.makeText(RequestActivity.this,"You are not working yet.",Toast.LENGTH_LONG).show();
+                    }else{
+                        startingDate= spinnerWorkDates.getSelectedItem().toString();
+                        leaveFunction(loggedInUsername,requestedLeaveDays,startingDate);
+                    }
+                }
+                else{
+                    Toast.makeText(RequestActivity.this,"Please fill Days fields.",Toast.LENGTH_LONG).show();
+                }
+
+
 
 
             }
@@ -130,5 +162,17 @@ public class RequestActivity extends AppCompatActivity
 
 
     }
+
+
+
+    public void CheckEditTextIsEmptyOrNot(){
+        leaveDayHolder = leaveDays.getText().toString();
+        if ((TextUtils.isEmpty(leaveDayHolder))) {
+            CheckEditText = false;
+        } else {
+            CheckEditText = true;
+        }
+    }
+
 
 }

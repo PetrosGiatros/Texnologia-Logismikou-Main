@@ -112,7 +112,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         employeeArrayNew[i]=employeeArray[i];
                     }
 
-                    adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArray);
+                    adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, employeeArrayNew);
                     listView.setAdapter(adapter);
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                     acceptButton=(Button)findViewById(R.id.acceptButton);
@@ -212,6 +212,7 @@ public class NotificationsActivity extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 hashMap.put("username", params[0]);
                 finalResult = httpParse.postRequest(hashMap, HttpURL);
+                System.out.println("final result apo php: "+finalResult);
                 return finalResult;
             }
         }
@@ -241,6 +242,7 @@ public class NotificationsActivity extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 acceptMap.put("selectedUsername",params[0]);
                 finalResult = httpParse.postRequest(acceptMap, HttpURL2);
+                System.out.println("final result apo php accept: "+finalResult);
                 return finalResult;
             }
         }

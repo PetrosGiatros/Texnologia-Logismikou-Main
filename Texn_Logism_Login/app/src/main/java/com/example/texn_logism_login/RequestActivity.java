@@ -125,10 +125,9 @@ public class RequestActivity extends AppCompatActivity
         submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
         leaveDays = (TextView)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+
         spinnerWorkDates=(Spinner)findViewById(R.id.spinnerWorkDates);
         userWorkingDates(loggedInUsername);
-
-
 
 
         submitLeaveRequestButton.setOnClickListener(new View.OnClickListener() {

@@ -11,10 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-
-/**
- * Statistics Activity provides the stats concerning how many hours each profession and each employee has worked.
- */
 public class StatisticsActivity extends AppCompatActivity
 {
     public HashMap<String,String> statsMapPull = new HashMap<>();

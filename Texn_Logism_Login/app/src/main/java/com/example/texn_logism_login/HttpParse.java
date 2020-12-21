@@ -12,9 +12,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * HttpParse is a class responsible for the correct connection of the application with the database created.
- */
 public class HttpParse {
     String FinalHttpData = "";
     String Result ;

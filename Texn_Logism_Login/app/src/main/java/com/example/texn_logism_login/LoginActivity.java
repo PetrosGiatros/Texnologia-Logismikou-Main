@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     finish();
                     System.out.println("mphka sto onPostExecute IF");
-                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_SHORT).show();
                     status.setText("Success.");
 
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                 else if (httpResponseMsg.equalsIgnoreCase("Welcome User"))
                 {
                     finish();
-                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_SHORT).show();
                     status.setText("Success.");
                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                     startActivity(intent);

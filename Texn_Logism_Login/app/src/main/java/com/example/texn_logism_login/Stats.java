@@ -25,7 +25,7 @@ public class Stats {
     static public HashMap<String,String> statsMapDelUser = new HashMap<>();
     static public String HttpURLSchedule = "http://priapic-blower.000webhostapp.com/setScheduleStatistics.php";
     static public String HttpURLUser = "http://priapic-blower.000webhostapp.com/setUserStatistics.php";
-    static public String HttpURLDeleteUser = "http://priapic-blower.000webhostapp.com/deleteUserStatistics.php";
+    static public String HttpURLDeleteUser = "http://priapic-blower.000webhostapp.com/deleteNewUserStatistics.php";
     static public String finalResultUser;
     static public String finalResultSchedule;
     static public String finalResultDelUser;

@@ -20,6 +20,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ *Schedule Activity generates the completed schedule according to the admin's wants an needs.
+ */
 public class ScheduleActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Button button_back,buttonLoadList;
@@ -77,6 +80,12 @@ public class ScheduleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *<h1>Get Schedule Info </h1>
+     * This method is responsible for getting the logged in username and starting date of the schedule in order to print it later on.
+     * @param loggedInUsername is the username of the person that is currently logged into the app.
+     * @param startingDate is the first date of the schedule that was created.
+     */
 
     public void getScheduleInfo(String loggedInUsername,TextView startingDate) {
 
@@ -104,15 +113,34 @@ public class ScheduleActivity extends AppCompatActivity {
         getScheduleInfoClass.execute(loggedInUsername);
     }
 
+    /**
+     *<h1>Get Date</h1>
+     *
+     * @return
+     */
     public String getDate(){
         return date;
     }
 
+    /**
+     *<h1>Set Date</h1>
+     * This method is used to insert the content of the variable startedDate into the variable date.
+     * @param startedDate is the first date of the schedule that was created.
+     */
     public void setDate(String startedDate){
         date = startedDate;
     }
 
-
+    /**
+     *<h1>Get Schedule Employees</h1>
+     * This method is responsible of taking the logged in user and the selected day of the calendar and using this parameters to retrieve
+     * the correct data from the database in order to print out the schedule of that date.
+     * @param loggedInUsername is the username of the person that is currently logged into the app.
+     * @param selectedDate is the date that was selected by the user in the calendar.
+     * @param morningView is the textView that will print all the employees of the morning shift for the specific date.
+     * @param afternoonView is the textView that will print all the employees of the afternoon shift for the specific date.
+     * @param nightView is the textView that will print all the employees of the night shift for the specific date.
+     */
     public void getScheduleEmployees(String loggedInUsername,String selectedDate,ListView morningView, ListView afternoonView, ListView nightView){
 
         class GetScheduleEmployeesClass extends AsyncTask<String,Void,String> {

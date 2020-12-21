@@ -27,7 +27,7 @@ public class SaveScheduleActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                progressDialog = ProgressDialog.show(SaveScheduleActivity.this,"Loading Data",null,true,true);
+               // progressDialog = ProgressDialog.show(SaveScheduleActivity.this,"Loading Data",null,true,true);
             }
             @Override
             protected void onPostExecute(String httpResponseMsg) {

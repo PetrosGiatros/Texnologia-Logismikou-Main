@@ -56,15 +56,8 @@ public class RequestActivity extends AppCompatActivity
         submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
         EditText leaveDays = (EditText)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
-<<<<<<< HEAD
-        spinnerWorkDates=(Spinner)findViewById(R.id.spinnerWorkDates);
-        userWorkingDates(loggedInUsername);
 
 
-
-
-=======
->>>>>>> parent of e057268... Merge branch 'main' into new-UI
         submitLeaveRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

@@ -29,18 +29,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96" />
+
+
     <Button
         android:id="@+id/leaveButton"
-        android:layout_width="173dp"
-        android:layout_height="64dp"
-        android:text="Submit leave request"
+        android:layout_width="183dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_submit_leave_request"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
-
+        app:layout_constraintVertical_bias="0.669" />
 
     <TextView
         android:id="@+id/textView13"

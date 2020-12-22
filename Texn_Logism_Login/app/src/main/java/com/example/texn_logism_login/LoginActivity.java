@@ -98,9 +98,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    
     /**
-     *  h1>User Login Function</h1>
+     *  <h1>User Login Function</h1>
      *  This Function is responsible of recognising if the data entered into the login form are correct and correspond with that of the database.
      *  It also states through a Toast message if the person logging in is a user or an admin
      *

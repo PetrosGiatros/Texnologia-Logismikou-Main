@@ -128,7 +128,13 @@ public class CreateActivity  extends AppCompatActivity {
         });
 
     }
-//prosthikh newn sunarthsewn gia to megethos tou schedule kai twn arithmo twn shifts per day.
+
+    /**
+     * <h1>Get Schedule Length</h1>
+     * getScheduleInfo is used to return the number of employees the admin has requested for each shift as well as the overall length of the schedule (weekly, monthly etc).
+     * @param SelectedScheduleType is the length of the requested schedule.
+     * @return
+     */
     public int getScheduleLength(String SelectedScheduleType){
         int scheduleLength=0;
 
@@ -148,6 +154,13 @@ public class CreateActivity  extends AppCompatActivity {
         return scheduleLength;
     }
 
+
+    /**
+     * <h1>Get Number Of Shifts</h1>
+     * getNumOfShifts is used to return the number of Shifts, based on the selected business type (8h, 16h or 24h)
+     * @param SelectedBusiness Is the business type selected (8h, 16h, 24h)
+     * @return returns num, based on the business type
+     */
     public int getNumOfShifts(String SelectedBusiness){
         int num=0;
     if (SelectedBusiness == "8h") {

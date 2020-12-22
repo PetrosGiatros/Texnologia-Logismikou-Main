@@ -33,7 +33,7 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
-    public void denyEmployees(String loggedInUsername) {
+    public void denyEmployees(String loggedInUsername){
         class DenyEmployees extends AsyncTask<String, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -49,7 +49,7 @@ public class NotificationsActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 hashMap.put("selectedUsername", params[0]);
-                finalresult2 = httpParse.postRequest(hashMap, HttpURL3);
+                String finalresult2 = httpParse.postRequest(hashMap, HttpURL3);
                 System.out.println("apotelesmata php: "+finalresult2);
                 //checkLeaveFunction(finalResult);
                 return finalresult2;

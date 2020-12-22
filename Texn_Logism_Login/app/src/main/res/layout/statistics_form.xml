@@ -2,24 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_black"
+    android:background="@drawable/backgroundsample"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/frame"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-84dp" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Employees in each profession"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,21 +18,21 @@
         app:layout_constraintVertical_bias="0.391" />
     <Button
         android:id="@+id/buttonBackStatistics"
-        android:layout_width="118dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="39dp"
-        android:background="@drawable/button_back"
         android:layout_marginRight="39dp"
         android:layout_marginBottom="33dp"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/programmerCountTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text "
         android:textColor="@color/black"
+        android:text="Programmers: 0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
@@ -50,11 +41,11 @@
         app:layout_constraintVertical_bias="0.463" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/scheduleTypeTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text  "
         android:textColor="@color/black"
+        android:text="No schedule type recorded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.273"
@@ -63,11 +54,11 @@
         app:layout_constraintVertical_bias="0.147" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/programmerHoursTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text  "
         android:textColor="@color/black"
+        android:text="Programmer: 0 hours assigned."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
@@ -76,11 +67,11 @@
         app:layout_constraintVertical_bias="0.199" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/AnalystHoursTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text "
         android:textColor="@color/black"
+        android:text="Analyst: 0 hours assigned."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
@@ -89,11 +80,11 @@
         app:layout_constraintVertical_bias="0.227" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/businessTypeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text "
         android:textColor="@color/black"
+        android:text="Business Type: None"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.832"
@@ -102,11 +93,24 @@
         app:layout_constraintVertical_bias="0.147" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/employeesPerShiftTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text  "
         android:textColor="@color/black"
+        android:text="Employees per shift: 0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <TextView
+        android:id="@+id/ManagerHoursTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Manager: 0 hours assigned."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
@@ -115,11 +119,11 @@
         app:layout_constraintVertical_bias="0.254" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/analystCountTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text "
         android:textColor="@color/black"
+        android:text="Analysts: 0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
@@ -128,11 +132,11 @@
         app:layout_constraintVertical_bias="0.463" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/managerCountTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Func Text "
         android:textColor="@color/black"
+        android:text="Managers: 0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
@@ -145,13 +149,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Employee Statistics"
-        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

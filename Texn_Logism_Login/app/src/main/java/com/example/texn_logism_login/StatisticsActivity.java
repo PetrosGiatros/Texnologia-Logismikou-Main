@@ -46,6 +46,12 @@ public class StatisticsActivity extends AppCompatActivity
 
 
     }
+
+    /**
+     * <h1>Pull Stats</h1>
+     * Used to pull stats from the database
+     * @param loggedInUsername Refers to the username of the account currently logged in
+     */
     public void pullStats(String loggedInUsername)
     {
         class pullStatsClass extends AsyncTask<String,Void,String> {
@@ -96,7 +102,7 @@ public class StatisticsActivity extends AppCompatActivity
                 return finalResultPull;
             }
         }
-        pullStatsClass setObject = new pullStatsClass();  //I have no idea if this'll work but I sure fucking hope so.
+        pullStatsClass setObject = new pullStatsClass();
         setObject.execute();
     }
 }

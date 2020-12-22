@@ -35,6 +35,11 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
+    /**
+     * <h1>Deny Employees</h1>
+     * This method is used to connect to the database and deny an employee's request for leave day
+     * @param loggedInUsername Refers to the username of the account currently logged in
+     */
     public void denyEmployees(String loggedInUsername){
         class DenyEmployees extends AsyncTask<String, Void, String> {
             @Override
@@ -65,7 +70,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
 
     /**
-     * <h1>set Function</h1>
+     * <h1>Set Function</h1>
      * @param loggedInUsername Refers to the username of the account currently logged in
      * @param listView ListView to combine with the adapter
      */
@@ -229,6 +234,12 @@ public class NotificationsActivity extends AppCompatActivity {
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
     }
+
+    /**
+     * <h1>Accept Deny Employees</h1>
+     * This Method is used to connect to the Database and reset the employee's leave days request.
+     * @param selectedUsername
+     */
     public void acceptDenyEmployees(String selectedUsername){
         //eisagoume kodika kai edo
         class AcceptDenyEmployees extends AsyncTask<String,Void,String> {

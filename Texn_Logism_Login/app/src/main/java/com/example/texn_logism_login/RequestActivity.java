@@ -86,9 +86,11 @@ public class RequestActivity extends AppCompatActivity
     }
 
 
-
-
-
+    /**
+     * <h1>User Working Dates</h1>
+     * Used for getting the User working dates from the Database.
+     * @param username Refers to the employee's username
+     */
     public void userWorkingDates(String username) {
         class userWorkingDatesClass extends AsyncTask<String, Void, String> {
             @Override
@@ -171,7 +173,10 @@ public class RequestActivity extends AppCompatActivity
     }
 
 
-
+    /**
+     *<h1>Check Edit Text Is Empty Or Not</h1>
+     *This method is responsible for checking if any of the TextViews concerning the leave Days is empty.
+     */
     public void CheckEditTextIsEmptyOrNot(){
         leaveDayHolder = leaveDays.getText().toString();
         if ((TextUtils.isEmpty(leaveDayHolder))) {

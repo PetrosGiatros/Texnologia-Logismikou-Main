@@ -14,7 +14,15 @@ public class User extends AppCompatActivity {
      public int totalHours, hoursWorked = 0,timesWorked = 0;
      public boolean hasShift = true;
 
-
+    /**
+     * <h1>User</h1>
+     * Sets the user's data.
+     * @param id Is the employee's ID
+     * @param firstName Is the employee's first name
+     * @param lastName Is the employee's last name
+     * @param profession Is the employee's profession
+     * @param shiftHours Is the employee's shift Hourse preference.
+     */
      public User(int id, String firstName, String lastName, String profession, int shiftHours) {
          this.id = id;
          this.firstName = firstName;

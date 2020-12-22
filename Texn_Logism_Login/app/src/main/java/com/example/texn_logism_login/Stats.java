@@ -164,7 +164,12 @@ public class Stats {
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     }
-    public void pushUserStatsToDB()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+
+    /**
+     * <h1>Push to DB Class User</h1>
+     * This function sends all the calculated stats from a schedule creation to the Database.
+     */
+    public void pushUserStatsToDB()
     {
         class pushtoDBClassUser extends AsyncTask<String,Void,String> {
             @Override
@@ -233,10 +238,15 @@ public class Stats {
                 return finalResultSchedule;
             }
         }
-        pushtoDBClassSchedule setScheduleObject = new pushtoDBClassSchedule();  //I have no idea if this'll work but I sure fucking hope so.
+        pushtoDBClassSchedule setScheduleObject = new pushtoDBClassSchedule();
         setScheduleObject.execute();
     }
-    public void deleteUserStats()     //This function should theoretically send all the calculated stats from a schedule creation to the DB. Always to be called last.
+
+    /**
+     * <h1>Delete Users Stats Class</h1>
+     * This function sends all the calculated stats from a schedule creation to the Database.
+     */
+    public void deleteUserStats()
     {
         class deleteUserStatsClass extends AsyncTask<String,Void,String> {
             @Override

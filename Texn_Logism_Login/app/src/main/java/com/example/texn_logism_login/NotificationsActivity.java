@@ -21,7 +21,7 @@ public class NotificationsActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView listView;
 
-    String finalResult,finalresult2;
+    String finalResult;
     HashMap<String, String> hashMap = new HashMap<>();
     HashMap<String,String> acceptMap = new HashMap<>();
     HttpParse httpParse = new HttpParse();

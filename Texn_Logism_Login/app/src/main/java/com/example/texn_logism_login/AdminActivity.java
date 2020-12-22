@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
-
+/**
+ * Admin activity is the main form that appears only to the admins connected.
+ */
 
 public class AdminActivity extends AppCompatActivity {
     private Button button_view;
@@ -105,6 +107,12 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * <h1>Get User Count Function</h1>
+     * Used to get the Users count that belong to the admin currently logged in
+     * @param loggedInUsername Refers to the username of the account currently logged in.
+     */
     public void getUserCountFunction(String loggedInUsername)
     {
         class getUserCountClass extends AsyncTask<String, Void, String> {
@@ -131,6 +139,11 @@ public class AdminActivity extends AppCompatActivity {
         getUserCountObject.execute(loggedInUsername);
     }
 
+    /**
+     * <h1>Get Users Function</h1>
+     * Used to get all the Users that belong to the admin that is currently logged in
+     * @param loggedInUsername Refers to the username of the account currently logged in
+     */
     public void getUsersFunction (String loggedInUsername)
     {
         class getUsersClass extends AsyncTask<String, Void, String> {

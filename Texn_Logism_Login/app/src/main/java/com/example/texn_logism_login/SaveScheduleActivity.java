@@ -25,7 +25,11 @@ public class SaveScheduleActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+<<<<<<< HEAD
                 //progressDialog = ProgressDialog.show(HireActivity.this,"Loading Data",null,true,true);
+=======
+                progressDialog = ProgressDialog.show(SaveScheduleActivity.this,"Loading Data",null,true,true);
+>>>>>>> parent of f8e16fd... removed progress dialog
             }
             @Override
             protected void onPostExecute(String httpResponseMsg) {

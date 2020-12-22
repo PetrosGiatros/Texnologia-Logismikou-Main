@@ -41,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.669" />
+<<<<<<< HEAD
 
   <EditText
         android:id="@+id/leaveDays"
@@ -55,6 +56,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.202" />
         app:layout_constraintTop_toBottomOf="@+id/leaveDays" />
+=======
+>>>>>>> parent of 23738d9... Update requests_form.xml
 
     <TextView
         android:id="@+id/textView13"
@@ -112,12 +115,18 @@
         android:layout_marginRight="28dp"
         app:layout_constraintEnd_toEndOf="parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/leaveDays" />
 =======
+=======
+>>>>>>> parent of 23738d9... Update requests_form.xml
         app:layout_constraintHorizontal_bias="0.663"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.122" />
+<<<<<<< HEAD
+>>>>>>> parent of 23738d9... Update requests_form.xml
+=======
 >>>>>>> parent of 23738d9... Update requests_form.xml
 
 </androidx.constraintlayout.widget.ConstraintLayout>

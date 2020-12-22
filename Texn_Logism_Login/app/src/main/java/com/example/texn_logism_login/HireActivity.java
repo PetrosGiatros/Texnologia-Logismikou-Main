@@ -15,7 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
-
+/**
+ * HireActivity is responsible for transferring data from the app to the database, when a new employee is hired
+ */
 public class HireActivity extends AppCompatActivity {
 
     private TextView usernameHireTextView, passwordHireTextView, emailHireTextView,firstNameHireTextView,lastNameHireTextView;
@@ -94,6 +96,11 @@ public class HireActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *<h1>Check Edit Text Is Empty Or Not</h1>
+     *      This method is responsible for checking if any of the TextViews concerning the first name, last name, username , password or email of the hire form are empty.
+     */
     public void CheckEditTextIsEmptyOrNot(){
         firstNameHolder = firstNameHireTextView.getText().toString();
         lastNameHolder = lastNameHireTextView.getText().toString();
@@ -110,6 +117,14 @@ public class HireActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * <h1>User Register Function</h1>
+     * UserRegisterFunction - Is a method that gets the data from the form HireActivity that the admin filled, and sends the username,password and email from the registered user into our database table "login"
+     * @param loggedInUsername Reffers to the username of the account currently logged in
+     * @param username Is the username of the employee
+     * @param password Is the password of the employee
+     * @param email is the email of the employee
+     */
 
     public void UserRegisterFunction(String loggedInUsername,String username,String password,String email){
 
@@ -147,6 +162,16 @@ public class HireActivity extends AppCompatActivity {
         UserRegisterFunctionClass userRegisterFunctionClass = new UserRegisterFunctionClass();
         userRegisterFunctionClass.execute(loggedInUsername,username,password,email);
     }
+
+    /**
+     * <H1> User Added Information Function</H1>
+     * UserAddedInformationFunction - Is a method that gets the remaining data from the form HireActivity that the admin filled. This includes first name, last name, profession and shiftType that the user will have. Then sends all of these into our database table "user"
+     * @param firstName Is the first name of the employee to be hired
+     * @param lastName is the last name of the employee to be hired
+     * @param profession Is the employee's profession
+     * @param hours Is the hours working
+     * @param username Is the username he will be using to log in the app
+     */
 
     public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username){
 

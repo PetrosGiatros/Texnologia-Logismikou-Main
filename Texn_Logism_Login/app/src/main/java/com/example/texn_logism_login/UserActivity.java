@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+/**
+ * UserActivity is available only for users (not admins) and is the <b>main menu</b> of the connected user.
+ */
 public class UserActivity extends AppCompatActivity {
 
     private Button exitButton;

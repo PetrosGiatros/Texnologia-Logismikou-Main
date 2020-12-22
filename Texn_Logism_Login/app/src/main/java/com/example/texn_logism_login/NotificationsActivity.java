@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
-
+/**
+ * RequestActivity.java is available only for users (not admins) and is responsible for <b>sending leave requests</b> to the admin that the user is connected to
+ */
 public class NotificationsActivity extends AppCompatActivity {
     private Button denyButton,acceptButton;
     static String[] employeeArray={};
@@ -62,11 +64,11 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
+    /**
+     * <h1>set Function</h1>
+     * @param loggedInUsername Refers to the username of the account currently logged in
+     * @param listView ListView to combine with the adapter
+     */
     public void setFunction (String loggedInUsername, ListView listView){
         class setClass extends AsyncTask<String, Void, String> {
             @Override

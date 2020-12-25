@@ -34,7 +34,6 @@ public class Utilities extends AppCompatActivity {
         }
         return (index);
     }
-
     /**
      * <h1> Display Schedule </h1>
      * This method is used to display the schedule that was created in CreateActivity.java
@@ -102,6 +101,24 @@ public class Utilities extends AppCompatActivity {
             {
                 //allagh meras
                 hasChangedDay = true;
+            }
+            int dow = calendarSchedule.get(Calendar.DAY_OF_WEEK);
+            if (dow == Calendar.SATURDAY)
+            {
+                long millisNext = calendarSchedule.getTimeInMillis() + (86400000*2);
+                calendarSchedule.setTimeInMillis(millisNext);
+                currentDay = String.valueOf(calendarSchedule.get(Calendar.DATE));
+                currentMonth = String.valueOf(calendarSchedule.get(Calendar.MONTH)+1);
+                currentYear = String.valueOf(calendarSchedule.get(Calendar.YEAR));
+
+            }
+            else if (dow == Calendar.SUNDAY)
+            {
+                long millisNext = calendarSchedule.getTimeInMillis() + 86400000;
+                calendarSchedule.setTimeInMillis(millisNext);
+                currentDay = String.valueOf(calendarSchedule.get(Calendar.DATE));
+                currentMonth = String.valueOf(calendarSchedule.get(Calendar.MONTH)+1);
+                currentYear = String.valueOf(calendarSchedule.get(Calendar.YEAR));
             }
             for (int j = 0; j < rows; j++)
             {

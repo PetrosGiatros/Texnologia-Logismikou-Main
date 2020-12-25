@@ -334,7 +334,7 @@ public class CreateActivity  extends AppCompatActivity {
 
            //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
 
-            util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
+            //util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }
 
         /*for(int i =0;i<users.length;i++){
@@ -355,8 +355,6 @@ public class CreateActivity  extends AppCompatActivity {
             stObj.setBusinessType(SelectedBusinessType);
         }
         return schedule;
-
-
     }
 
 

@@ -92,6 +92,12 @@ public class StatisticsActivity extends AppCompatActivity
 
                 textView = (TextView) findViewById(R.id.businessTypeTextView);
                 textView.setText("Business Type: " + resultArray[1]);
+
+                textView = (TextView) findViewById(R.id.textView2);
+                textView.setText("Open Saturday: " + resultArray[9]);
+
+                textView = (TextView) findViewById(R.id.textView3);
+                textView.setText("Open Sunday: " + resultArray[10]);
             }
 
             @Override

@@ -20,7 +20,7 @@ public class Stats {
     static public int activeUsersCount = -1,totalProfessions = -1,professionHours[],userProfessionCount[],peoplePerShift = -1;
     static public User users[];
     static public String professions[], scheduleType, businessType;
-    static public boolean failFlag = true;
+    static public boolean failFlag = true, saturdayCheck, sundayCheck;
     static public HttpParse httpParse = new HttpParse();
     static public HashMap<String,String> statsMapUser = new HashMap<>();
     static public HashMap<String,String> statsMapSchedule = new HashMap<>();
@@ -164,7 +164,6 @@ public class Stats {
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
     }
-
     /**
      * <h1>Push to DB Class User</h1>
      * This function sends all the calculated stats from a schedule creation to the Database.
@@ -232,6 +231,11 @@ public class Stats {
                 statsMapSchedule.put("Programmer",String.valueOf(professionHours[0]));
                 statsMapSchedule.put("Analyst",String.valueOf(professionHours[1]));
                 statsMapSchedule.put("Manager",String.valueOf(professionHours[2]));
+                System.out.println("Saturday"+saturdayCheck);
+                System.out.println("Sunday"+sundayCheck);
+                statsMapSchedule.put("saturdayCheck",String.valueOf(saturdayCheck));
+                statsMapSchedule.put("sundayCheck",String.valueOf(sundayCheck));
+
 
 
                 finalResultSchedule = httpParse.postRequest(statsMapSchedule, HttpURLSchedule);

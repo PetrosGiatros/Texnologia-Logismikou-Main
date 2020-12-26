@@ -23,7 +23,7 @@ public class CreateActivity  extends AppCompatActivity {
     private Button buttonCreateSchedule,backButton;
     private EditText textViewEmployeesPerShift;
     Utilities util = new Utilities();
-    boolean isSaturdayChecked = false, isSundayChecked = false;
+    public boolean isSaturdayChecked, isSundayChecked;
     private static String currentDay;
     private static String  currentMonth;
     private static String currentYear;
@@ -90,6 +90,15 @@ public class CreateActivity  extends AppCompatActivity {
                 String SelectedBusiness = spinnerBusiness.getSelectedItem().toString();
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
 
+
+                isSaturdayChecked = ((CheckBox) findViewById(R.id.checkBoxSaturday)).isChecked();
+                isSundayChecked = ((CheckBox) findViewById(R.id.checkBoxSunday)).isChecked();
+                stObj.saturdayCheck = isSaturdayChecked;
+                System.out.println("saturday1: " + isSaturdayChecked);
+                stObj.sundayCheck = isSundayChecked;
+                System.out.println("Sunday1: " + isSundayChecked);
+
+
                 //createSchedule(SelectedScheduleType, SelectedShiftType, SelectedProfession, SelectedEmployeesPerShift, SelectedBusiness);
                 int[][] schedule;
                 schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
@@ -100,8 +109,7 @@ public class CreateActivity  extends AppCompatActivity {
 
                 String shiftName="";
 
-                isSaturdayChecked = ((CheckBox) findViewById(R.id.checkBoxSaturday)).isChecked();
-                isSundayChecked = ((CheckBox) findViewById(R.id.checkBoxSunday)).isChecked();
+
                 SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
                 saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
               
@@ -348,6 +356,7 @@ public class CreateActivity  extends AppCompatActivity {
         if (allowedToCreateSchedule)
         {
             System.out.println("I was allowed to create a schedule.");
+            stObj.setLoggedInUsername();
             stObj.setUsersCount(util.userObjects.length);  //Do NOT change the call order.
             stObj.setUsers(util.userObjects);
             stObj.setProfessionCount(Profession.length);
@@ -355,6 +364,12 @@ public class CreateActivity  extends AppCompatActivity {
             stObj.failFlag = false;
             stObj.setScheduleType(SelectedScheduleType);
             stObj.setBusinessType(SelectedBusinessType);
+            stObj.peoplePerShift = employeeAmountPerShift;
+            stObj.calculateHoursPerProfession();
+            stObj.calculateUsersPerProfession();
+            stObj.pushScheduleStatsToDB();
+            stObj.deleteUserStats();
+            stObj.pushUserStatsToDB();
         }
         return schedule;
     }

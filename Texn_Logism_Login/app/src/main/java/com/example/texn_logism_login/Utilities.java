@@ -68,7 +68,7 @@ public class Utilities extends AppCompatActivity {
      * @param columns An integer number that contains the number of columns of the previous array and that is  used to make editing the schedule table easier.
      * @param businessType Shows if the admin has requested a 8h/16h/24h program
      */
-    public void saveSchedule(User[] userArray, int schedule[][],int rows,int columns,int businessType) {
+    public void saveSchedule(User[] userArray, int schedule[][],int rows,int columns,int businessType,boolean saturdayCheck,boolean sundayCheck) {
         int day = 1;
         boolean hasChangedDay = false;
         int shiftCount = 0;
@@ -103,7 +103,7 @@ public class Utilities extends AppCompatActivity {
                 hasChangedDay = true;
             }
             int dow = calendarSchedule.get(Calendar.DAY_OF_WEEK);
-            if (dow == Calendar.SATURDAY)
+            if ((dow == Calendar.SATURDAY) && (!saturdayCheck))
             {
                 long millisNext = calendarSchedule.getTimeInMillis() + (86400000*2);
                 calendarSchedule.setTimeInMillis(millisNext);
@@ -112,7 +112,7 @@ public class Utilities extends AppCompatActivity {
                 currentYear = String.valueOf(calendarSchedule.get(Calendar.YEAR));
 
             }
-            else if (dow == Calendar.SUNDAY)
+            else if ((dow == Calendar.SUNDAY) && (!sundayCheck))
             {
                 long millisNext = calendarSchedule.getTimeInMillis() + 86400000;
                 calendarSchedule.setTimeInMillis(millisNext);

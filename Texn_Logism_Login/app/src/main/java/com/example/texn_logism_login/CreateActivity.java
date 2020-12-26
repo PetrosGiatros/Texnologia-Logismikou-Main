@@ -6,18 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.SQLOutput;
-import java.sql.Struct;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Random;
+
 /**
  * Create Activity is responsible for generating a schedule, when the admin presses the Create button.
  */
@@ -26,6 +23,7 @@ public class CreateActivity  extends AppCompatActivity {
     private Button buttonCreateSchedule,backButton;
     private EditText textViewEmployeesPerShift;
     Utilities util = new Utilities();
+    boolean isSaturdayChecked = false, isSundayChecked = false;
     private static String currentDay;
     private static String  currentMonth;
     private static String currentYear;
@@ -53,6 +51,8 @@ public class CreateActivity  extends AppCompatActivity {
         Spinner spinnerProfession = findViewById(R.id.spinnerProfession);
         Spinner spinnerBusiness = findViewById(R.id.spinnerBusiness);
         EditText EditTextEmployeesPerShift = (EditText) findViewById(R.id.EditTextEmployeesPerShift);
+        CheckBox checkBoxSaturday = findViewById(R.id.checkBoxSaturday);
+        CheckBox checkBoxSunday = findViewById(R.id.checkBoxSunday);
 
 
 
@@ -89,6 +89,7 @@ public class CreateActivity  extends AppCompatActivity {
                 String SelectedProfession = spinnerProfession.getSelectedItem().toString();
                 String SelectedBusiness = spinnerBusiness.getSelectedItem().toString();
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
+
                 //createSchedule(SelectedScheduleType, SelectedShiftType, SelectedProfession, SelectedEmployeesPerShift, SelectedBusiness);
                 int[][] schedule;
                 schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness);
@@ -99,11 +100,12 @@ public class CreateActivity  extends AppCompatActivity {
 
                 String shiftName="";
 
-
+                isSaturdayChecked = ((CheckBox) findViewById(R.id.checkBoxSaturday)).isChecked();
+                isSundayChecked = ((CheckBox) findViewById(R.id.checkBoxSunday)).isChecked();
                 SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
                 saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
               
-                util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness));
+                util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness),isSaturdayChecked,isSundayChecked);
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);

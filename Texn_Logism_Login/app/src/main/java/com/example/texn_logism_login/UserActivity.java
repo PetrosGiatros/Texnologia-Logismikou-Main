@@ -22,8 +22,7 @@ public class UserActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                finish();
+                    System.exit(0);
             }
         });
         button_view2 = (Button) findViewById(R.id.button_view2);
@@ -40,7 +39,7 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, RequestActivity.class);
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 

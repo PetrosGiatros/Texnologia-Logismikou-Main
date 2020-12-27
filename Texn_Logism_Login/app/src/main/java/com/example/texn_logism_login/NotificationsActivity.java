@@ -2,6 +2,7 @@ package com.example.texn_logism_login;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -140,6 +141,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
                             acceptButton.setVisibility(view.VISIBLE);
                             denyButton.setVisibility(view.VISIBLE);
+
                             Toast.makeText(NotificationsActivity.this, "Selected User: " + selectedUsername[2], Toast.LENGTH_SHORT).show();
                             //eeeeeeeeeeeeeeeeeeee arxi accept
                             acceptButton.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +157,9 @@ public class NotificationsActivity extends AppCompatActivity {
                                                     acceptDenyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     acceptButton.setVisibility(view.GONE);
+                                                    denyButton.setVisibility(view.GONE);
+                                                    Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                                                    startActivity(intent);
 
                                                     break;
 
@@ -187,6 +192,9 @@ public class NotificationsActivity extends AppCompatActivity {
                                                     denyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     denyButton.setVisibility(view.GONE);
+                                                    acceptButton.setVisibility(view.GONE);
+                                                    Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                                                    startActivity(intent);
                                                     break;
 
                                                 case DialogInterface.BUTTON_NEGATIVE:

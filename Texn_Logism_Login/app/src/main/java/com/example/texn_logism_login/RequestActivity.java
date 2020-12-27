@@ -9,14 +9,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
@@ -123,7 +120,7 @@ public class RequestActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requests_form);
-        BackButton = (Button)findViewById(R.id.buttonBack);
+        BackButton = (Button)findViewById(R.id.buttonBackRequest);
         submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
         leaveDays = (TextView)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();

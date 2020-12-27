@@ -19,7 +19,7 @@ import java.util.HashMap;
  * RequestActivity.java is available only for users (not admins) and is responsible for <b>sending leave requests</b> to the admin that the user is connected to
  */
 public class NotificationsActivity extends AppCompatActivity {
-    private Button denyButton,acceptButton;
+    private Button denyButton,acceptButton,backButton;
     static String[] employeeArray={};
     ArrayAdapter adapter;
     ListView listView;
@@ -34,6 +34,11 @@ public class NotificationsActivity extends AppCompatActivity {
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/acceptDenyRequest.php";
     String HttpURL3 = "http://priapic-blower.000webhostapp.com/denyRequest.php";
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
+
+
+
+
+
 
 
     /**
@@ -241,6 +246,18 @@ public class NotificationsActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.notificationsListView);
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
+        backButton=(Button)findViewById(R.id.buttonBackNotif);
+
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**

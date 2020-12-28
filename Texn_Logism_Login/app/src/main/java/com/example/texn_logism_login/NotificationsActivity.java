@@ -2,6 +2,7 @@ package com.example.texn_logism_login;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.HashMap;
  * RequestActivity.java is available only for users (not admins) and is responsible for <b>sending leave requests</b> to the admin that the user is connected to
  */
 public class NotificationsActivity extends AppCompatActivity {
-    private Button denyButton,acceptButton;
+    private Button denyButton,acceptButton,backButton;
     static String[] employeeArray={};
     ArrayAdapter adapter;
     ListView listView;
@@ -124,6 +125,7 @@ public class NotificationsActivity extends AppCompatActivity {
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                     acceptButton=(Button)findViewById(R.id.acceptButton);
                     denyButton=(Button)findViewById(R.id.denyButton);
+
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee arxi
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -228,12 +230,21 @@ public class NotificationsActivity extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        backButton = (Button) findViewById(R.id.buttonBackNotifications);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                startActivity(intent);
 
+            }
+        });
         setContentView(R.layout.notifications_form);
         ListView listView = (ListView) findViewById(R.id.notificationsListView);
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
     }
+
 
     /**
      * <h1>Accept Deny Employees</h1>

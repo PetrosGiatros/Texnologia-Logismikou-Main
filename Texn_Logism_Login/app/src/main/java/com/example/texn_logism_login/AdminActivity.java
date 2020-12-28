@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class AdminActivity extends AppCompatActivity {
     private Button button_view;
     private Button hireFireButton;
-    private Button exitButton,buttonCreate;
+    private Button exitButton,buttonCreate,button_logout;
     private Button notificationsButton;
     private Button statisticsButton;
     public static int userAmount;
@@ -44,7 +44,16 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.admin_form);
         getUserCountFunction(loggedInUsername);
         getUsersFunction(loggedInUsername);
+        button_logout = (Button) findViewById(R.id.buttonLogoutAdmin);
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+                //intent.putExtra(username,password);
+                startActivity(intent);
 
+            }
+        });
         buttonCreate= (Button)findViewById(R.id.buttonCreate);
         button_view = (Button) findViewById(R.id.button_view);
         button_view.setOnClickListener(new View.OnClickListener()

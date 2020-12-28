@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UserActivity extends AppCompatActivity {
 
     private Button exitButton;
-    private Button button_view2;
+    private Button button_view2,button_logout;
     private Button requestButton;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,16 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 finish();
+            }
+        });
+        button_logout = (Button) findViewById(R.id.buttonLogoutUser);
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, LoginActivity.class);
+                //intent.putExtra(username,password);
+                startActivity(intent);
+
             }
         });
         button_view2 = (Button) findViewById(R.id.button_view2);

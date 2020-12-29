@@ -34,7 +34,7 @@ public class AdminActivity extends AppCompatActivity {
     HttpParse httpParse = new HttpParse();
 
 
-    String HttpURL = "http://priapic-blower.000webhostapp.com/getUsersPerAdmin.php";
+    String HttpURL = "http://priapic-blower.000webhostapp.com/getUsersPerAdminExperimental.php";
     String HttpURL2 = "http://priapic-blower.000webhostapp.com/getUserCount.php";
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 

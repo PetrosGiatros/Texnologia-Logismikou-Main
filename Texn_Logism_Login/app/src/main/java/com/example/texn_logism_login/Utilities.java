@@ -2,13 +2,16 @@ package com.example.texn_logism_login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 /**
  * Utilities.Java serves as a support class which contains various data and methods.
  */
 public class Utilities extends AppCompatActivity {
     public static User userObjects[];
+    public static ArrayList<User> usersOnShiftList = new ArrayList<User>();
     public User failUser = new User(-1,"Fail","Fail","Fail",-1,true,true,true);
 
     /**
@@ -18,31 +21,39 @@ public class Utilities extends AppCompatActivity {
      * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
      * @return
      */
-    public User getEmployeeDefaultMode(User[] userArray) {
+    public User getEmployeeDefaultMode(User[] userArray,int shift) {
         boolean terminateFlag = false;
-        final int min = 0;
-        int index;
-        final int max = userArray.length - 1;
-        do
-        {
-            int randomNum = new Random().nextInt((max - min) + 1) + min;
+        int min = 0, max,randomNum,hours,index;
+
+
+        ArrayList<User> possibleUsers = new ArrayList<User>();
+        do {
+            possibleUsers = getEmployeesForShift(shift);
+            max = possibleUsers.size() - 1;
+            randomNum = new Random().nextInt((max - min) + 1) + min;
             index = randomNum;
-            int hours = userArray[randomNum].totalHours;
-            for (int i = 0; i < userArray.length; i++) {
-                if (userArray[i].totalHours > hours) {
+            hours = possibleUsers.get(index).totalHours;
+            for (int i = 0; i < possibleUsers.size(); i++)
+            {
+                if(possibleUsers.get(i).totalHours > hours)
+                {
                     index = i;
-                    hours = userArray[i].totalHours;
-
+                    hours = possibleUsers.get(i).totalHours;
                 }
-                //System.out.println("Index in for = " + index);
             }
-
-        }while (!isEmployeeValid(userArray[index]));
-
-        return (userArray[index]);
+            System.out.println("Returned employee: " + possibleUsers.get(index).id + "  With hasShift " +possibleUsers.get(index).hasShift + "and currentWorkShift" + possibleUsers.get(index).workAfternoon);
+            if ((canEmployeeBeSelectedBasedOnShifts(shift)== false) || (canEmployeeBeSelectedBasedOnHours(shift) == false))
+            {
+                System.out.println("Failed bitch. +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                return (failUser);
+            }
+            System.out.println("Why are you failing?");
+        }while (!isEmployeeValid(possibleUsers.get(index)));
+        System.out.println("Managed to return user");
+        return (possibleUsers.get(index));
     }
     public User getEmployeePassiveMode(User[] userArray) {
-        boolean terminateFlag = false;
+        /*boolean terminateFlag = false;
         final int min = 0;
         int index;
         final int max = userArray.length - 1;
@@ -70,12 +81,13 @@ public class Utilities extends AppCompatActivity {
             }
         }while (terminateFlag==false);
 
-        return(userArray[index]);
+        return(userArray[index]);*/
+        return(failUser);
     }
 
     public User getEmployeeAggressiveMode(User[] userArray)
     {
-        boolean terminateFlag = false;
+        /*boolean terminateFlag = false;
         final int min = 0;
         int index;
         final int max = userArray.length - 1;
@@ -101,30 +113,82 @@ public class Utilities extends AppCompatActivity {
                 return (getEmployeeWithFewestOvertime());
             }
         }while (terminateFlag == false);
-        return(userArray[index]);
+        return(userArray[index]);*/
+        return(failUser);
     }
 
-    public boolean canEmployeeBeSelectedBasedOnShifts()
+    public boolean canEmployeeBeSelectedBasedOnShifts(int cShift)
     {
-        for (int i = 0; i < userObjects.length; i++)
+        if (cShift == 1)
         {
-            if (userObjects[i].hasShift == true)
+            for (int i = 0; i < userObjects.length; i++)
             {
-                return(true);
+                if (userObjects[i].workMorning == true)
+                {
+                    if (userObjects[i].hasShift == true)
+                        return (true);
+                }
             }
-
+        }
+        else if (cShift == 2)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workAfternoon == true)
+                {
+                    if (userObjects[i].hasShift == true)
+                        return (true);
+                }
+            }
+        }
+        else if (cShift == 3)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workMidnight == true)
+                {
+                    if (userObjects[i].hasShift == true)
+                        return (true);
+                }
+            }
         }
         return (false);
     }
-    public boolean canEmployeeBeSelectedBasedOnHours()
+    public boolean canEmployeeBeSelectedBasedOnHours(int cShift)
     {
-        for (int i = 0; i < userObjects.length; i++)
-        {
-            if (userObjects[i].totalHours > 0)
-            {
-                return(true);
-            }
 
+        if (cShift == 1)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workMorning == true)
+                {
+                    if (userObjects[i].totalHours > 0)
+                        return (true);
+                }
+            }
+        }
+        else if (cShift == 2)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workAfternoon == true)
+                {
+                    if (userObjects[i].totalHours > 0)
+                        return (true);
+                }
+            }
+        }
+        else if (cShift == 3)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workMidnight == true)
+                {
+                    if (userObjects[i].totalHours > 0)
+                        return (true);
+                }
+            }
         }
         return (false);
     }
@@ -142,7 +206,7 @@ public class Utilities extends AppCompatActivity {
         index = randomNum;
         int overtime = userObjects[randomNum].overtimeHours;
         for (int i = 0; i < userObjects.length; i++) {
-            if (userObjects[i].overtimeHours < overtime) {
+            if ((userObjects[i].overtimeHours < overtime) &&(usersOnShiftList.contains(userObjects[i]) != true)) {
                 index = i;
                 overtime = userObjects[i].overtimeHours;
 
@@ -152,6 +216,81 @@ public class Utilities extends AppCompatActivity {
         userObjects[index].overtimeHours = userObjects[index].overtimeHours + userObjects[index].shiftHours;
         return (userObjects[index]);
     }
+    public int getEmployeeAmountOnMorningShift()
+    {
+        int counter = 0;
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            if (userObjects[i].workMorning == true)
+            {
+                counter++;
+            }
+
+        }
+        return(counter);
+    }
+    public int getEmployeeAmountOnAfternoonShift()
+    {
+        int counter = 0;
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            if (userObjects[i].workAfternoon == true)
+            {
+                counter++;
+            }
+
+        }
+        return(counter);
+    }
+    public int getEmployeeAmountOnMidnightShift()
+    {
+        int counter = 0;
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            if (userObjects[i].workMidnight == true)
+            {
+                counter++;
+            }
+
+        }
+        return(counter);
+    }
+    public ArrayList<User> getEmployeesForShift(int cShift)
+    {
+        ArrayList<User> possibleUsersOnShift = new ArrayList<User>();
+        if (cShift == 1)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workMorning == true)
+                    possibleUsersOnShift.add(userObjects[i]);
+            }
+        }
+        else if (cShift == 2)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workAfternoon == true)
+                    possibleUsersOnShift.add(userObjects[i]);
+            }
+        }
+        else if (cShift == 3)
+        {
+            for (int i = 0; i < userObjects.length; i++)
+            {
+                if (userObjects[i].workMidnight == true)
+                    possibleUsersOnShift.add(userObjects[i]);
+            }
+        }
+        return(possibleUsersOnShift);
+    }
+
+    public void clearUserList()
+    {
+        usersOnShiftList.clear();
+    }
+
+
 
     /**
      * <h1> Display Schedule </h1>

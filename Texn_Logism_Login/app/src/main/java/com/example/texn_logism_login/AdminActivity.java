@@ -165,21 +165,22 @@ public class AdminActivity extends AppCompatActivity {
                     usersArray = new User[userAmount];
                     primitiveUserArray = httpResponseMsg.split(" ");
                     int k = 0;
-                    for (int i = 0; i < primitiveUserArray.length; i++)
+                    /*for (int i = 0; i < primitiveUserArray.length; i++)
                     {
                         System.out.println(primitiveUserArray[i]);
-                    }
+                    }*/
                     System.out.println("Employee Array length: " + usersArray.length);
                     for (int i = 0; i < usersArray.length; i++) {
                         usersArray[i] = new User(Integer.parseInt(primitiveUserArray[k]),primitiveUserArray[k+1],
-                                primitiveUserArray[k+2],primitiveUserArray[k+3],Integer.parseInt(primitiveUserArray[k+4]));
-                        k = k + 5;
+                                primitiveUserArray[k+2],primitiveUserArray[k+3],Integer.parseInt(primitiveUserArray[k+4]),
+                                Boolean.parseBoolean(primitiveUserArray[k+5]),Boolean.parseBoolean(primitiveUserArray[k+6]),Boolean.parseBoolean(primitiveUserArray[k+7]));
+                        k = k + 8;
                     }
 
-                    for (int i = 0; i < usersArray.length; i++)
+                    /*for (int i = 0; i < usersArray.length; i++)
                     {
                         System.out.println("ID in Array Loop: " + usersArray[i].id + "  First Name: "+ usersArray[i].firstName);
-                    }
+                    }*/
                     Utilities utilObj = new Utilities();
                     utilObj.initializeUserObjects(userAmount);      //These are the two functions that make the users globally available.
                     utilObj.copyUsersArray(usersArray);             //Please do not touch my garbage.

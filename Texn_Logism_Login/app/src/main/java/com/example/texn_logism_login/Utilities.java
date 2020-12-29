@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class Utilities extends AppCompatActivity {
     public static User userObjects[];
+    public User failUser = new User(-1,"Fail","Fail","Fail",-1,true,true,true);
 
     /**
      *  <h1>Get Employees With Fewest Hours</h1>
@@ -17,23 +18,90 @@ public class Utilities extends AppCompatActivity {
      * @param userArray An array of objects that include the id, firstName,lastName,profession and shiftHours of each user.
      * @return
      */
-    public int getEmployeeWithFewestHours(User[] userArray) {
+    public User getEmployeeDefaultMode(User[] userArray) {
+        boolean terminateFlag = false;
         final int min = 0;
+        int index;
         final int max = userArray.length - 1;
-        int randomNum = new Random().nextInt((max - min) + 1) + min;
+        do
+        {
+            int randomNum = new Random().nextInt((max - min) + 1) + min;
+            index = randomNum;
+            int hours = userArray[randomNum].totalHours;
+            for (int i = 0; i < userArray.length; i++) {
+                if (userArray[i].totalHours > hours) {
+                    index = i;
+                    hours = userArray[i].totalHours;
 
-        int index = randomNum;
-        int hours = userArray[randomNum].totalHours;
-        for (int i = 0; i < userArray.length; i++) {
-            if (userArray[i].totalHours > hours) {
-                index = i;
-                hours = userArray[i].totalHours;
+                }
+                //System.out.println("Index in for = " + index);
+            }
+            if((userArray[index].hasShift==true) && (userArray[index].totalHours>0))
+            {
+                terminateFlag = true;
+            }
+
+        }while (terminateFlag == false);
+
+        return (userArray[index]);
+    }
+    public User getEmployeePassiveMode(User[] userArray) {
+        boolean terminateFlag = false;
+        final int min = 0;
+        int index;
+        final int max = userArray.length - 1;
+        do
+        {
+            int randomNum = new Random().nextInt((max - min) + 1) + min;
+            index = randomNum;
+            int hours = userArray[randomNum].totalHours;
+            for (int i = 0; i < userArray.length; i++) {
+                if (userArray[i].totalHours > hours) {
+                    index = i;
+                    hours = userArray[i].totalHours;
+
+                }
+                //System.out.println("Index in for = " + index);
+            }
+            if((userArray[index].hasShift==true) && (userArray[index].totalHours>0))
+            {
+                terminateFlag = true;
 
             }
-            //System.out.println("Index in for = " + index);
-        }
-        return (index);
+            if (((canEmployeeBeSelectedBasedOnHours() == false) || (canEmployeeBeSelectedBasedOnShifts()==false)) && (terminateFlag == false))
+            {
+                return(failUser);
+            }
+        }while (terminateFlag == false);
+
+        return(userArray[index]);
     }
+
+    public boolean canEmployeeBeSelectedBasedOnShifts()
+    {
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            if (userObjects[i].hasShift == true)
+            {
+                return(true);
+            }
+
+        }
+        return (false);
+    }
+    public boolean canEmployeeBeSelectedBasedOnHours()
+    {
+        for (int i = 0; i < userObjects.length; i++)
+        {
+            if (userObjects[i].totalHours > 0)
+            {
+                return(true);
+            }
+
+        }
+        return (false);
+    }
+
     /**
      * <h1> Display Schedule </h1>
      * This method is used to display the schedule that was created in CreateActivity.java

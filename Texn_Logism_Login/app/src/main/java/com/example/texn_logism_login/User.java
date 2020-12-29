@@ -14,6 +14,8 @@ public class User extends AppCompatActivity {
      public int totalHours, hoursWorked = 0,timesWorked = 0;
      public boolean hasShift = true;
 
+     public boolean workMorning,workAfternoon,workMidnight;
+
     /**
      * <h1>User</h1>
      * Sets the user's data.
@@ -23,12 +25,15 @@ public class User extends AppCompatActivity {
      * @param profession Is the employee's profession
      * @param shiftHours Is the employee's shift Hourse preference.
      */
-     public User(int id, String firstName, String lastName, String profession, int shiftHours) {
+     public User(int id, String firstName, String lastName, String profession, int shiftHours,boolean workMorning,boolean workAfternoon,boolean workMidnight) {
          this.id = id;
          this.firstName = firstName;
          this.lastName = lastName;
          this.profession = profession;
          this.shiftHours = shiftHours;
+         this.workMorning = workMorning;
+         this.workAfternoon = workAfternoon;
+         this.workMidnight = workMidnight;
 
     }
     /**

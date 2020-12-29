@@ -27,8 +27,10 @@ public class Utilities extends AppCompatActivity {
 
 
         ArrayList<User> possibleUsers = new ArrayList<User>();
+        possibleUsers.clear();
+        possibleUsers = getEmployeesForShift(shift);
         do {
-            possibleUsers = getEmployeesForShift(shift);
+
             max = possibleUsers.size() - 1;
             randomNum = new Random().nextInt((max - min) + 1) + min;
             index = randomNum;
@@ -41,13 +43,25 @@ public class Utilities extends AppCompatActivity {
                     hours = possibleUsers.get(i).totalHours;
                 }
             }
-            System.out.println("Returned employee: " + possibleUsers.get(index).id + "  With hasShift " +possibleUsers.get(index).hasShift + "and currentWorkShift" + possibleUsers.get(index).workAfternoon);
+            if (isEmployeeValid(possibleUsers.get(index)))
+            {
+                if (!possibleUsers.get(index).isOnlyShift(shift))
+                {
+                    for (int i = 0; i < possibleUsers.size();i++)
+                    {
+                        if((possibleUsers.get(i).totalHours == possibleUsers.get(index).totalHours) && (possibleUsers.get(i).isOnlyShift(shift)))
+                        {
+                            index = i;
+                            hours = possibleUsers.get(i).totalHours;
+                        }
+                    }
+                }
+            }
             if ((canEmployeeBeSelectedBasedOnShifts(shift)== false) || (canEmployeeBeSelectedBasedOnHours(shift) == false))
             {
-                System.out.println("Failed bitch. +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("Failed to find user for shift " + shift);
                 return (failUser);
             }
-            System.out.println("Why are you failing?");
         }while (!isEmployeeValid(possibleUsers.get(index)));
         System.out.println("Managed to return user");
         return (possibleUsers.get(index));
@@ -126,7 +140,9 @@ public class Utilities extends AppCompatActivity {
                 if (userObjects[i].workMorning == true)
                 {
                     if (userObjects[i].hasShift == true)
+                    {
                         return (true);
+                    }
                 }
             }
         }
@@ -137,7 +153,9 @@ public class Utilities extends AppCompatActivity {
                 if (userObjects[i].workAfternoon == true)
                 {
                     if (userObjects[i].hasShift == true)
+                    {
                         return (true);
+                    }
                 }
             }
         }
@@ -148,8 +166,11 @@ public class Utilities extends AppCompatActivity {
                 if (userObjects[i].workMidnight == true)
                 {
                     if (userObjects[i].hasShift == true)
+                    {
                         return (true);
+                    }
                 }
+                //System.out.println("Can Work Midnight " + userObjects[i].workMidnight + "     hasShift+++++++" +userObjects[i].hasShift);
             }
         }
         return (false);

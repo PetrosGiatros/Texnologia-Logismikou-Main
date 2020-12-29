@@ -55,6 +55,33 @@ public class User extends AppCompatActivity {
         }
 
     }
+    public boolean isOnlyShift(int curShift)
+    {
+        switch(curShift)
+        {
+            case 1:
+                if ((workMorning == true) && (workAfternoon == false) && (workMidnight == false))
+                {
+                    return(true);
+                }
+                break;
+            case 2:
+                if ((workAfternoon == true) && (workMorning == false) && (workMidnight == false))
+                {
+                    return(true);
+                }
+                break;
+            case 3:
+                if ((workMidnight == true) && (workMorning == false) && (workAfternoon == false))
+                {
+                    return(true);
+                }
+                break;
+            default:
+                return (false);
+         }
+         return (false);
+    }
 
     public boolean isAvailable() {
         return (true);

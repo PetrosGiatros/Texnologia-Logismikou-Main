@@ -53,8 +53,8 @@ public class CreateActivity  extends AppCompatActivity {
             public void onClick(View v)
             {
                 System.out.println("Hello there.");
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateActivity.this);
-                builder1.setMessage("Restrictions Override mode defines how the Algorithm will run."  +"\n" +"\n" +
+                AlertDialog.Builder builder9 = new AlertDialog.Builder(CreateActivity.this);
+                builder9.setMessage("Restrictions Override mode defines how the Algorithm will run."  +"\n" +"\n" +
                         "None: The Algorithm will generate the fairest possible schedule as normal by following all restrictions. If a schedule can't be created, it will abort and alert the user."  +"\n" +"\n"+
                         "Passive: The Algorithm will attempt to generate the fairest possible schedule. If an employee can't be assigned due to restrictions, it will continue without doing so. " +"\n" +"\n"+
                         "Aggressive: The Algorithm will generate a fair schedule by any means necessary. It will utilize overtime and ignore shift restrictions.").show();
@@ -272,32 +272,36 @@ public class CreateActivity  extends AppCompatActivity {
 
         if ((util.userObjects.length *  Integer.valueOf(SelectedShiftType)*type < (type * (numOfShifts* Integer.valueOf(SelectedShiftType)))*employeeAmountPerShift ) && (SelectedOverrideMode == "None"))
         {
+            System.out.println("Not enough employees to create schedule.");
             allowedToCreateSchedule = false;
             AlertDialog.Builder builder0 = new AlertDialog.Builder(CreateActivity.this);
-            builder0.setMessage("").show();
+            builder0.setMessage("Not enough employees").show();
         }
         if ((allowedToCreateSchedule == true) && (SelectedOverrideMode == "None"))
         {
             if ((util.getEmployeeAmountOnMorningShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
             {
+                System.out.println("Not enough employees available in the morning shift. ");
                 allowedToCreateSchedule = false;
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(CreateActivity.this);
                 builder2.setMessage("Not enough employees available in the morning shift. ").show();
-                System.out.println("Not enough employees available in the morning shift. ");
+
             }
             else if ((util.getEmployeeAmountOnAfternoonShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
             {
-                allowedToCreateSchedule = false;
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(CreateActivity.this);
-                builder2.setMessage("Not enough employees available in the afternoon shift. ").show();
                 System.out.println("Not enough employees available in the afternoon shift. ");
+                allowedToCreateSchedule = false;
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(CreateActivity.this);
+                builder3.setMessage("Not enough employees available in the afternoon shift. ").show();
+
             }
             else if ((util.getEmployeeAmountOnMidnightShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
             {
-                allowedToCreateSchedule = false;
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(CreateActivity.this);
-                builder2.setMessage("Not enough employees available in the midnight shift. ").show();
                 System.out.println("Not enough employees available in the midnight shift.");
+                allowedToCreateSchedule = false;
+                AlertDialog.Builder builder4 = new AlertDialog.Builder(CreateActivity.this);
+                builder4.setMessage("Not enough employees available in the midnight shift. ").show();
+
             }
         }
 
@@ -322,6 +326,7 @@ public class CreateActivity  extends AppCompatActivity {
                         {
                             totalTypeHours = 0;
                             allowedToCreateSchedule = false;
+                            System.out.println("Program cancelled because conditions not met. ");
                         }
                     }
                     else if (SelectedOverrideMode == "Passive")

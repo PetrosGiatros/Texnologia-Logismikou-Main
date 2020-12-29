@@ -1,5 +1,6 @@
 package com.example.texn_logism_login;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +45,23 @@ public class CreateActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_form);
+        TextView infoText;
+        infoText = (TextView) findViewById(R.id.textView14);
+        infoText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("Hello there.");
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateActivity.this);
+                builder1.setMessage("Restrictions Override mode defines how the Algorithm will run."  +"\n" +"\n" +
+                        "None: The Algorithm will generate the fairest possible schedule as normal by following all restrictions. If a schedule can't be created, it will abort and alert the user."  +"\n" +"\n"+
+                        "Passive: The Algorithm will attempt to generate the fairest possible schedule. If an employee can't be assigned due to restrictions, it will continue without doing so. " +"\n" +"\n"+
+                        "Aggressive: The Algorithm will generate a fair schedule by any means necessary. It will utilize overtime and ignore shift restrictions.").show();
+
+            }
+        });
+
+
 
         buttonCreateSchedule = (Button) findViewById(R.id.buttonCreateSchedule);
         backButton = (Button) findViewById(R.id.buttonBackSchedule);
@@ -208,10 +227,9 @@ public class CreateActivity  extends AppCompatActivity {
 
         int numOfShifts = 0;
         int dayCount = 0;
-        boolean allowedToCreateSchedule = true;
+        boolean allowedToCreateSchedule = true,isAggroActive = false;
         //Xrhsh newn sunarthsewn//
         numOfShifts=getNumOfShifts(SelectedBusinessType);
-        int daycount=0;
 
         User currentUser = new User(-1,"first","last","profession",-1,false,false,false);
 
@@ -277,6 +295,17 @@ public class CreateActivity  extends AppCompatActivity {
                     {
                         currentUser = util.getEmployeePassiveMode(util.userObjects);
                     }
+                    else if (SelectedOverrideMode == "Aggressive")
+                    {
+                        currentUser = util.getEmployeePassiveMode(util.userObjects);
+                        System.out.println("Current user ID from passive " + currentUser.id);
+                        if (currentUser.id == -1)
+                        {
+                            currentUser = util.getEmployeeAggressiveMode(util.userObjects);
+                            isAggroActive = true;
+                            System.out.println("Aggro Active");
+                        }
+                    }
                     System.out.println("Employee with fewest hours returned " + currentUser.firstName + "  With hours:  " + currentUser.totalHours + " With ID:  " + currentUser.id + " With hasShit " + currentUser.hasShift);
                     //builder.append("Apple").append(" ").append("Banana");
                     for (int z = j; z >= j - (Integer.valueOf(SelectedShiftType) - 1); z--) {
@@ -291,12 +320,15 @@ public class CreateActivity  extends AppCompatActivity {
                     {
                         if (util.userObjects[g].id == currentUser.id)
                         {
-                            System.out.println("Entered the if ");
                             util.userObjects[g].timesWorked = util.userObjects[g].timesWorked + 1;
+                            System.out.println("Added times worked.");
                             util.userObjects[g].hasShift = false;
-                            util.userObjects[g].totalHours = util.userObjects[g].totalHours - Integer.valueOf(SelectedShiftType);
-                            util.userObjects[g].hoursWorked = util.userObjects[g].hoursWorked + Integer.valueOf(SelectedShiftType);
-                            System.out.println("DATA CHANGED");
+                            if (isAggroActive == false)
+                            {
+                                util.userObjects[g].totalHours = util.userObjects[g].totalHours - Integer.valueOf(SelectedShiftType);
+                                util.userObjects[g].regulationHoursWorked = util.userObjects[g].regulationHoursWorked + Integer.valueOf(SelectedShiftType);
+                            }
+
                         }
                     }
 
@@ -321,6 +353,8 @@ public class CreateActivity  extends AppCompatActivity {
                                 util.userObjects[q].hasShift = true;
                             }
                             dayCount = 0;
+                            isAggroActive = false;
+                            System.out.println("Aggro set to false");
                         }
 
                     } else {
@@ -386,7 +420,9 @@ public class CreateActivity  extends AppCompatActivity {
             stObj.pushUserStatsToDB();
             for (int i = 0; i < util.userObjects.length;i++)
             {
-                System.out.println("User ID: " +util.userObjects[i].id + "  Hours Worked: "+ util.userObjects[i].hoursWorked);
+                System.out.println("User ID: " +util.userObjects[i].id + "  Regulation Hours Worked: "+ util.userObjects[i].regulationHoursWorked +
+                        "    Overtime Hours: " + util.userObjects[i].overtimeHours + "   Times Worked " + util.userObjects[i].timesWorked + "  Total Hours " +util.userObjects[i].totalHours);
+
             }
         }
         return schedule;

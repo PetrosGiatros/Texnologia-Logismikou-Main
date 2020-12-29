@@ -11,7 +11,7 @@ public class User extends AppCompatActivity {
      public String firstName,lastName,profession;
 
     // Current irrelevant arguments.
-     public int totalHours, hoursWorked = 0,timesWorked = 0;
+     public int totalHours, regulationHoursWorked = 0,timesWorked = 0,overtimeHours;
      public boolean hasShift = true;
 
      public boolean workMorning,workAfternoon,workMidnight;
@@ -34,6 +34,7 @@ public class User extends AppCompatActivity {
          this.workMorning = workMorning;
          this.workAfternoon = workAfternoon;
          this.workMidnight = workMidnight;
+         this.overtimeHours = 0;
 
     }
     /**

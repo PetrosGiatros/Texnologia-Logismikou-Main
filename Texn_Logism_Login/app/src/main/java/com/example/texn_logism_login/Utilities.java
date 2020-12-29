@@ -36,12 +36,8 @@ public class Utilities extends AppCompatActivity {
                 }
                 //System.out.println("Index in for = " + index);
             }
-            if((userArray[index].hasShift==true) && (userArray[index].totalHours>0))
-            {
-                terminateFlag = true;
-            }
 
-        }while (terminateFlag == false);
+        }while (!isEmployeeValid(userArray[index]));
 
         return (userArray[index]);
     }
@@ -63,7 +59,7 @@ public class Utilities extends AppCompatActivity {
                 }
                 //System.out.println("Index in for = " + index);
             }
-            if((userArray[index].hasShift==true) && (userArray[index].totalHours>0))
+            if(isEmployeeValid(userArray[index]))
             {
                 terminateFlag = true;
 
@@ -72,8 +68,39 @@ public class Utilities extends AppCompatActivity {
             {
                 return(failUser);
             }
-        }while (terminateFlag == false);
+        }while (terminateFlag==false);
 
+        return(userArray[index]);
+    }
+
+    public User getEmployeeAggressiveMode(User[] userArray)
+    {
+        boolean terminateFlag = false;
+        final int min = 0;
+        int index;
+        final int max = userArray.length - 1;
+        do
+        {
+            int randomNum = new Random().nextInt((max - min) + 1) + min;
+            index = randomNum;
+            int hours = userArray[randomNum].totalHours;
+            for (int i = 0; i < userArray.length; i++) {
+                if (userArray[i].totalHours > hours) {
+                    index = i;
+                    hours = userArray[i].totalHours;
+
+                }
+                //System.out.println("Index in for = " + index);
+            }
+            if(isEmployeeValid(userArray[index]))
+            {
+                terminateFlag = true;
+            }
+            else
+            {
+                return (getEmployeeWithFewestOvertime());
+            }
+        }while (terminateFlag == false);
         return(userArray[index]);
     }
 
@@ -100,6 +127,30 @@ public class Utilities extends AppCompatActivity {
 
         }
         return (false);
+    }
+    public boolean isEmployeeValid(User employee)
+    {
+        return ((employee.hasShift==true) && (employee.totalHours>0) ? true:false);
+    }
+    public User getEmployeeWithFewestOvertime() //*Least*
+    {
+        boolean terminateFlag = false;
+        final int min = 0;
+        int index;
+        final int max = userObjects.length - 1;
+        int randomNum = new Random().nextInt((max - min) + 1) + min;
+        index = randomNum;
+        int overtime = userObjects[randomNum].overtimeHours;
+        for (int i = 0; i < userObjects.length; i++) {
+            if (userObjects[i].overtimeHours < overtime) {
+                index = i;
+                overtime = userObjects[i].overtimeHours;
+
+            }
+        }
+
+        userObjects[index].overtimeHours = userObjects[index].overtimeHours + userObjects[index].shiftHours;
+        return (userObjects[index]);
     }
 
     /**

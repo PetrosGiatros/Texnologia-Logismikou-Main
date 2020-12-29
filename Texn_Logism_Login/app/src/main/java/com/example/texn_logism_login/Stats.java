@@ -110,7 +110,7 @@ public class Stats {
                 //System.out.println("User Profession:" + users[i].profession);
                 if (users[i].profession.equals(professions[j]))
                 {
-                    professionHours[j] = professionHours[j]+ users[i].hoursWorked;
+                    professionHours[j] = professionHours[j]+ users[i].regulationHoursWorked;
                 }
             }
             j++;
@@ -189,7 +189,7 @@ public class Stats {
                 for (int i = 0; i < activeUsersCount; i++)
                 {
                     statsMapUser.put("ID",String.valueOf(users[i].id));
-                    statsMapUser.put("hours",String.valueOf(users[i].hoursWorked));
+                    statsMapUser.put("hours",String.valueOf(users[i].regulationHoursWorked));
                     finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
                 }
 

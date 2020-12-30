@@ -60,75 +60,68 @@ public class Utilities extends AppCompatActivity {
             if ((canEmployeeBeSelectedBasedOnShifts(shift)== false) || (canEmployeeBeSelectedBasedOnHours(shift) == false))
             {
                 System.out.println("Failed to find user for shift " + shift);
+                return (failUser);  //This is an atrocious way of signifying failures but ¯\_(ツ)_/¯
+            }
+        }while (!isEmployeeValid(possibleUsers.get(index)));
+        System.out.println("Managed to return user");
+        return (possibleUsers.get(index));
+    }
+    public User getEmployeePassiveMode(User[] userArray,int shift) {
+        boolean terminateFlag = false;
+        int min = 0, max,randomNum,hours,index;
+
+
+        ArrayList<User> possibleUsers = new ArrayList<User>();
+        possibleUsers.clear();
+        possibleUsers = getEmployeesForShift(shift);
+        do {
+
+            max = possibleUsers.size() - 1;
+            randomNum = new Random().nextInt((max - min) + 1) + min;
+            index = randomNum;
+            hours = possibleUsers.get(index).totalHours;
+            for (int i = 0; i < possibleUsers.size(); i++)
+            {
+                if(possibleUsers.get(i).totalHours > hours)
+                {
+                    index = i;
+                    hours = possibleUsers.get(i).totalHours;
+                }
+            }
+            if (isEmployeeValid(possibleUsers.get(index)))
+            {
+                if (!possibleUsers.get(index).isOnlyShift(shift))
+                {
+                    for (int i = 0; i < possibleUsers.size();i++)
+                    {
+                        if((possibleUsers.get(i).totalHours == possibleUsers.get(index).totalHours) && (possibleUsers.get(i).isOnlyShift(shift)))
+                        {
+                            index = i;
+                            hours = possibleUsers.get(i).totalHours;
+                        }
+                    }
+                }
+            }
+            if ((canEmployeeBeSelectedBasedOnShifts(shift)== false) || (canEmployeeBeSelectedBasedOnHours(shift) == false))
+            {
+                System.out.println("Failed to find user for shift " + shift);
                 return (failUser);
             }
         }while (!isEmployeeValid(possibleUsers.get(index)));
         System.out.println("Managed to return user");
         return (possibleUsers.get(index));
     }
-    public User getEmployeePassiveMode(User[] userArray) {
-        /*boolean terminateFlag = false;
-        final int min = 0;
-        int index;
-        final int max = userArray.length - 1;
-        do
-        {
-            int randomNum = new Random().nextInt((max - min) + 1) + min;
-            index = randomNum;
-            int hours = userArray[randomNum].totalHours;
-            for (int i = 0; i < userArray.length; i++) {
-                if (userArray[i].totalHours > hours) {
-                    index = i;
-                    hours = userArray[i].totalHours;
 
-                }
-                //System.out.println("Index in for = " + index);
-            }
-            if(isEmployeeValid(userArray[index]))
-            {
-                terminateFlag = true;
-
-            }
-            if (((canEmployeeBeSelectedBasedOnHours() == false) || (canEmployeeBeSelectedBasedOnShifts()==false)) && (terminateFlag == false))
-            {
-                return(failUser);
-            }
-        }while (terminateFlag==false);
-
-        return(userArray[index]);*/
-        return(failUser);
-    }
-
-    public User getEmployeeAggressiveMode(User[] userArray)
+    public User getEmployeeAggressiveMode(User[] userArray,int shift)
     {
-        /*boolean terminateFlag = false;
-        final int min = 0;
-        int index;
-        final int max = userArray.length - 1;
-        do
-        {
-            int randomNum = new Random().nextInt((max - min) + 1) + min;
-            index = randomNum;
-            int hours = userArray[randomNum].totalHours;
-            for (int i = 0; i < userArray.length; i++) {
-                if (userArray[i].totalHours > hours) {
-                    index = i;
-                    hours = userArray[i].totalHours;
+        boolean terminateFlag = false;
+        int min = 0, max,randomNum,hours,index;
 
-                }
-                //System.out.println("Index in for = " + index);
-            }
-            if(isEmployeeValid(userArray[index]))
-            {
-                terminateFlag = true;
-            }
-            else
-            {
-                return (getEmployeeWithFewestOvertime());
-            }
-        }while (terminateFlag == false);
-        return(userArray[index]);*/
-        return(failUser);
+
+        ArrayList<User> possibleUsers = new ArrayList<User>();
+        possibleUsers.clear();
+        possibleUsers = getEmployeesForShift(shift);
+        return (getEmployeeWithFewestOvertime());
     }
 
     public boolean canEmployeeBeSelectedBasedOnShifts(int cShift)

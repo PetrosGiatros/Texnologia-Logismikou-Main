@@ -331,15 +331,15 @@ public class CreateActivity  extends AppCompatActivity {
                     }
                     else if (SelectedOverrideMode == "Passive")
                     {
-                        currentUser = util.getEmployeePassiveMode(util.userObjects);
+                        currentUser = util.getEmployeePassiveMode(util.userObjects,currentShift);
                     }
                     else if (SelectedOverrideMode == "Aggressive")
                     {
-                        currentUser = util.getEmployeePassiveMode(util.userObjects);
+                        currentUser = util.getEmployeePassiveMode(util.userObjects,currentShift);
                         System.out.println("Current user ID from passive " + currentUser.id);
                         if (currentUser.id == -1)
                         {
-                            currentUser = util.getEmployeeAggressiveMode(util.userObjects);
+                            currentUser = util.getEmployeeAggressiveMode(util.userObjects,currentShift);
                             isAggroActive = true;
                             System.out.println("Aggro Active");
                         }

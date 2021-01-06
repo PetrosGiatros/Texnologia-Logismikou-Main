@@ -39,7 +39,7 @@ public class CreateActivity  extends AppCompatActivity {
     String[] ShiftTypes = new String[]{"8", "4"};
     String[] Profession = new String[]{"Programmer", "Analyst", "Manager"};  //When deleting the profession parameters, do not delete this.
     String[] Business = new String[]{"8h", "16h", "24h"};
-    public String [] Override = new String[]{"None","Passive","Aggressive","Severe"};
+    public String [] Override = new String[]{"None","Passive","Aggressive"};
     int currentShift= 1;
 
 
@@ -135,18 +135,20 @@ public class CreateActivity  extends AppCompatActivity {
                 String shiftName="";
 
 
-                //SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
-               // saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
+                SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
+                saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
               
-                //util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness),isSaturdayChecked,isSundayChecked);
+                util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness),isSaturdayChecked,isSundayChecked);
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
-                //startDateFunction(isAssignedTo, currentDay, currentMonth, currentYear);
+                startDateFunction(isAssignedTo, currentDay, currentMonth, currentYear);
 
-                Intent intent = new Intent(CreateActivity.this, AdminActivity.class);
-                startActivity(intent);
-
+                if (schedule[0][0] != -1)
+                {
+                    Intent intent = new Intent(CreateActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                }
 
 
             }
@@ -275,7 +277,7 @@ public class CreateActivity  extends AppCompatActivity {
             System.out.println("Not enough employees to create schedule.");
             allowedToCreateSchedule = false;
             AlertDialog.Builder builder0 = new AlertDialog.Builder(CreateActivity.this);
-            builder0.setMessage("Not enough employees").show();
+            builder0.setMessage("Not enough employees to create schedule.").show();
         }
         if ((allowedToCreateSchedule == true) && (SelectedOverrideMode == "None"))
         {
@@ -287,7 +289,8 @@ public class CreateActivity  extends AppCompatActivity {
                 builder2.setMessage("Not enough employees available in the morning shift. ").show();
 
             }
-            else if ((util.getEmployeeAmountOnAfternoonShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
+
+            if ((util.getEmployeeAmountOnAfternoonShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
             {
                 System.out.println("Not enough employees available in the afternoon shift. ");
                 allowedToCreateSchedule = false;
@@ -295,7 +298,8 @@ public class CreateActivity  extends AppCompatActivity {
                 builder3.setMessage("Not enough employees available in the afternoon shift. ").show();
 
             }
-            else if ((util.getEmployeeAmountOnMidnightShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
+
+            if ((util.getEmployeeAmountOnMidnightShift() < employeeAmountPerShift) && (SelectedOverrideMode == "None"))
             {
                 System.out.println("Not enough employees available in the midnight shift.");
                 allowedToCreateSchedule = false;
@@ -304,9 +308,6 @@ public class CreateActivity  extends AppCompatActivity {
 
             }
         }
-
-
-
 
         while((totalTypeHours > 0) && (allowedToCreateSchedule) ){
             System.out.println("In While + + + + + + +");

@@ -114,9 +114,7 @@ public class Utilities extends AppCompatActivity {
 
     public User getEmployeeAggressiveMode(User[] userArray,int shift)
     {
-        boolean terminateFlag = false;
         int min = 0, max,randomNum,hours,index;
-
 
         ArrayList<User> possibleUsers = new ArrayList<User>();
         possibleUsers.clear();

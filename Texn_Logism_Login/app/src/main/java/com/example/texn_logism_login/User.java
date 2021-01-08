@@ -11,8 +11,10 @@ public class User extends AppCompatActivity {
      public String firstName,lastName,profession;
 
     // Current irrelevant arguments.
-     public int totalHours, hoursWorked = 0,timesWorked = 0;
+     public int totalHours, regulationHoursWorked = 0,timesWorked = 0,overtimeHours;
      public boolean hasShift = true;
+
+     public boolean workMorning,workAfternoon,workMidnight;
 
     /**
      * <h1>User</h1>
@@ -23,12 +25,16 @@ public class User extends AppCompatActivity {
      * @param profession Is the employee's profession
      * @param shiftHours Is the employee's shift Hourse preference.
      */
-     public User(int id, String firstName, String lastName, String profession, int shiftHours) {
+     public User(int id, String firstName, String lastName, String profession, int shiftHours,boolean workMorning,boolean workAfternoon,boolean workMidnight) {
          this.id = id;
          this.firstName = firstName;
          this.lastName = lastName;
          this.profession = profession;
          this.shiftHours = shiftHours;
+         this.workMorning = workMorning;
+         this.workAfternoon = workAfternoon;
+         this.workMidnight = workMidnight;
+         this.overtimeHours = 0;
 
     }
     /**
@@ -48,6 +54,33 @@ public class User extends AppCompatActivity {
             totalHours = 120 * (Integer.valueOf(shiftType));
         }
 
+    }
+    public boolean isOnlyShift(int curShift)
+    {
+        switch(curShift)
+        {
+            case 1:
+                if ((workMorning == true) && (workAfternoon == false) && (workMidnight == false))
+                {
+                    return(true);
+                }
+                break;
+            case 2:
+                if ((workAfternoon == true) && (workMorning == false) && (workMidnight == false))
+                {
+                    return(true);
+                }
+                break;
+            case 3:
+                if ((workMidnight == true) && (workMorning == false) && (workAfternoon == false))
+                {
+                    return(true);
+                }
+                break;
+            default:
+                return (false);
+         }
+         return (false);
     }
 
     public boolean isAvailable() {

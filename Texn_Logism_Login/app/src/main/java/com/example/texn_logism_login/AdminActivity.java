@@ -101,7 +101,6 @@ public class AdminActivity extends AppCompatActivity {
 
 
         exitButton.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 System.exit(0);
             }

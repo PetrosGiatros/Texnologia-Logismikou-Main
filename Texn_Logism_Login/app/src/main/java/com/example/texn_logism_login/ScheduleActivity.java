@@ -159,8 +159,8 @@ public class ScheduleActivity extends AppCompatActivity {
                     System.out.println("EmployeeID's Length"+employeeArray.length);
                     for (i=0;i<employeeArray.length;i++) {
                         employeeDummy = employeeArray[i].split(" ");
-                        employeeIDs[i] = employeeDummy[0];
-                        employeeShifts[i] = employeeDummy[1];
+                        employeeIDs[i] = employeeDummy[0] +" "+ employeeDummy[1] ;
+                        employeeShifts[i] = employeeDummy[2];
                     }
 
                     int morningcount=0;
@@ -234,7 +234,7 @@ public class ScheduleActivity extends AppCompatActivity {
                 employeeArray = finalResult2.split("-");
                 System.out.println("Employee Array Length" + employeeArray.length);
                 System.out.println("Final Result 2: " + finalResult2);
-                if (employeeArray.length < 2)
+                if (employeeArray.length < 3)
                 {
                     for (int i = 0; i < employeeArray.length; i++)
                     {

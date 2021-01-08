@@ -36,6 +36,11 @@ public class NotificationsActivity extends AppCompatActivity {
     String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
 
 
+
+
+
+
+
     /**
      * <h1>Deny Employees</h1>
      * This method is used to connect to the database and deny an employee's request for leave day
@@ -142,6 +147,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
                             acceptButton.setVisibility(view.VISIBLE);
                             denyButton.setVisibility(view.VISIBLE);
+
                             Toast.makeText(NotificationsActivity.this, "Selected User: " + selectedUsername[2], Toast.LENGTH_SHORT).show();
                             //eeeeeeeeeeeeeeeeeeee arxi accept
                             acceptButton.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +163,9 @@ public class NotificationsActivity extends AppCompatActivity {
                                                     acceptDenyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     acceptButton.setVisibility(view.GONE);
+                                                    denyButton.setVisibility(view.GONE);
+                                                    Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                                                    startActivity(intent);
 
                                                     break;
 
@@ -189,6 +198,9 @@ public class NotificationsActivity extends AppCompatActivity {
                                                     denyEmployees(selectedUsername[2]);
                                                     getEmployeesInfo(loggedInUsername,listView);
                                                     denyButton.setVisibility(view.GONE);
+                                                    acceptButton.setVisibility(view.GONE);
+                                                    Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                                                    startActivity(intent);
                                                     break;
 
                                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -243,6 +255,18 @@ public class NotificationsActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.notificationsListView);
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
+        backButton=(Button)findViewById(R.id.buttonBackNotif);
+
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

@@ -31,6 +31,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <Button
+        android:id="@+id/buttonBackNotif"
+        android:layout_width="98dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginLeft="156dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/acceptButton"
         android:layout_width="118dp"
@@ -39,6 +51,7 @@
         android:layout_marginLeft="72dp"
         android:layout_marginBottom="88dp"
         android:background="@drawable/button_accept"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,6 +63,7 @@
         android:layout_marginRight="80dp"
         android:layout_marginBottom="88dp"
         android:background="@drawable/button_deny"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

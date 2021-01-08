@@ -2,20 +2,18 @@ package com.example.texn_logism_login;
 
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
@@ -122,7 +120,7 @@ public class RequestActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requests_form);
-        BackButton = (Button)findViewById(R.id.buttonBack);
+        BackButton = (Button)findViewById(R.id.buttonBackRequest);
         submitLeaveRequestButton=(Button)findViewById(R.id.leaveButton);
         leaveDays = (TextView)findViewById(R.id.leaveDays);
         String loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
@@ -163,7 +161,8 @@ public class RequestActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(RequestActivity.this,"It's Not Working Yet, so sad :(.",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RequestActivity.this, UserActivity.class);
+                startActivity(intent);
             }
         });
 

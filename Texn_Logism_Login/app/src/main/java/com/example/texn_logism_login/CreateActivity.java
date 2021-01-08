@@ -68,8 +68,6 @@ public class CreateActivity  extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.buttonBackSchedule);
 
         Spinner spinnerScheduleType = findViewById(R.id.spinnerScheduleType);
-        Spinner spinnerShiftType = findViewById(R.id.spinnerShiftType);
-        Spinner spinnerProfession = findViewById(R.id.spinnerProfession);
         Spinner spinnerBusiness = findViewById(R.id.spinnerBusiness);
         Spinner spinnerOverride = findViewById(R.id.spinnerOverride);
         EditText EditTextEmployeesPerShift = (EditText) findViewById(R.id.EditTextEmployeesPerShift);
@@ -82,12 +80,6 @@ public class CreateActivity  extends AppCompatActivity {
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<>(CreateActivity.this, android.R.layout.simple_spinner_dropdown_item, ScheduleTypes);
         spinnerScheduleType.setAdapter(adapter);
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, ShiftTypes);
-        spinnerShiftType.setAdapter(adapter2);
-
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Profession);
-        spinnerProfession.setAdapter(adapter3);
 
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Business);
         spinnerBusiness.setAdapter(adapter4);
@@ -109,8 +101,6 @@ public class CreateActivity  extends AppCompatActivity {
                 System.out.println("SHMERINH IMEROMHNIA:" + currentDay + " " + currentMonth + " " + currentYear);
 
                 String SelectedScheduleType = spinnerScheduleType.getSelectedItem().toString();
-                String SelectedShiftType = spinnerShiftType.getSelectedItem().toString();
-                String SelectedProfession = spinnerProfession.getSelectedItem().toString();
                 String SelectedBusiness = spinnerBusiness.getSelectedItem().toString();
                 Integer SelectedEmployeesPerShift = Integer.valueOf(EditTextEmployeesPerShift.getText().toString());
                 String SelectedOverrideMode = spinnerOverride.getSelectedItem().toString();
@@ -124,9 +114,8 @@ public class CreateActivity  extends AppCompatActivity {
                 System.out.println("Sunday1: " + isSundayChecked);
 
 
-                //createSchedule(SelectedScheduleType, SelectedShiftType, SelectedProfession, SelectedEmployeesPerShift, SelectedBusiness);
                 int[][] schedule;
-                schedule=createSchedule(SelectedScheduleType,SelectedShiftType,SelectedProfession,SelectedEmployeesPerShift,SelectedBusiness,SelectedOverrideMode);
+                schedule=createSchedule(SelectedScheduleType,"8",SelectedEmployeesPerShift,SelectedBusiness,SelectedOverrideMode);
 
                 int scheduleLength=0;
 
@@ -138,7 +127,7 @@ public class CreateActivity  extends AppCompatActivity {
                 SaveScheduleActivity saveNewSchedulePHP=new SaveScheduleActivity();
                 saveNewSchedulePHP.deleteScheduleActivity(isAssignedTo);
               
-                util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness),isSaturdayChecked,isSundayChecked);
+                util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,8*getScheduleLength(SelectedScheduleType)*getNumOfShifts(SelectedBusiness),getNumOfShifts(SelectedBusiness),isSaturdayChecked,isSundayChecked);
 
                 scheduleLength=getScheduleLength(SelectedScheduleType);
                 int numberOfShifts=getNumOfShifts(SelectedBusiness);
@@ -214,15 +203,14 @@ public class CreateActivity  extends AppCompatActivity {
      * <h1>Create Schedule</h1>
      * CreateSchedule is the main class needed to <b>generate a Schedule</b>, based on multiple options the admin has picked
      * @param SelectedScheduleType String Array that Stores the schedule types (Weekly, Monthly, Trimester or Semester
-     * @param SelectedShiftType String Array that stores the Shift types, 8h or 4h
-     * @param SelectedProfession String Array that stores the Professions available (Programmer, Analyst, Manager)
+     * @param SelectedShiftType String Array that stores the Shift type.(8h)
      * @param SelectedEmployeesPerShift Is a number that clarifies how many users per shift the admin wants
      * @param SelectedBusinessType String Array that stores the Business type (8h, 16h, or 24h of working schedule)
      * @return Returns the generated Schedule
      */
 
 
-    public int[][] createSchedule(String SelectedScheduleType,String SelectedShiftType,String SelectedProfession,Integer SelectedEmployeesPerShift,String SelectedBusinessType,String SelectedOverrideMode){
+    public int[][] createSchedule(String SelectedScheduleType,String SelectedShiftType ,Integer SelectedEmployeesPerShift,String SelectedBusinessType,String SelectedOverrideMode){
 
         //We need to create a check on whether the admin who creates the schedule has hired any employees.
         //If there are no employees and he attempts to generate a schedule, it'll most likely crash
@@ -347,7 +335,6 @@ public class CreateActivity  extends AppCompatActivity {
                         util.usersOnShiftList.add(currentUser);
                     }
                     System.out.println("Employee with fewest hours returned " + currentUser.firstName + "  With hours:  " + currentUser.totalHours + " With ID:  " + currentUser.id + " With hasShit " + currentUser.hasShift);
-                    //builder.append("Apple").append(" ").append("Banana");
                     for (int z = j; z >= j - (Integer.valueOf(SelectedShiftType) - 1); z--) {
 
                         schedule[i][z] = currentUser.id;
@@ -371,7 +358,6 @@ public class CreateActivity  extends AppCompatActivity {
                     }
 
                     recentAmountOfEmployees++;
-                    //System.out.println("Total Hours: "+users[randomNum].totalHours);
                     iCheck = 1;
                     if (employeeAmountPerShift == recentAmountOfEmployees)
                     {
@@ -384,9 +370,7 @@ public class CreateActivity  extends AppCompatActivity {
                         iCheck = 0;
                         totalTypeHours = totalTypeHours - Integer.valueOf(SelectedShiftType);
                         recentAmountOfEmployees = 0;
-                        //k++;
                         //System.out.println("Allagh meras");
-                        //System.out.println("upoloipomenes totaltype hours: "+ totalTypeHours);
 
                         if (dayCount == numOfShifts) {
                             for (int q = 0; q < util.userObjects.length; q++) {
@@ -430,16 +414,7 @@ public class CreateActivity  extends AppCompatActivity {
                 System.out.println(); //Makes a new row
             }
 
-           //util.displaySchedule(users,schedule,employeeAmountPerShift,Integer.valueOf(SelectedShiftType)*type*numOfShifts,Integer.valueOf(SelectedShiftType));
-
-            //util.saveSchedule(util.userObjects,schedule,SelectedEmployeesPerShift,Integer.valueOf(SelectedShiftType)*getScheduleLength(SelectedScheduleType)*numOfShifts,numOfShifts);
         }
-
-        /*for(int i =0;i<users.length;i++){
-
-            System.out.println("O user: "+users[i].FirstName+" exei "+users[i].totalHours+" wres left. Kai exei doulepsei "+users[i].timesWorked + " fores.");
-
-        }*/
 
         if (allowedToCreateSchedule)
         {

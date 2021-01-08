@@ -50,9 +50,6 @@ public class HireActivity extends AppCompatActivity {
         Spinner dropDownProfession = findViewById(R.id.dropDownProfession);
         ArrayAdapter<String> adapterProfessions = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Professions);
         dropDownProfession.setAdapter(adapterProfessions);
-        Spinner dropDownHoursWorking = findViewById(R.id.dropDownHoursWorking);
-        ArrayAdapter<String> adapterHours = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Hours);
-        dropDownHoursWorking.setAdapter(adapterHours);
 
 
 
@@ -63,19 +60,17 @@ public class HireActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String profession = dropDownProfession.getSelectedItem().toString();
-                String hours= dropDownHoursWorking.getSelectedItem().toString();
                 String firstName = firstNameHireTextView.getText().toString();
                 String lastName = lastNameHireTextView.getText().toString();
                 String username = usernameHireTextView.getText().toString();
                 String password = passwordHireTextView.getText().toString();
                 String email = emailHireTextView.getText().toString();
                 System.out.printf("prof : " + profession );
-                System.out.printf("hours : " + hours );
 
                 CheckEditTextIsEmptyOrNot();
                 if (CheckEditText) {
                     UserRegisterFunction(loggedInUsername, username, password, email );
-                    UserAddedInformationFunction( firstName, lastName, profession, hours, username);
+                    UserAddedInformationFunction( firstName, lastName, profession, "8", username);
                 } else {
                     Toast.makeText(HireActivity.this, "Please fill form fields.", Toast.LENGTH_LONG).show();
                 }
@@ -198,7 +193,7 @@ public class HireActivity extends AppCompatActivity {
                 addedMap.put("firstName",params[0]);
                 addedMap.put("lastName",params[1]);
                 addedMap.put("profession",params[2]);
-                addedMap.put("hours",params[3]);
+                addedMap.put("hours","8");
                 addedMap.put("username",params[4]);
 
                 finalResult2 = httpParse2.postRequest(addedMap, HttpURL2);

@@ -55,19 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewHoursWorkingHire"
-        android:layout_width="108dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="28dp"
-        android:text="Hours Working"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfessionHire" />
-
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="376dp"
@@ -126,17 +113,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/email" />
-
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="391dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="112dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/textfield" />
 
     <ImageView
         android:id="@+id/imageView17"
@@ -218,16 +194,5 @@
         app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="@+id/imageView15"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsernameHire" />
-
-    <Spinner
-        android:id="@+id/dropDownHoursWorking"
-        android:layout_width="209dp"
-        android:layout_height="36dp"
-
-        android:layout_marginBottom="144dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

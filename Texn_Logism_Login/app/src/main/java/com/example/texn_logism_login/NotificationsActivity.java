@@ -242,23 +242,13 @@ public class NotificationsActivity extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        backButton = (Button) findViewById(R.id.buttonBackNotifications);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
-                startActivity(intent);
-
-            }
-        });
         setContentView(R.layout.notifications_form);
         ListView listView = (ListView) findViewById(R.id.notificationsListView);
         setFunction(loggedInUsername,listView);
         System.out.println("Logged in username " + loggedInUsername);
+
+
         backButton=(Button)findViewById(R.id.buttonBackNotif);
-
-
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

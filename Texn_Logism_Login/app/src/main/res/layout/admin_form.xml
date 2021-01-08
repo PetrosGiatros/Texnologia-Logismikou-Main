@@ -100,4 +100,14 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonHireFire"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/buttonLogoutAdmin"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_logout"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

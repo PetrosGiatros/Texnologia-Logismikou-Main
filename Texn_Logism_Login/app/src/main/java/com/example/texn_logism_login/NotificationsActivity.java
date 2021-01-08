@@ -130,6 +130,7 @@ public class NotificationsActivity extends AppCompatActivity {
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                     acceptButton=(Button)findViewById(R.id.acceptButton);
                     denyButton=(Button)findViewById(R.id.denyButton);
+
                     //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee arxi
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -241,7 +242,15 @@ public class NotificationsActivity extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        backButton = (Button) findViewById(R.id.buttonBackNotifications);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NotificationsActivity.this, AdminActivity.class);
+                startActivity(intent);
 
+            }
+        });
         setContentView(R.layout.notifications_form);
         ListView listView = (ListView) findViewById(R.id.notificationsListView);
         setFunction(loggedInUsername,listView);
@@ -259,6 +268,7 @@ public class NotificationsActivity extends AppCompatActivity {
             }
         });
     }
+
 
     /**
      * <h1>Accept Deny Employees</h1>

@@ -24,25 +24,27 @@
         android:id="@+id/buttonSubmitReg"
         android:layout_width="118dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="164dp"
         android:background="@drawable/button_register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ButtonBackReg"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
 
     <Button
         android:id="@+id/ButtonBackReg"
         android:layout_width="60dp"
         android:layout_height="60dp"
 
-        android:layout_marginTop="564dp"
         android:background="@drawable/button_back"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
 
     <ImageView
         android:id="@+id/imageView6"

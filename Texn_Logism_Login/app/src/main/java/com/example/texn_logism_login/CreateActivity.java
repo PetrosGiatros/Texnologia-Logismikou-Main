@@ -427,9 +427,11 @@ public class CreateActivity  extends AppCompatActivity {
             stObj.failFlag = false;
             stObj.setScheduleType(SelectedScheduleType);
             stObj.setBusinessType(SelectedBusinessType);
+            stObj.setOverrideMode(SelectedOverrideMode);
             stObj.peoplePerShift = employeeAmountPerShift;
             stObj.calculateHoursPerProfession();
             stObj.calculateUsersPerProfession();
+
             stObj.pushScheduleStatsToDB();
             stObj.deleteUserStats();
             stObj.pushUserStatsToDB();

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -98,6 +100,23 @@ public class StatisticsActivity extends AppCompatActivity
 
                 textView = (TextView) findViewById(R.id.textView3);
                 textView.setText("Open Sunday: " + resultArray[10]);
+
+                textView = (TextView) findViewById(R.id.overrideText);
+                textView.setText("Override Mode: " + resultArray[11]);
+
+                String[] statArray = new String[(resultArray.length - 12)/4];
+                int k = 0;
+                for (int i = 12;i < resultArray.length;i = i+4)
+                {
+                    statArray[k] = "Last Name: " + resultArray[i] + " Profession: " + resultArray[i+1] + " Regulation Hours: " + resultArray[i+2] + " Overtime Hours: " + resultArray[i+3];
+                    k++;
+                }
+
+                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.activity_listview,R.id.label, statArray);
+                ListView listView = (ListView) findViewById(R.id.statsListView);
+                listView.setAdapter(adapter);
+
+
             }
 
             @Override

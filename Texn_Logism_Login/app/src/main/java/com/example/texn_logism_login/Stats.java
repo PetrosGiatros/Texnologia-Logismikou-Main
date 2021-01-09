@@ -32,6 +32,7 @@ public class Stats {
     static public String finalResultSchedule;
     static public String finalResultDelUser;
     static public String loggedInUsername;
+    static public String overrideMode;
     /**
      * <h1>Set Users Count</h1>
      * Stores the amount of users pulled from the database
@@ -160,6 +161,10 @@ public class Stats {
      * <h1>Set Logged In Username</h1>
      * Sets the logged in Username
      */
+    static public void setOverrideMode(String ovMode)
+    {
+        overrideMode = ovMode;
+    }
     static public void setLoggedInUsername()
     {
          loggedInUsername = LoginActivity.getUsernameTextView().getText().toString();
@@ -190,6 +195,7 @@ public class Stats {
                 {
                     statsMapUser.put("ID",String.valueOf(users[i].id));
                     statsMapUser.put("hours",String.valueOf(users[i].regulationHoursWorked));
+                    statsMapUser.put("overtime",String.valueOf(users[i].overtimeHours));
                     finalResultUser = httpParse.postRequest(statsMapUser, HttpURLUser);
                 }
 
@@ -235,6 +241,7 @@ public class Stats {
                 System.out.println("Sunday"+sundayCheck);
                 statsMapSchedule.put("saturdayCheck",String.valueOf(saturdayCheck));
                 statsMapSchedule.put("sundayCheck",String.valueOf(sundayCheck));
+                statsMapSchedule.put("overrideMode",overrideMode);
 
 
 

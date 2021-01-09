@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class HireActivity extends AppCompatActivity {
 
     private TextView usernameHireTextView, passwordHireTextView, emailHireTextView,firstNameHireTextView,lastNameHireTextView;
     private Button submitButton,backButton;
+    public boolean isMorningChecked, isAfternoonChecked, isNightChecked;
     ProgressDialog progressDialog;
     HashMap<String,String> hireMap = new HashMap<>();
     HashMap<String,String> addedMap =new HashMap<>();
@@ -50,7 +52,9 @@ public class HireActivity extends AppCompatActivity {
         Spinner dropDownProfession = findViewById(R.id.dropDownProfession);
         ArrayAdapter<String> adapterProfessions = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Professions);
         dropDownProfession.setAdapter(adapterProfessions);
-
+        CheckBox checkBoxMorning = findViewById(R.id.checkBoxMorning);
+        CheckBox checkBoxAfternoon = findViewById(R.id.checkBoxAfternoon);
+        CheckBox checkBoxNight = findViewById(R.id.checkBoxNight);
 
 
         submitButton = (Button) findViewById(R.id.buttonSubmitHire);
@@ -65,12 +69,16 @@ public class HireActivity extends AppCompatActivity {
                 String username = usernameHireTextView.getText().toString();
                 String password = passwordHireTextView.getText().toString();
                 String email = emailHireTextView.getText().toString();
-                System.out.printf("prof : " + profession );
-
+                isMorningChecked = ((CheckBox) findViewById(R.id.checkBoxMorning)).isChecked();
+                isAfternoonChecked = ((CheckBox) findViewById(R.id.checkBoxAfternoon)).isChecked();
+                isNightChecked = ((CheckBox) findViewById(R.id.checkBoxNight)).isChecked();
+                System.out.println("Is morning checked:" + isMorningChecked);
+                System.out.println("Is Afternoon checked:" + isAfternoonChecked);
+                System.out.println("Is night checked:" + isNightChecked);
                 CheckEditTextIsEmptyOrNot();
                 if (CheckEditText) {
                     UserRegisterFunction(loggedInUsername, username, password, email );
-                    UserAddedInformationFunction( firstName, lastName, profession, "8", username);
+                    UserAddedInformationFunction( firstName, lastName, profession, "8", username,isMorningChecked,isAfternoonChecked,isNightChecked);
                 } else {
                     Toast.makeText(HireActivity.this, "Please fill form fields.", Toast.LENGTH_LONG).show();
                 }
@@ -168,7 +176,7 @@ public class HireActivity extends AppCompatActivity {
      * @param username Is the username he will be using to log in the app
      */
 
-    public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username){
+    public void UserAddedInformationFunction(String firstName, String lastName, String profession, String hours, String username, Boolean morning, Boolean afternoon, Boolean night){
 
         class UserAddedInformationFunctionClass extends AsyncTask<String,Void,String> {
             @Override
@@ -195,6 +203,9 @@ public class HireActivity extends AppCompatActivity {
                 addedMap.put("profession",params[2]);
                 addedMap.put("hours","8");
                 addedMap.put("username",params[4]);
+                addedMap.put("morning",params[5]);
+                addedMap.put("afternoon",params[6]);
+                addedMap.put("night",params[7]);
 
                 finalResult2 = httpParse2.postRequest(addedMap, HttpURL2);
                 System.out.println("result = "+ finalResult2);
@@ -202,7 +213,7 @@ public class HireActivity extends AppCompatActivity {
             }
         }
         UserAddedInformationFunctionClass userAddedInformationFunctionClass = new UserAddedInformationFunctionClass();
-        userAddedInformationFunctionClass.execute(firstName, lastName, profession, hours,username);
+        userAddedInformationFunctionClass.execute(firstName, lastName, profession, hours, username, String.valueOf(morning), String.valueOf(afternoon), String.valueOf(night));
     }
 
 

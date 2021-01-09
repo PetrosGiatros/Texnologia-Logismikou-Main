@@ -145,6 +145,8 @@ public class RequestActivity extends AppCompatActivity
                     }else{
                         startingDate= spinnerWorkDates.getSelectedItem().toString();
                         leaveFunction(loggedInUsername,requestedLeaveDays,startingDate);
+                        Intent intent = new Intent(RequestActivity.this, UserActivity.class);
+                        startActivity(intent);
                     }
                 }
                 else{

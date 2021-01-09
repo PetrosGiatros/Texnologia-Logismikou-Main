@@ -108,7 +108,7 @@ public class StatisticsActivity extends AppCompatActivity
                 int k = 0;
                 for (int i = 12;i < resultArray.length;i = i+4)
                 {
-                    statArray[k] = "Last Name: " + resultArray[i] + " Profession: " + resultArray[i+1] + " Regulation Hours: " + resultArray[i+2] + " Overtime Hours: " + resultArray[i+3];
+                    statArray[k] = resultArray[i+1] + " " + resultArray[i] + " Hours: " + resultArray[i+2] + " Overtime: " + resultArray[i+3];
                     k++;
                 }
 
